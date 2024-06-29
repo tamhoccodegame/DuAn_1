@@ -3,7 +3,7 @@ guid: 124edbc1a45006a45a577a48907fb37d
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
-  serializedVersion: 12
+  serializedVersion: 13
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -318,7 +318,7 @@ TextureImporter:
         x: 7382
         y: 6777
         width: 364
-        height: 293
+        height: 453
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -336,10 +336,10 @@ TextureImporter:
       name: Player_SpriteSheet_10
       rect:
         serializedVersion: 2
-        x: 7906
+        x: 7902
         y: 6783
         width: 332
-        height: 293
+        height: 453
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -360,7 +360,7 @@ TextureImporter:
         x: 8397
         y: 6777
         width: 370
-        height: 293
+        height: 453
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -381,7 +381,7 @@ TextureImporter:
         x: 8953
         y: 6777
         width: 338
-        height: 293
+        height: 453
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -402,7 +402,7 @@ TextureImporter:
         x: 9610
         y: 6777
         width: 364
-        height: 293
+        height: 453
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -423,7 +423,7 @@ TextureImporter:
         x: 10223
         y: 6783
         width: 389
-        height: 293
+        height: 453
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -444,7 +444,7 @@ TextureImporter:
         x: 10734
         y: 6783
         width: 376
-        height: 287
+        height: 453
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -465,7 +465,7 @@ TextureImporter:
         x: 11314
         y: 6777
         width: 377
-        height: 293
+        height: 453
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1071,10 +1071,10 @@ TextureImporter:
       name: Player_SpriteSheet_45
       rect:
         serializedVersion: 2
-        x: 7376
-        y: 4715
-        width: 230
-        height: 338
+        x: 7373
+        y: 4719
+        width: 223
+        height: 333
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1697,6 +1697,111 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Player_SpriteSheet_75
+      rect:
+        serializedVersion: 2
+        x: 7348
+        y: 4253
+        width: 272
+        height: 453
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 46856f2b79fc433479e6a0a1c3a7246b
+      internalID: -698470452
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_SpriteSheet_76
+      rect:
+        serializedVersion: 2
+        x: 8015
+        y: 4253
+        width: 271
+        height: 453
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c88e551d7a91a5641b491485513c8977
+      internalID: 379372259
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_SpriteSheet_77
+      rect:
+        serializedVersion: 2
+        x: 8682
+        y: 4253
+        width: 272
+        height: 453
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1a8e3ab11c3db1341ad2a02e9d29464e
+      internalID: -1174245280
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_SpriteSheet_78
+      rect:
+        serializedVersion: 2
+        x: 9378
+        y: 4253
+        width: 274
+        height: 453
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b2f85161efbe93c42b83c0d44e857112
+      internalID: 1583820551
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_SpriteSheet_79
+      rect:
+        serializedVersion: 2
+        x: 10197
+        y: 4253
+        width: 274
+        height: 453
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 28eb81f78b0037f4d8813ec97dd4b2ab
+      internalID: -1918724708
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -1781,6 +1886,11 @@ TextureImporter:
       Player_SpriteSheet_72: -2091406564
       Player_SpriteSheet_73: -1739560488
       Player_SpriteSheet_74: 2036418263
+      Player_SpriteSheet_75: -698470452
+      Player_SpriteSheet_76: 379372259
+      Player_SpriteSheet_77: -1174245280
+      Player_SpriteSheet_78: 1583820551
+      Player_SpriteSheet_79: -1918724708
       Player_SpriteSheet_8: -1147434223
       Player_SpriteSheet_9: 1537469536
   mipmapLimitGroupName: 

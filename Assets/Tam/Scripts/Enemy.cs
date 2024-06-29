@@ -122,8 +122,8 @@ public class Enemy : MonoBehaviour
 
     private IEnumerator AttackDelay()
     {
-		animator.ResetTrigger("isAttack");
-		yield return new WaitForSeconds(2f);
+        animator.ResetTrigger("isAttack");
+        yield return new WaitForSeconds(2f);
         
 		ChangeState(State.Chase);
 	}
