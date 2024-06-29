@@ -2,7 +2,11 @@
     "m_SGVersion": 3,
     "m_Type": "UnityEditor.ShaderGraph.GraphData",
     "m_ObjectId": "2754acfdbd814895aa6a55b64b9dffd5",
-    "m_Properties": [],
+    "m_Properties": [
+        {
+            "m_Id": "2e32e7ce7ea74899aa1e0f249bd5f281"
+        }
+    ],
     "m_Keywords": [],
     "m_Dropdowns": [],
     "m_CategoryData": [
@@ -32,8 +36,8 @@
     "m_Edges": [],
     "m_VertexContext": {
         "m_Position": {
-            "x": 0.0,
-            "y": 0.0
+            "x": 224.0,
+            "y": -79.0
         },
         "m_Blocks": [
             {
@@ -49,8 +53,8 @@
     },
     "m_FragmentContext": {
         "m_Position": {
-            "x": 0.0,
-            "y": 200.0
+            "x": 233.0,
+            "y": 118.99998474121094
         },
         "m_Blocks": [
             {
@@ -178,6 +182,36 @@
         "m_SerializableColors": []
     },
     "m_SerializedDescriptor": "VertexDescription.Normal"
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Internal.Texture2DShaderProperty",
+    "m_ObjectId": "2e32e7ce7ea74899aa1e0f249bd5f281",
+    "m_Guid": {
+        "m_GuidSerialized": "5341936c-32bd-4e67-81ef-270b019cbef9"
+    },
+    "m_Name": "Tree",
+    "m_DefaultRefNameVersion": 1,
+    "m_RefNameGeneratedByDisplayName": "Tree",
+    "m_DefaultReferenceName": "_Tree",
+    "m_OverrideReferenceName": "",
+    "m_GeneratePropertyBlock": true,
+    "m_UseCustomSlotLabel": false,
+    "m_CustomSlotLabel": "",
+    "m_DismissedVersion": 0,
+    "m_Precision": 0,
+    "overrideHLSLDeclaration": false,
+    "hlslDeclarationOverride": 0,
+    "m_Hidden": false,
+    "m_Value": {
+        "m_SerializedTexture": "{\"texture\":{\"instanceID\":0}}",
+        "m_Guid": ""
+    },
+    "isMainTexture": false,
+    "useTilingAndOffset": false,
+    "m_Modifiable": true,
+    "m_DefaultType": 0
 }
 
 {
@@ -338,7 +372,11 @@
     "m_Type": "UnityEditor.ShaderGraph.CategoryData",
     "m_ObjectId": "e7305f6325af48019dd8f3a449555e9e",
     "m_Name": "",
-    "m_ChildObjectList": []
+    "m_ChildObjectList": [
+        {
+            "m_Id": "2e32e7ce7ea74899aa1e0f249bd5f281"
+        }
+    ]
 }
 
 {
