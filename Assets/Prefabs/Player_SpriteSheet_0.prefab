@@ -31,8 +31,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2163696015470030778}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 29.93, y: 10.98, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0.0015215733, w: 0.99999887}
+  m_LocalPosition: {x: 29.92312, y: 0.34328955, z: 0}
   m_LocalScale: {x: 1.0917, y: 1.0917, z: 1.0917}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -81,7 +81,7 @@ SpriteRenderer:
   m_SortingLayerID: -938558039
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2141946238, guid: 124edbc1a45006a45a577a48907fb37d, type: 3}
+  m_Sprite: {fileID: -737345033, guid: 124edbc1a45006a45a577a48907fb37d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -141,7 +141,7 @@ MonoBehaviour:
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
-  m_SplitScreenIndex: -1
+  m_SplitScreenIndex: 0
   m_Camera: {fileID: 0}
 --- !u!114 &3532395755195965686
 MonoBehaviour:
@@ -229,7 +229,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!1 &4387113453877417147
 GameObject:
   m_ObjectHideFlags: 0
