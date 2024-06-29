@@ -1,0 +1,809 @@
+fileFormatVersion: 2
+guid: 7dbc6d698a5943349ab462d5662e5527
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: PC Computer - Dungeon Fighter Online - Captain Berhik_0
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 447
+        width: 74
+        height: 113
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ebe842569215318439dfed7bd953bb87
+      internalID: 2111409805
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - Dungeon Fighter Online - Captain Berhik_1
+      rect:
+        serializedVersion: 2
+        x: 267
+        y: 449
+        width: 71
+        height: 113
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1aee635a234483c4eb60eb7f5b29bf95
+      internalID: 387235452
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - Dungeon Fighter Online - Captain Berhik_2
+      rect:
+        serializedVersion: 2
+        x: 500
+        y: 449
+        width: 62
+        height: 114
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2d467800856d05f41a17888e0e8fd42e
+      internalID: -1898822769
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - Dungeon Fighter Online - Captain Berhik_3
+      rect:
+        serializedVersion: 2
+        x: 725
+        y: 445
+        width: 60
+        height: 114
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8b52ccde71d4c2a4fa97f1a57bf0e06f
+      internalID: -929037429
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - Dungeon Fighter Online - Captain Berhik_4
+      rect:
+        serializedVersion: 2
+        x: 941
+        y: 442
+        width: 65
+        height: 120
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ac7db130bb8a0754e9a98662783e2bea
+      internalID: 496776824
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - Dungeon Fighter Online - Captain Berhik_5
+      rect:
+        serializedVersion: 2
+        x: 1156
+        y: 446
+        width: 73
+        height: 120
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f387c635ccf18fc4a9b4205e01c5d32f
+      internalID: -1090462779
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - Dungeon Fighter Online - Captain Berhik_6
+      rect:
+        serializedVersion: 2
+        x: 49
+        y: 298
+        width: 54
+        height: 123
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 774ad1748dcaab24dae3583ca25dd278
+      internalID: -145884296
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - Dungeon Fighter Online - Captain Berhik_7
+      rect:
+        serializedVersion: 2
+        x: 261
+        y: 298
+        width: 117
+        height: 111
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ce7a5aff4223694408ebe293ffff7410
+      internalID: 859602919
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - Dungeon Fighter Online - Captain Berhik_8
+      rect:
+        serializedVersion: 2
+        x: 490
+        y: 309
+        width: 136
+        height: 104
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cdc0f4c31b5c69643a83fe76418f292a
+      internalID: -2145104634
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - Dungeon Fighter Online - Captain Berhik_9
+      rect:
+        serializedVersion: 2
+        x: 742
+        y: 303
+        width: 109
+        height: 106
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cf6b598806cf02047b84eec3ea4fa314
+      internalID: -1254471775
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - Dungeon Fighter Online - Captain Berhik_10
+      rect:
+        serializedVersion: 2
+        x: 964
+        y: 293
+        width: 114
+        height: 141
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 52a3bb605295a424fbfa114577248de6
+      internalID: 1266705592
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - Dungeon Fighter Online - Captain Berhik_11
+      rect:
+        serializedVersion: 2
+        x: 1187
+        y: 296
+        width: 113
+        height: 134
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dd5b361fb1aba4142b875aac96eeeab0
+      internalID: 330735745
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - Dungeon Fighter Online - Captain Berhik_12
+      rect:
+        serializedVersion: 2
+        x: 1438
+        y: 298
+        width: 96
+        height: 142
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f4868bc4812c89845821e3dedd8714a3
+      internalID: 1381479631
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - Dungeon Fighter Online - Captain Berhik_13
+      rect:
+        serializedVersion: 2
+        x: 1667
+        y: 298
+        width: 94
+        height: 143
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 61dfc3b52dfde07408b980bdd1460ebe
+      internalID: -1451818959
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - Dungeon Fighter Online - Captain Berhik_14
+      rect:
+        serializedVersion: 2
+        x: 1908
+        y: 298
+        width: 101
+        height: 97
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4f7fd161ef6182142b14e6ec15433a1c
+      internalID: -1996301135
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - Dungeon Fighter Online - Captain Berhik_15
+      rect:
+        serializedVersion: 2
+        x: 2129
+        y: 302
+        width: 101
+        height: 97
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b21007db3b1c8b0479779b182aac8c22
+      internalID: 1833560477
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - Dungeon Fighter Online - Captain Berhik_16
+      rect:
+        serializedVersion: 2
+        x: 2353
+        y: 298
+        width: 102
+        height: 97
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2580234fa60a5fc45b5075fb4d3a7dce
+      internalID: -2010277595
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - Dungeon Fighter Online - Captain Berhik_17
+      rect:
+        serializedVersion: 2
+        x: 53
+        y: 153
+        width: 84
+        height: 115
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 58b65b57d72389b448840063b9fe0bf6
+      internalID: -633342605
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - Dungeon Fighter Online - Captain Berhik_18
+      rect:
+        serializedVersion: 2
+        x: 277
+        y: 153
+        width: 83
+        height: 115
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a54551406e619044cbb2673f1e339d38
+      internalID: 951569561
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - Dungeon Fighter Online - Captain Berhik_19
+      rect:
+        serializedVersion: 2
+        x: 501
+        y: 152
+        width: 72
+        height: 139
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 76365f780acd6fb458b8c3de3809c57f
+      internalID: 402656017
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - Dungeon Fighter Online - Captain Berhik_20
+      rect:
+        serializedVersion: 2
+        x: 724
+        y: 152
+        width: 72
+        height: 139
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fcd4338dfd11a9448a38d39acfb296fb
+      internalID: -39183288
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - Dungeon Fighter Online - Captain Berhik_21
+      rect:
+        serializedVersion: 2
+        x: 944
+        y: 152
+        width: 78
+        height: 134
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cd8d62b54f9c47d42b2a35db94470bff
+      internalID: -1796217205
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - Dungeon Fighter Online - Captain Berhik_22
+      rect:
+        serializedVersion: 2
+        x: 1169
+        y: 153
+        width: 130
+        height: 116
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 74efef7b472c05247b3aa51b91a72040
+      internalID: -1482473315
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - Dungeon Fighter Online - Captain Berhik_23
+      rect:
+        serializedVersion: 2
+        x: 1391
+        y: 153
+        width: 131
+        height: 116
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8300deaa1fa10c84dbfe9a0c8c30d9b4
+      internalID: 151626176
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - Dungeon Fighter Online - Captain Berhik_24
+      rect:
+        serializedVersion: 2
+        x: 1614
+        y: 153
+        width: 131
+        height: 116
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cfbf1f83338235345b9f960ca0b454a5
+      internalID: 1732114180
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - Dungeon Fighter Online - Captain Berhik_25
+      rect:
+        serializedVersion: 2
+        x: 55
+        y: 7
+        width: 75
+        height: 102
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5aa229aba607e2842ba15fe18b73bb8b
+      internalID: -1064778975
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - Dungeon Fighter Online - Captain Berhik_26
+      rect:
+        serializedVersion: 2
+        x: 268
+        y: 8
+        width: 71
+        height: 122
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b7422565b0392ff4385c4a85f38f2750
+      internalID: -563636284
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - Dungeon Fighter Online - Captain Berhik_27
+      rect:
+        serializedVersion: 2
+        x: 447
+        y: 9
+        width: 138
+        height: 52
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f0c2f0943c9527d49b7fc482012b9592
+      internalID: -1933035147
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - Dungeon Fighter Online - Captain Berhik_28
+      rect:
+        serializedVersion: 2
+        x: 701
+        y: 2
+        width: 72
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e323ac6cbe47b8f42b837a3595b332a0
+      internalID: -313821370
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - Dungeon Fighter Online - Captain Berhik_29
+      rect:
+        serializedVersion: 2
+        x: 57
+        y: 0
+        width: 49
+        height: 4
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 19b3fbf5b53675845aed21210959b169
+      internalID: -1002900609
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - Dungeon Fighter Online - Captain Berhik_30
+      rect:
+        serializedVersion: 2
+        x: 186
+        y: 0
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a4776b0b023b6f9438dd3fc19fc664b2
+      internalID: 1057790940
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      PC Computer - Dungeon Fighter Online - Captain Berhik_0: 2111409805
+      PC Computer - Dungeon Fighter Online - Captain Berhik_1: 387235452
+      PC Computer - Dungeon Fighter Online - Captain Berhik_10: 1266705592
+      PC Computer - Dungeon Fighter Online - Captain Berhik_11: 330735745
+      PC Computer - Dungeon Fighter Online - Captain Berhik_12: 1381479631
+      PC Computer - Dungeon Fighter Online - Captain Berhik_13: -1451818959
+      PC Computer - Dungeon Fighter Online - Captain Berhik_14: -1996301135
+      PC Computer - Dungeon Fighter Online - Captain Berhik_15: 1833560477
+      PC Computer - Dungeon Fighter Online - Captain Berhik_16: -2010277595
+      PC Computer - Dungeon Fighter Online - Captain Berhik_17: -633342605
+      PC Computer - Dungeon Fighter Online - Captain Berhik_18: 951569561
+      PC Computer - Dungeon Fighter Online - Captain Berhik_19: 402656017
+      PC Computer - Dungeon Fighter Online - Captain Berhik_2: -1898822769
+      PC Computer - Dungeon Fighter Online - Captain Berhik_20: -39183288
+      PC Computer - Dungeon Fighter Online - Captain Berhik_21: -1796217205
+      PC Computer - Dungeon Fighter Online - Captain Berhik_22: -1482473315
+      PC Computer - Dungeon Fighter Online - Captain Berhik_23: 151626176
+      PC Computer - Dungeon Fighter Online - Captain Berhik_24: 1732114180
+      PC Computer - Dungeon Fighter Online - Captain Berhik_25: -1064778975
+      PC Computer - Dungeon Fighter Online - Captain Berhik_26: -563636284
+      PC Computer - Dungeon Fighter Online - Captain Berhik_27: -1933035147
+      PC Computer - Dungeon Fighter Online - Captain Berhik_28: -313821370
+      PC Computer - Dungeon Fighter Online - Captain Berhik_29: -1002900609
+      PC Computer - Dungeon Fighter Online - Captain Berhik_3: -929037429
+      PC Computer - Dungeon Fighter Online - Captain Berhik_30: 1057790940
+      PC Computer - Dungeon Fighter Online - Captain Berhik_4: 496776824
+      PC Computer - Dungeon Fighter Online - Captain Berhik_5: -1090462779
+      PC Computer - Dungeon Fighter Online - Captain Berhik_6: -145884296
+      PC Computer - Dungeon Fighter Online - Captain Berhik_7: 859602919
+      PC Computer - Dungeon Fighter Online - Captain Berhik_8: -2145104634
+      PC Computer - Dungeon Fighter Online - Captain Berhik_9: -1254471775
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

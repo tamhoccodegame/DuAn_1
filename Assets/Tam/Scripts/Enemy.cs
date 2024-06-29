@@ -76,7 +76,7 @@ public class Enemy : MonoBehaviour
 
         rb.velocity = new Vector2(direction.x * patrolSpeed, rb.velocity.y);
 
-        if (Vector2.Distance(transform.position, targetPoint.position) <= 0.5f)
+        if (Vector2.Distance(transform.position, targetPoint.position) <= 4f)
         {
             rb.velocity = Vector2.zero;
             currentPatrolIndex = (currentPatrolIndex + 1) % patrolPoints.Length;
