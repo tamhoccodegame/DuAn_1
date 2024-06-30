@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 723762475741775173}
   - component: {fileID: 2087152665924911346}
   - component: {fileID: 5529297831705101674}
-  - component: {fileID: 4089019959456578376}
+  - component: {fileID: 5378180584418367525}
   m_Layer: 0
   m_Name: Captain
   m_TagString: Untagged
@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 1510608401267780288}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.32, z: 0}
+  m_LocalPosition: {x: 0, y: -1.07, z: 0}
   m_LocalScale: {x: 2.655721, y: 2.655721, z: 2.655721}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -132,7 +132,9 @@ MonoBehaviour:
   - {fileID: 1451054108905466289}
   - {fileID: 4432096493909212583}
   _bulletPrefabs: {fileID: 0}
+  _effectPrefabs: {fileID: 0}
   _firePoint: {fileID: 0}
+  _effectPoint: {fileID: 0}
   _enemyType: 0
 --- !u!50 &5529297831705101674
 Rigidbody2D:
@@ -161,8 +163,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!60 &4089019959456578376
-PolygonCollider2D:
+--- !u!61 &5378180584418367525
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -193,48 +195,19 @@ PolygonCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.045969456, y: 0.49816018}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0.5053313, y: 0.05316945}
     oldSize: {x: 0.74, y: 1.13}
     newSize: {x: 1.1802883, y: 1.4100001}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: -0.01, y: -0.345}
-      - {x: 0.01, y: -0.285}
-      - {x: 0.13, y: -0.33499998}
-      - {x: 0.089999996, y: -0.465}
-      - {x: 0.13, y: -0.565}
-      - {x: 0.35, y: -0.565}
-      - {x: 0.37, y: -0.555}
-      - {x: 0.37, y: -0.45499998}
-      - {x: 0.35999998, y: -0.415}
-      - {x: 0.31, y: -0.295}
-      - {x: 0.31, y: -0.155}
-      - {x: 0.22, y: -0.024999999}
-      - {x: 0.29, y: 0.095}
-      - {x: 0.37, y: 0.405}
-      - {x: 0.37, y: 0.475}
-      - {x: 0.26, y: 0.555}
-      - {x: 0.17999999, y: 0.555}
-      - {x: -0.06, y: 0.42499998}
-      - {x: -0.16, y: 0.315}
-      - {x: -0.19999999, y: 0.035}
-      - {x: -0.29, y: -0.225}
-      - {x: -0.37, y: -0.375}
-      - {x: -0.37, y: -0.525}
-      - {x: -0.32999998, y: -0.565}
-      - {x: -0.17, y: -0.565}
-      - {x: -0.13, y: -0.555}
-      - {x: -0.16, y: -0.505}
-      - {x: -0.19999999, y: -0.465}
-      - {x: -0.06, y: -0.39499998}
-  m_UseDelaunayMesh: 0
+  serializedVersion: 2
+  m_Size: {x: 0.4818207, y: 0.95074236}
+  m_EdgeRadius: 0
 --- !u!1 &2820160251049814377
 GameObject:
   m_ObjectHideFlags: 0
