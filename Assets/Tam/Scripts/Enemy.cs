@@ -13,7 +13,12 @@ public class Enemy : MonoBehaviour
     protected float attackRange;
     protected float chaseRange;
     protected Transform[] patrolPoints;
+    protected GameObject? bulletPrefabs;
+    protected ParticleSystem? effectPrefabs;
+    protected GameObject firePoint;
+    protected GameObject effectPoint;
     private int currentPatrolIndex;
+    private bool isCoroutineRunning = false;
 
     protected Rigidbody2D rb;
     protected Animator animator;
@@ -27,7 +32,14 @@ public class Enemy : MonoBehaviour
         Chase,
     }
 
+    public enum EnemyType
+    {
+        Melee,
+        Range,
+    }
+
     public State currentState;
+    public EnemyType enemyType;
 
     // Start is called before the first frame update
     public virtual void Start()
@@ -111,21 +123,44 @@ public class Enemy : MonoBehaviour
     }
 
     private void Attack()
-    {
+	{
+		animator.SetTrigger("isAttack");
+
+		if (isCoroutineRunning) return;
+
+        direction = direction = new Vector3(player.position.x - transform.position.x, 0, 0);
+        direction.Normalize();
+
+		LookAtDirection(direction); 
         rb.velocity = Vector2.zero;
-        animator.SetTrigger("isAttack");
-        if (Mathf.Abs(player.position.x - transform.position.x) > attackRange)
+        if (enemyType == EnemyType.Range)
         {
-            StartCoroutine(AttackDelay());           
+            var spawnedBullet = Instantiate(bulletPrefabs, firePoint.transform.position, transform.rotation).GetComponent<Rigidbody2D>();
+            spawnedBullet.transform.localScale = new Vector3 (direction.x * spawnedBullet.transform.localScale.x, 
+                                                                spawnedBullet.transform.localScale.z, 
+                                                                 spawnedBullet.transform.localScale.z);
+            spawnedBullet.velocity = new Vector2(direction.x * 5, 0);
         }
+
+		StartCoroutine(AttackDelay());
+		
+    }
+
+    private void SpawnEffect()
+    {
+        Instantiate(effectPrefabs, effectPoint.transform.position, transform.rotation);
     }
 
     private IEnumerator AttackDelay()
     {
+        isCoroutineRunning = true;
         animator.ResetTrigger("isAttack");
         yield return new WaitForSeconds(2f);
-        
-		ChangeState(State.Chase);
+		if (Mathf.Abs(player.position.x - transform.position.x) > attackRange)
+		{
+			ChangeState(State.Chase);
+		}
+		isCoroutineRunning = false;
 	}
 
 
