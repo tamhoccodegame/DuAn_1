@@ -282,11 +282,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isAlive: 1
-  speed: 10
-  climbspeed: 10
-  jump: 10
-  feet: {fileID: 576755644}
   facingRight: 1
+  feet: {fileID: 576755644}
+  speed: 10
+  jump: 10
+  attackPoint: {fileID: 655712677}
+  enemyLayers:
+    serializedVersion: 2
+    m_Bits: 128
+  attackRange: 1
+  attackRate: 2
+  nextAttackTime: 2
 --- !u!4 &329256543 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5364488465016717285, guid: f9f2ed3739d5fbb49ad556546a6c2e35, type: 3}
@@ -391,6 +397,37 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 329256543}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &655712676
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 655712677}
+  m_Layer: 0
+  m_Name: Attack_Point
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &655712677
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 655712676}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.93, y: -0.3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -819,11 +856,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5364488465016717285, guid: f9f2ed3739d5fbb49ad556546a6c2e35, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.24
+      value: -5.09
       objectReference: {fileID: 0}
     - target: {fileID: 5364488465016717285, guid: f9f2ed3739d5fbb49ad556546a6c2e35, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.06
+      value: 2.03
       objectReference: {fileID: 0}
     - target: {fileID: 5364488465016717285, guid: f9f2ed3739d5fbb49ad556546a6c2e35, type: 3}
       propertyPath: m_LocalPosition.z
@@ -863,6 +900,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5364488465016717285, guid: f9f2ed3739d5fbb49ad556546a6c2e35, type: 3}
       insertIndex: -1
       addedObject: {fileID: 576755645}
+    - targetCorrespondingSourceObject: {fileID: 5364488465016717285, guid: f9f2ed3739d5fbb49ad556546a6c2e35, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 655712677}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 2163696015470030778, guid: f9f2ed3739d5fbb49ad556546a6c2e35, type: 3}
       insertIndex: -1
