@@ -184,6 +184,7 @@ public class Enemy : MonoBehaviour
     {
         this.enabled = false;
         animator.SetBool("isDead", true);
+        Destroy(gameObject);
     }
 
 

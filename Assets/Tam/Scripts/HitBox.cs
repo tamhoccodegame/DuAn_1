@@ -18,11 +18,19 @@ public class HitBox : MonoBehaviour
 	{
 		Enemy enemyHit = collision.gameObject.GetComponent<Enemy>();
 		Player_Health playerHit = collision.gameObject.GetComponent<Player_Health>();
-		Debug.Log(playerHit);
+		Vector3 direction = new Vector3(collision.transform.position.x - transform.position.x, 0, 0); 
+		direction.Normalize();
 		if (playerHit)
 		{
 			playerHit.TakeDamage(enemyDamage);
-			GetComponent<Knockback>().ApplyKnockback(playerHit.transform, (playerHit.transform.position - transform.position).normalized);
+			Knockback knockback = GetComponent<Knockback>();
+			knockback.ApplyKnockback(collision.gameObject.transform, direction);
+		}
+		else
+		{
+			//enemyHit.TakeDamage(enemyDamage);
+			Knockback knockback = GetComponent<Knockback>();
+			knockback.ApplyKnockback(collision.gameObject.transform, direction);
 		}
 	}
 }
