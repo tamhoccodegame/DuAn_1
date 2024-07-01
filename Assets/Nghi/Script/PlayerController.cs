@@ -129,7 +129,7 @@ public class PlayerController : MonoBehaviour
         foreach (Collider2D enemy in hitEnemies)
         {
             Debug.Log("Hit " + enemy.name);
-            //enemy.GetComponent<Boss_Health>().TakeDamage(10); //attackDamage
+            enemy.GetComponent<Enemy>().TakeDamage(10); //attackDamage
         }
     }
 
@@ -144,7 +144,7 @@ public class PlayerController : MonoBehaviour
         foreach (Collider2D enemy in hitEnemies)
         {
             Debug.Log("Hit " + enemy.name);
-            //enemy.GetComponent<Boss_Health>().TakeDamage(20); //attackDamage
+            enemy.GetComponent<Enemy>().TakeDamage(20); //attackDamage
         }
     }
 
@@ -160,7 +160,7 @@ public class PlayerController : MonoBehaviour
         foreach (Collider2D enemy in hitEnemies)
         {
             Debug.Log("Hit " + enemy.name);
-            //enemy.GetComponent<Boss_Health>().TakeDamage(30); //attackDamage
+            enemy.GetComponent<Enemy>().TakeDamage(30); //attackDamage
         }
     }
 
@@ -169,5 +169,6 @@ public class PlayerController : MonoBehaviour
         if (attackPoint == null) return;
         Gizmos.DrawWireSphere(attackPoint.position, attackRange);
     }
+
 
 }
