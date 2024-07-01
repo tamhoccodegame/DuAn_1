@@ -12,6 +12,9 @@ public class Enemy : MonoBehaviour
     protected float chaseSpeed;
     protected float attackRange;
     protected float chaseRange;
+    protected int damage;
+
+
     protected Transform[] patrolPoints;
     protected GameObject? bulletPrefabs;
     protected ParticleSystem? effectPrefabs;
@@ -42,7 +45,7 @@ public class Enemy : MonoBehaviour
     public EnemyType enemyType;
 
     // Start is called before the first frame update
-    public virtual void Start()
+    public virtual void Awake()
     {
         currentState = State.Patrol;
         currentPatrolIndex = 0;
@@ -73,6 +76,10 @@ public class Enemy : MonoBehaviour
         currentState = newState;
     }
 
+    public int GetDamage()
+    {
+        return damage;
+    }
 
     private void Patrol()
     {

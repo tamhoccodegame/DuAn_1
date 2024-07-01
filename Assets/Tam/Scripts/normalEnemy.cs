@@ -5,10 +5,11 @@ using UnityEngine;
 public class normalEnemies : Enemy
 {
 	[SerializeField] private float _maxHealth;
-	[SerializeField] private float _patrolSpeed = 2f;
-	[SerializeField] private float _chaseSpeed = 5f;
-	[SerializeField] private float _attackRange = 2.5f;
-	[SerializeField] private float _chaseRange = 15f;
+	[SerializeField] private float _patrolSpeed;
+	[SerializeField] private float _chaseSpeed;
+	[SerializeField] private float _attackRange;
+	[SerializeField] private float _chaseRange;
+	[SerializeField] private int _damage;
 	[SerializeField] private Transform[] _patrolPoints;
 	[SerializeField] private GameObject _bulletPrefabs;
 	[SerializeField] private ParticleSystem _effectPrefabs;
@@ -18,14 +19,15 @@ public class normalEnemies : Enemy
 
 
 	// Start is called before the first frame update
-	public override void Start()
+	public override void Awake()
     {
-		base.Start();
+		base.Awake();
 		enemyType = _enemyType; 
 		patrolSpeed = _patrolSpeed;
 		chaseSpeed = _chaseSpeed;
 		attackRange = _attackRange;
 		chaseRange = _chaseRange;
+		damage = _damage;
         maxHealth = _maxHealth;
 		currentHealth = _maxHealth;
 		patrolPoints = _patrolPoints;
