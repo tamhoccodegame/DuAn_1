@@ -10,11 +10,14 @@ public class GameSession : MonoBehaviour
     public Text playerlives_Text;
     public int score = 0;
     public Text score_Text;
+    public int coin = 0;
+    public Text coin_Text;
     // Start is called before the first frame update
     void Start()
     {
-        score_Text.text = score.ToString();
-        playerlives_Text.text = playerlives.ToString();
+        playerlives_Text.text = "LIVES: "+playerlives.ToString();
+        score_Text.text = "SCORES: "+score.ToString();
+        coin_Text.text="COINS: "+coin_Text.ToString();
     }
 
     // Update is called once per frame
@@ -51,8 +54,8 @@ public class GameSession : MonoBehaviour
     public void TakeLife()
     {
         playerlives--;
-
-        //SceneManager.LoadScene("Map1_2D");
+        UpdateLiveAmount();
+        
         //lay index cua scene hien tai
         int currentsceneindex = SceneManager.GetActiveScene().buildIndex;
         //load lai scene hien tai
@@ -73,6 +76,17 @@ public class GameSession : MonoBehaviour
     {
         score += num;
         score_Text.text = "SCORES: " + score.ToString();
+    }
+
+    public void UpdateLiveAmount()
+    {
+        playerlives_Text.text = "LIVES: " + playerlives.ToString();
+    }
+
+    public void AddCoin(int num)
+    {
+        coin += num;
+        coin_Text.text = "COINS: " + coin.ToString();
     }
 
     public void PauseGame()
