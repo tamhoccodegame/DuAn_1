@@ -22,6 +22,7 @@ public class HitBox : MonoBehaviour
 		if (playerHit)
 		{
 			playerHit.TakeDamage(enemyDamage);
+			GetComponent<Knockback>().ApplyKnockback(playerHit.transform, (playerHit.transform.position - transform.position).normalized);
 		}
 	}
 }
