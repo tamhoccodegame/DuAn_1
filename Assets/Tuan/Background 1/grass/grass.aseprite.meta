@@ -77,6 +77,7 @@ ScriptedImporter:
     defaultPivotSpace: 0
     defaultPivotAlignment: 7
     customPivotPosition: {x: 0.5, y: 0.5}
+    mosaicPadding: 4
     spritePadding: 0
     generateModelPrefab: 1
     generateAnimationClips: 1
@@ -89,6 +90,7 @@ ScriptedImporter:
     defaultPivotSpace: 0
     defaultPivotAlignment: 7
     customPivotPosition: {x: 0.5, y: 0.5}
+    mosaicPadding: 4
     spritePadding: 0
     generateModelPrefab: 1
     generateAnimationClips: 1
@@ -450,6 +452,7 @@ ScriptedImporter:
     cells:
     - name: grass_Frame_0
       frameIndex: 0
+      additiveSortOrder: 0
       cellRect:
         x: 8
         y: 0
@@ -458,6 +461,7 @@ ScriptedImporter:
       spriteId: 2b7f8c8f404819b4c8683e040afdeb29
     - name: grass_Frame_1
       frameIndex: 1
+      additiveSortOrder: 0
       cellRect:
         x: 11
         y: 0
@@ -466,6 +470,7 @@ ScriptedImporter:
       spriteId: 94eb6442ca365cc48a43765254f4a050
     - name: grass_Frame_2
       frameIndex: 2
+      additiveSortOrder: 0
       cellRect:
         x: 2
         y: 4
@@ -474,6 +479,7 @@ ScriptedImporter:
       spriteId: 15aaf4478aede2b43b8914611f3a0891
     - name: grass_Frame_3
       frameIndex: 3
+      additiveSortOrder: 0
       cellRect:
         x: 3
         y: 4
@@ -482,6 +488,7 @@ ScriptedImporter:
       spriteId: 722615611d031a04eadaf8a999a41a4d
     - name: grass_Frame_4
       frameIndex: 4
+      additiveSortOrder: 0
       cellRect:
         x: 1
         y: 1
@@ -490,6 +497,7 @@ ScriptedImporter:
       spriteId: 80cfaed44e7e074439e17e38f0539edc
     - name: grass_Frame_5
       frameIndex: 5
+      additiveSortOrder: 0
       cellRect:
         x: 4
         y: 2
@@ -498,6 +506,7 @@ ScriptedImporter:
       spriteId: e53ad0ceb756a464a8ae64e2e8038a2b
     - name: grass_Frame_6
       frameIndex: 6
+      additiveSortOrder: 0
       cellRect:
         x: 2
         y: 1
@@ -506,6 +515,7 @@ ScriptedImporter:
       spriteId: da862a747a6a5104790fe1b541e493ef
     - name: grass_Frame_7
       frameIndex: 7
+      additiveSortOrder: 0
       cellRect:
         x: 1
         y: 4
@@ -514,6 +524,7 @@ ScriptedImporter:
       spriteId: e0a1427b4acddfe4e9eb5bd469392c9d
     - name: grass_Frame_8
       frameIndex: 8
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: 0
@@ -522,6 +533,7 @@ ScriptedImporter:
       spriteId: 37bf402267d211d4cb971387242a2293
     - name: grass_Frame_9
       frameIndex: 9
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: 0
@@ -530,6 +542,7 @@ ScriptedImporter:
       spriteId: d0206fbede9ab974c98d02b42d525a9a
     - name: grass_Frame_10
       frameIndex: 10
+      additiveSortOrder: 0
       cellRect:
         x: 8
         y: 0
@@ -538,6 +551,7 @@ ScriptedImporter:
       spriteId: 8713fe7383a91934aac9c2ac56aaae45
     - name: grass_Frame_11
       frameIndex: 11
+      additiveSortOrder: 0
       cellRect:
         x: 3
         y: 0
@@ -546,6 +560,7 @@ ScriptedImporter:
       spriteId: ba8ca39e87f64d54b874cbc7d97501ae
     - name: grass_Frame_12
       frameIndex: 12
+      additiveSortOrder: 0
       cellRect:
         x: 2
         y: 3
@@ -554,6 +569,7 @@ ScriptedImporter:
       spriteId: 06e3eb9603474a848bf5d1cad97f2417
     - name: grass_Frame_13
       frameIndex: 13
+      additiveSortOrder: 0
       cellRect:
         x: 4
         y: 0
@@ -562,6 +578,7 @@ ScriptedImporter:
       spriteId: ec5209fdcfc3a5840aae449565e3e720
     - name: grass_Frame_14
       frameIndex: 14
+      additiveSortOrder: 0
       cellRect:
         x: 5
         y: 0
@@ -570,6 +587,7 @@ ScriptedImporter:
       spriteId: ae2b66e813fa9a148a856c6a98bf2824
     - name: grass_Frame_15
       frameIndex: 15
+      additiveSortOrder: 0
       cellRect:
         x: 7
         y: 0
@@ -579,6 +597,7 @@ ScriptedImporter:
     linkedCells: []
     parentIndex: -1
   platformSettings: []
+  generatePhysicsShape: 0
   secondarySpriteTextures: []
   spritePackingTag: 
   canvasSize: {x: 56, y: 56}
