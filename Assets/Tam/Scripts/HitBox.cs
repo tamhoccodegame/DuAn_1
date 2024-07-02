@@ -5,13 +5,13 @@ using UnityEngine;
 public class HitBox : MonoBehaviour
 {
 	private int damage;
-	int playerDamage;
-	int enemyDamage;
-
-	private void Start()
+	private int playerDamage;
+	private int enemyDamage;
+	private void Awake()
 	{
-		//playerDamage = 
-		enemyDamage = GetComponentInParent<Enemy>().GetDamage();
+		playerDamage = GetComponentInParent<PlayerController>()?.GetDamage() ?? playerDamage; 
+		enemyDamage = GetComponentInParent<Enemy>()?.GetDamage() ?? enemyDamage;
+		Debug.Log(enemyDamage);
 	}
 
 	private void OnTriggerEnter2D(Collider2D collision)
@@ -22,13 +22,14 @@ public class HitBox : MonoBehaviour
 		direction.Normalize();
 		if (playerHit)
 		{
+			Debug.Log(enemyDamage);
 			playerHit.TakeDamage(enemyDamage);
 			Knockback knockback = GetComponent<Knockback>();
 			knockback.ApplyKnockback(collision.gameObject.transform, direction);
 		}
-		else
+		if(enemyHit)
 		{
-			//enemyHit.TakeDamage(enemyDamage);
+			enemyHit.TakeDamage(playerDamage);
 			Knockback knockback = GetComponent<Knockback>();
 			knockback.ApplyKnockback(collision.gameObject.transform, direction);
 		}

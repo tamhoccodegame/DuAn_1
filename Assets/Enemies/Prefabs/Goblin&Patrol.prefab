@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6200543953011581614}
   - component: {fileID: 5834552932931912141}
   - component: {fileID: 1298185944556402669}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -100,6 +100,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f6f6d7258b6b364993a77d6eb9139c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 0
   currentState: 0
   enemyType: 0
   _maxHealth: 0
@@ -107,6 +108,7 @@ MonoBehaviour:
   _chaseSpeed: 10
   _attackRange: 1.5
   _chaseRange: 5
+  _damage: 0
   _patrolPoints:
   - {fileID: 4961939257640354173}
   - {fileID: 9220738842328690805}
@@ -137,7 +139,7 @@ Rigidbody2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 136
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
