@@ -3,7 +3,9 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Spike
+  - Coin
   layers:
   - Default
   - TransparentFX
@@ -12,7 +14,7 @@ TagManager:
   - Water
   - UI
   - Ground
-  - 
+  - Enemy
   - 
   - 
   - 
@@ -47,9 +49,12 @@ TagManager:
   - name: Ground
     uniqueID: 1627640423
     locked: 0
+  - name: Elements
+    uniqueID: 2356778009
+    locked: 0
   - name: Player
     uniqueID: 3356409257
     locked: 0
-  - name: Elements
-    uniqueID: 2356778009
+  - name: UI
+    uniqueID: 3484935709
     locked: 0
