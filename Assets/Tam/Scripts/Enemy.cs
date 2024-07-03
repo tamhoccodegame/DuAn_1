@@ -41,8 +41,8 @@ public class Enemy : MonoBehaviour
         Range,
     }
 
-    public State currentState;
-    public EnemyType enemyType;
+    protected State currentState;
+    protected EnemyType enemyType;
 
     public int GetDamage()
     {

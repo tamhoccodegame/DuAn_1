@@ -85,16 +85,11 @@ public class PlayerController : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.J))
             {
                 Attack1();
-                nextAttackTime = Time.time + 1f / attackRate;
+                nextAttackTime = Time.time + 1.5f / attackRate;
             }
             else if (Input.GetKeyDown(KeyCode.K))
             {
                 Attack2();
-                nextAttackTime = Time.time + 1f / attackRate;
-            }
-            else if (Input.GetKeyDown(KeyCode.L))
-            {
-                Attack3();
                 nextAttackTime = Time.time + 1f / attackRate;
             }
         }

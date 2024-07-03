@@ -7,10 +7,11 @@ public class HitBox : MonoBehaviour
 	private int damage;
 	private int playerDamage;
 	private int enemyDamage;
-	private void Awake()
+	private void Start()
 	{
 		playerDamage = GetComponentInParent<PlayerController>()?.GetDamage() ?? playerDamage; 
 		enemyDamage = GetComponentInParent<Enemy>()?.GetDamage() ?? enemyDamage;
+	
 		Debug.Log(enemyDamage);
 	}
 

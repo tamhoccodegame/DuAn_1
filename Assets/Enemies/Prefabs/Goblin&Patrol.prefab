@@ -100,13 +100,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f6f6d7258b6b364993a77d6eb9139c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 0
-  currentState: 0
-  enemyType: 0
   _maxHealth: 0
   _patrolSpeed: 5
   _chaseSpeed: 10
-  _attackRange: 1.5
+  _attackRange: 3
   _chaseRange: 5
   _damage: 0
   _patrolPoints:
@@ -139,7 +136,7 @@ Rigidbody2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 136
+    m_Bits: 128
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0

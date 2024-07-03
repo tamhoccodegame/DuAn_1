@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Knockback : MonoBehaviour
 {
-	public float knockbackForce = 10f;
-	public float knockbackDuration = .2f;
+	public float knockbackForce = 20f;
+	public float knockbackDuration = .5f;
 	Vector3 vel;
 	private PlayerController? playerController;
 	private Enemy? enemy;
