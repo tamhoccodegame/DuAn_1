@@ -41,8 +41,13 @@ public class Enemy : MonoBehaviour
         Range,
     }
 
-    public State currentState;
-    public EnemyType enemyType;
+    protected State currentState;
+    protected EnemyType enemyType;
+
+    public int GetDamage()
+    {
+        return damage;
+    }
 
     // Start is called before the first frame update
     public virtual void Awake()
@@ -76,11 +81,7 @@ public class Enemy : MonoBehaviour
         currentState = newState;
     }
 
-    public int GetDamage()
-    {
-        return damage;
-    }
-
+    
     private void Patrol()
     {
         if (Mathf.Abs(player.position.x - transform.position.x) <= chaseRange)
@@ -184,6 +185,7 @@ public class Enemy : MonoBehaviour
     {
         this.enabled = false;
         animator.SetBool("isDead", true);
+        Destroy(gameObject);
     }
 
 

@@ -9,7 +9,7 @@ public class Player_Health : MonoBehaviour
     public int currentHealth;
     public Player_HealthBar player_HealthBar;
 
-    public Animator animator;
+    Animator animator;
     Rigidbody2D rig;
     CapsuleCollider2D col;
 
@@ -18,7 +18,9 @@ public class Player_Health : MonoBehaviour
     {
         currentHealth = maxHealth;
         player_HealthBar.SetMaxHealth(maxHealth);
+        col = GetComponent<CapsuleCollider2D>();
         rig = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -47,11 +49,18 @@ public class Player_Health : MonoBehaviour
     {
      
         animator.SetBool("isDead", true);
-        GetComponent<Collider2D>().enabled = false; //Disable the collider 2D
+        Collider2D[] colliders = GetComponents<Collider2D>();
+
+        foreach(Collider2D col in colliders)
+        {
+            col.enabled = false;
+        }
+
+        //GetComponent<Collider2D>().enabled = false; //Disable the collider 2D
         this.enabled = false;
         
         //deathEffect.Play();
-        FindObjectOfType<GameSession>().PlayerDeath();
+        //FindObjectOfType<GameSession>().PlayerDeath();
     }
 
     public void OnTriggerEnter2D(Collider2D player)
