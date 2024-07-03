@@ -37,6 +37,7 @@ public class normalEnemies : Enemy
 		effectPoint = _effectPoint;
     }
 
+	
     // Update is called once per frame
 	
 	

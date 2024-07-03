@@ -142,19 +142,27 @@ public class Enemy : MonoBehaviour
 		LookAtDirection(direction); 
         rb.velocity = Vector2.zero;
 
-        if (enemyType == EnemyType.Range)
+        if(enemyType == EnemyType.Range)
         {
-            var spawnedBullet = Instantiate(bulletPrefabs, firePoint.transform.position, transform.rotation).GetComponent<Rigidbody2D>();
-            spawnedBullet.transform.localScale = new Vector3 (direction.x * spawnedBullet.transform.localScale.x, 
-                                                                spawnedBullet.transform.localScale.z, 
-                                                                 spawnedBullet.transform.localScale.z);
-            spawnedBullet.velocity = new Vector2(direction.x * 5, 0);
-            spawnedBullet.GetComponent<RangeHitBox>().damage = damage;
-		}
+            FireBall();
+        }
+        
+            
+		
 
 		StartCoroutine(AttackDelay());
 		
     }
+
+    public void FireBall()
+    {
+		var spawnedBullet = Instantiate(bulletPrefabs, firePoint.transform.position, transform.rotation).GetComponent<Rigidbody2D>();
+		spawnedBullet.transform.localScale = new Vector3(direction.x * spawnedBullet.transform.localScale.x,
+															spawnedBullet.transform.localScale.z,
+															 spawnedBullet.transform.localScale.z);
+		spawnedBullet.velocity = new Vector2(direction.x * 5, 0);
+		spawnedBullet.GetComponent<RangeHitBox>().damage = damage;
+	}
 
     private void SpawnEffect()
     {
