@@ -121,15 +121,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f6f6d7258b6b364993a77d6eb9139c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 0
-  currentState: 0
-  enemyType: 0
   _maxHealth: 0
   _patrolSpeed: 2
   _chaseSpeed: 4
   _attackRange: 2.5
   _chaseRange: 15
-  _damage: 0
+  _damage: 10
   _patrolPoints:
   - {fileID: 1451054108905466289}
   - {fileID: 4432096493909212583}
@@ -150,7 +147,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 1000
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
@@ -160,7 +157,7 @@ Rigidbody2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 136
+    m_Bits: 128
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -225,7 +222,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &5088883168781367941
 Transform:
   m_ObjectHideFlags: 0

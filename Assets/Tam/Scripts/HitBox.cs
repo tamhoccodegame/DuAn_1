@@ -5,11 +5,14 @@ using UnityEngine;
 public class HitBox : MonoBehaviour
 {
 	private int damage;
-	private int playerDamage;
-	private int enemyDamage;
+	[SerializeField] private int playerDamage;
+	[SerializeField] private int enemyDamage;
 	private void Start()
 	{
+		if(playerDamage == 0)
 		playerDamage = GetComponentInParent<PlayerController>()?.GetDamage() ?? playerDamage; 
+
+		if(enemyDamage == 0)
 		enemyDamage = GetComponentInParent<Enemy>()?.GetDamage() ?? enemyDamage;
 	
 		Debug.Log(enemyDamage);
