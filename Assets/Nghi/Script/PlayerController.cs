@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
     public BoxCollider2D feet;
     [SerializeField] float speed = 10f;
     [SerializeField] float jump = 20f;
+    [SerializeField] private int damage;
 
     public Transform attackPoint;
     public LayerMask enemyLayers;
@@ -35,6 +36,11 @@ public class PlayerController : MonoBehaviour
         rig = GetComponent<Rigidbody2D>();
         col = GetComponent<CapsuleCollider2D>();
         animator = GetComponent<Animator>();
+    }
+
+    public int GetDamage()
+    {
+        return damage;
     }
 
     void OnMove(InputValue value)
@@ -150,13 +156,13 @@ public class PlayerController : MonoBehaviour
         animator.SetTrigger("isAttack1");
         //FindObjectOfType<SoundManager>().PlayAudio("Player_Attack");
         //Detect enemies in range of attack
-        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
-        //Damage Enemies
-        foreach (Collider2D enemy in hitEnemies)
-        {
-            Debug.Log("Hit " + enemy.name);
-            enemy.GetComponent<Enemy>().TakeDamage(10); //attackDamage
-        }
+        //Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
+        ////Damage Enemies
+        //foreach (Collider2D enemy in hitEnemies)
+        //{
+        //    Debug.Log("Hit " + enemy.name);
+        //    enemy.GetComponent<Enemy>().TakeDamage(10); //attackDamage
+        //}
     }
 
     void Attack2()
@@ -165,13 +171,13 @@ public class PlayerController : MonoBehaviour
         animator.SetTrigger("isAttack2");
         //FindObjectOfType<SoundManager>().PlayAudio("Player_Attack");
         //Detect enemies in range of attack
-        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
-        //Damage Enemies
-        foreach (Collider2D enemy in hitEnemies)
-        {
-            Debug.Log("Hit " + enemy.name);
-            enemy.GetComponent<Enemy>().TakeDamage(20); //attackDamage
-        }
+        //Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
+        ////Damage Enemies
+        //foreach (Collider2D enemy in hitEnemies)
+        //{
+        //    Debug.Log("Hit " + enemy.name);
+        //    enemy.GetComponent<Enemy>().TakeDamage(20); //attackDamage
+        //}
     }
 
     void Attack3()
@@ -181,19 +187,19 @@ public class PlayerController : MonoBehaviour
         //FindObjectOfType<SoundManager>().PlayAudio("Player_Attack");
 
         //Detect enemies in range of attack
-        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
-        //Damage Enemies
-        foreach (Collider2D enemy in hitEnemies)
-        {
-            Debug.Log("Hit " + enemy.name);
-            enemy.GetComponent<Enemy>().TakeDamage(30); //attackDamage
-        }
+        //Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
+        ////Damage Enemies
+        //foreach (Collider2D enemy in hitEnemies)
+        //{
+        //    Debug.Log("Hit " + enemy.name);
+        //    enemy.GetComponent<Enemy>().TakeDamage(30); //attackDamage
+        //}
     }
 
     private void OnDrawGizmosSelected()//Ve Gizmos de xac dinh AttackPoint
     {
-        if (attackPoint == null) return;
-        Gizmos.DrawWireSphere(attackPoint.position, attackRange);
+        //if (attackPoint == null) return;
+        //Gizmos.DrawWireSphere(attackPoint.position, attackRange);
     }
 
     void Combo()
@@ -203,37 +209,37 @@ public class PlayerController : MonoBehaviour
         {
             animator.SetTrigger("isAttack4");
             //Detect enemies in range of attack
-            Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
-            //Damage Enemies
-            foreach (Collider2D enemy in hitEnemies)
-            {
-                Debug.Log("Hit " + enemy.name);
-                enemy.GetComponent<Enemy>().TakeDamage(15); //attackDamage
-            }
+            //Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
+            ////Damage Enemies
+            //foreach (Collider2D enemy in hitEnemies)
+            //{
+            //    Debug.Log("Hit " + enemy.name);
+            //    enemy.GetComponent<Enemy>().TakeDamage(15); //attackDamage
+            //}
         }
         else if (comboStep == 2)
         {
             animator.SetTrigger("isAttack5");
             //Detect enemies in range of attack
-            Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
-            //Damage Enemies
-            foreach (Collider2D enemy in hitEnemies)
-            {
-                Debug.Log("Hit " + enemy.name);
-                enemy.GetComponent<Enemy>().TakeDamage(25); //attackDamage
-            }
+            //Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
+            ////Damage Enemies
+            //foreach (Collider2D enemy in hitEnemies)
+            //{
+            //    Debug.Log("Hit " + enemy.name);
+            //    enemy.GetComponent<Enemy>().TakeDamage(25); //attackDamage
+            //}
         }
         else if (comboStep == 3)
         {
             animator.SetTrigger("isAttack6");
             //Detect enemies in range of attack
-            Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
-            //Damage Enemies
-            foreach (Collider2D enemy in hitEnemies)
-            {
-                Debug.Log("Hit " + enemy.name);
-                enemy.GetComponent<Enemy>().TakeDamage(35); //attackDamage
-            }
+            //Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
+            ////Damage Enemies
+            //foreach (Collider2D enemy in hitEnemies)
+            //{
+            //    Debug.Log("Hit " + enemy.name);
+            //    enemy.GetComponent<Enemy>().TakeDamage(35); //attackDamage
+            //}
 
             comboStep = 0; // Reset combo after the final attack
 

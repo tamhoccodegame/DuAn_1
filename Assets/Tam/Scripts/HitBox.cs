@@ -18,6 +18,11 @@ public class HitBox : MonoBehaviour
 		Debug.Log(enemyDamage);
 	}
 
+	public int GetDamage()
+	{
+		return damage;
+	}
+
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
 		Enemy enemyHit = collision.gameObject.GetComponent<Enemy>();
