@@ -23,6 +23,12 @@ public class PlayerController : MonoBehaviour
     public float attackRate = 2f;
     float nextAttackTime = 0f;
 
+    private int comboStep = 0;
+    private float lastAttackTime = 0f;
+    public float comboResetTime = 1f;
+    private bool isAttacking = false;
+    public float attackCooldown = 0.5f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -90,6 +96,26 @@ public class PlayerController : MonoBehaviour
                 Attack3();
                 nextAttackTime = Time.time + 1f / attackRate;
             }
+        }
+
+        //COMBO
+        if (Time.time - lastAttackTime > comboResetTime)
+        {
+            comboStep = 0;
+        }
+
+
+        if (Input.GetKeyDown(KeyCode.U) && !isAttacking)
+        {
+            lastAttackTime = Time.time;
+            Combo();
+        }
+
+        // Reset isAttacking flag when the current animation is over
+        AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
+        if (stateInfo.IsTag("Attack") && stateInfo.normalizedTime >= 1.0f)
+        {
+            isAttacking = false;
         }
 
     }
@@ -170,5 +196,55 @@ public class PlayerController : MonoBehaviour
         Gizmos.DrawWireSphere(attackPoint.position, attackRange);
     }
 
+    void Combo()
+    {
+        comboStep++;
+        if (comboStep == 1)
+        {
+            animator.SetTrigger("isAttack4");
+            //Detect enemies in range of attack
+            Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
+            //Damage Enemies
+            foreach (Collider2D enemy in hitEnemies)
+            {
+                Debug.Log("Hit " + enemy.name);
+                enemy.GetComponent<Enemy>().TakeDamage(15); //attackDamage
+            }
+        }
+        else if (comboStep == 2)
+        {
+            animator.SetTrigger("isAttack5");
+            //Detect enemies in range of attack
+            Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
+            //Damage Enemies
+            foreach (Collider2D enemy in hitEnemies)
+            {
+                Debug.Log("Hit " + enemy.name);
+                enemy.GetComponent<Enemy>().TakeDamage(25); //attackDamage
+            }
+        }
+        else if (comboStep == 3)
+        {
+            animator.SetTrigger("isAttack6");
+            //Detect enemies in range of attack
+            Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
+            //Damage Enemies
+            foreach (Collider2D enemy in hitEnemies)
+            {
+                Debug.Log("Hit " + enemy.name);
+                enemy.GetComponent<Enemy>().TakeDamage(35); //attackDamage
+            }
 
+            comboStep = 0; // Reset combo after the final attack
+
+            isAttacking = true;
+            StartCoroutine(AttackCooldown());
+        }
+    }
+
+    IEnumerator AttackCooldown()
+    {
+        yield return new WaitForSeconds(attackCooldown);
+        isAttacking = false;
+    }
 }
