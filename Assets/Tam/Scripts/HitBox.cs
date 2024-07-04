@@ -5,13 +5,22 @@ using UnityEngine;
 public class HitBox : MonoBehaviour
 {
 	private int damage;
-	int playerDamage;
-	int enemyDamage;
-
+	[SerializeField] private int playerDamage;
+	[SerializeField] private int enemyDamage;
 	private void Start()
 	{
-		//playerDamage = 
-		enemyDamage = GetComponentInParent<Enemy>().GetDamage();
+		if(playerDamage == 0)
+		playerDamage = GetComponentInParent<PlayerController>()?.GetDamage() ?? playerDamage; 
+
+		if(enemyDamage == 0)
+		enemyDamage = GetComponentInParent<Enemy>()?.GetDamage() ?? enemyDamage;
+	
+		Debug.Log(enemyDamage);
+	}
+
+	public int GetDamage()
+	{
+		return damage;
 	}
 
 	private void OnTriggerEnter2D(Collider2D collision)
@@ -22,13 +31,14 @@ public class HitBox : MonoBehaviour
 		direction.Normalize();
 		if (playerHit)
 		{
+			Debug.Log(enemyDamage);
 			playerHit.TakeDamage(enemyDamage);
 			Knockback knockback = GetComponent<Knockback>();
 			knockback.ApplyKnockback(collision.gameObject.transform, direction);
 		}
-		else
+		if(enemyHit)
 		{
-			//enemyHit.TakeDamage(enemyDamage);
+			enemyHit.TakeDamage(playerDamage);
 			Knockback knockback = GetComponent<Knockback>();
 			knockback.ApplyKnockback(collision.gameObject.transform, direction);
 		}

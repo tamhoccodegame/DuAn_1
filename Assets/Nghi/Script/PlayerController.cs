@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
     public BoxCollider2D feet;
     [SerializeField] float speed = 10f;
     [SerializeField] float jump = 20f;
+    [SerializeField] private int damage;
 
     public Transform attackPoint;
     public LayerMask enemyLayers;
@@ -23,12 +24,23 @@ public class PlayerController : MonoBehaviour
     public float attackRate = 2f;
     float nextAttackTime = 0f;
 
+    private int comboStep = 1;
+    private float lastAttackTime = 0f;
+    private bool isAttacking = false;
+    public float attackCooldown = 0.5f;
+    private bool inputReceived = false;
+
     // Start is called before the first frame update
     void Start()
     {
         rig = GetComponent<Rigidbody2D>();
         col = GetComponent<CapsuleCollider2D>();
         animator = GetComponent<Animator>();
+    }
+
+    public int GetDamage()
+    {
+        return damage;
     }
 
     void OnMove(InputValue value)
@@ -72,26 +84,10 @@ public class PlayerController : MonoBehaviour
             Flip();
         }
 
+        Debug.Log(isAttacking);
 
-        if (Time.time >= nextAttackTime)
-        {
-            if (Input.GetKeyDown(KeyCode.J))
-            {
-                Attack1();
-                nextAttackTime = Time.time + 1f / attackRate;
-            }
-            else if (Input.GetKeyDown(KeyCode.K))
-            {
-                Attack2();
-                nextAttackTime = Time.time + 1f / attackRate;
-            }
-            else if (Input.GetKeyDown(KeyCode.L))
-            {
-                Attack3();
-                nextAttackTime = Time.time + 1f / attackRate;
-            }
-        }
-
+		Combo();
+		
     }
 
     void Run()
@@ -124,13 +120,13 @@ public class PlayerController : MonoBehaviour
         animator.SetTrigger("isAttack1");
         //FindObjectOfType<SoundManager>().PlayAudio("Player_Attack");
         //Detect enemies in range of attack
-        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
-        //Damage Enemies
-        foreach (Collider2D enemy in hitEnemies)
-        {
-            Debug.Log("Hit " + enemy.name);
-            enemy.GetComponent<Enemy>().TakeDamage(10); //attackDamage
-        }
+        //Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
+        ////Damage Enemies
+        //foreach (Collider2D enemy in hitEnemies)
+        //{
+        //    Debug.Log("Hit " + enemy.name);
+        //    enemy.GetComponent<Enemy>().TakeDamage(10); //attackDamage
+        //}
     }
 
     void Attack2()
@@ -139,13 +135,13 @@ public class PlayerController : MonoBehaviour
         animator.SetTrigger("isAttack2");
         //FindObjectOfType<SoundManager>().PlayAudio("Player_Attack");
         //Detect enemies in range of attack
-        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
-        //Damage Enemies
-        foreach (Collider2D enemy in hitEnemies)
-        {
-            Debug.Log("Hit " + enemy.name);
-            enemy.GetComponent<Enemy>().TakeDamage(20); //attackDamage
-        }
+        //Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
+        ////Damage Enemies
+        //foreach (Collider2D enemy in hitEnemies)
+        //{
+        //    Debug.Log("Hit " + enemy.name);
+        //    enemy.GetComponent<Enemy>().TakeDamage(20); //attackDamage
+        //}
     }
 
     void Attack3()
@@ -155,20 +151,59 @@ public class PlayerController : MonoBehaviour
         //FindObjectOfType<SoundManager>().PlayAudio("Player_Attack");
 
         //Detect enemies in range of attack
-        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
-        //Damage Enemies
-        foreach (Collider2D enemy in hitEnemies)
-        {
-            Debug.Log("Hit " + enemy.name);
-            enemy.GetComponent<Enemy>().TakeDamage(30); //attackDamage
-        }
+        //Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
+        ////Damage Enemies
+        //foreach (Collider2D enemy in hitEnemies)
+        //{
+        //    Debug.Log("Hit " + enemy.name);
+        //    enemy.GetComponent<Enemy>().TakeDamage(30); //attackDamage
+        //}
     }
 
     private void OnDrawGizmosSelected()//Ve Gizmos de xac dinh AttackPoint
     {
-        if (attackPoint == null) return;
-        Gizmos.DrawWireSphere(attackPoint.position, attackRange);
+        //if (attackPoint == null) return;
+        //Gizmos.DrawWireSphere(attackPoint.position, attackRange);
     }
 
+    public void StartCombo()
+    {
+        isAttacking = false;
+        if (comboStep < 3)
+            comboStep++;
+        if (inputReceived)
+        {
+			isAttacking = true;
+			animator.SetTrigger("isAttack" + comboStep);
+			inputReceived = false;
+        }
+    }
 
+    public void EndCombo()
+    {
+        //animator.ResetTrigger("isAttack" + comboStep);
+        comboStep = 1;
+        //StartCoroutine(AttackCooldown());
+        isAttacking = false;
+    }
+
+    void Combo()
+    {
+		if (Input.GetKeyDown(KeyCode.J) && !isAttacking)
+		{
+            isAttacking = true;
+            animator.SetTrigger("isAttack" + comboStep);
+		}
+        else if(Input.GetKeyDown(KeyCode.J) && isAttacking)
+        {
+            inputReceived = true;
+        }
+        
+	}
+
+    IEnumerator AttackCooldown()
+    {
+        yield return new WaitForSeconds(attackCooldown);
+        isAttacking = false;
+    }
 }
