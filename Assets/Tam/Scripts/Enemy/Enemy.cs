@@ -17,7 +17,7 @@ public class Enemy : MonoBehaviour
 
     protected Transform[] patrolPoints;
     private int currentPatrolIndex;
-    private bool isCoroutineRunning = false;
+    protected bool isCoroutineRunning = false;
 
     protected Rigidbody2D rb;
     protected Animator animator;
@@ -128,20 +128,7 @@ public class Enemy : MonoBehaviour
 
     public virtual void Attack()
 	{
-        Debug.Log(isCoroutineRunning);
-		if (isCoroutineRunning) return;
-
-		animator.SetTrigger("isAttack");
-		rb.velocity = Vector2.zero;
-		
-
-		direction = direction = new Vector3(player.position.x - transform.position.x, 0, 0);
-        direction.Normalize();
-
-		LookAtDirection(direction);
-
-		isCoroutineRunning = true;
-		StartCoroutine(AttackDelay());		
+       	
     }
 
     
@@ -153,14 +140,7 @@ public class Enemy : MonoBehaviour
 
     public virtual IEnumerator AttackDelay()
     {
-        yield return new WaitForSeconds(.3f);
-        animator.ResetTrigger("isAttack");
-		yield return new WaitForSeconds(2f);
-		if (Mathf.Abs(player.position.x - transform.position.x) > attackRange)
-		{
-			ChangeState(State.Chase);
-		}
-		isCoroutineRunning = false;
+        return null;
 	}
 
 

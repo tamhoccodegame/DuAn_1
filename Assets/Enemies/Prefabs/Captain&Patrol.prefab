@@ -118,7 +118,7 @@ GameObject:
   - component: {fileID: 6640658730961632188}
   - component: {fileID: 4600143526098013306}
   - component: {fileID: 723762475741775173}
-  - component: {fileID: 2087152665924911346}
+  - component: {fileID: 3836940448406772913}
   - component: {fileID: 5529297831705101674}
   - component: {fileID: 5378180584418367525}
   m_Layer: 7
@@ -218,7 +218,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &2087152665924911346
+--- !u!114 &3836940448406772913
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -227,7 +227,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1510608401267780288}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1f6f6d7258b6b364993a77d6eb9139c0, type: 3}
+  m_Script: {fileID: 11500000, guid: b1350e9e55fbe284f940e60d69a4ca50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _maxHealth: 500
@@ -239,10 +239,10 @@ MonoBehaviour:
   _patrolPoints:
   - {fileID: 1451054108905466289}
   - {fileID: 4432096493909212583}
-  _bulletPrefabs: {fileID: 139027123098052828, guid: 59f75e3a9228fb94da0998189da8a71d, type: 3}
-  _effectPrefabs: {fileID: 0}
-  _firePoint: {fileID: 2330585783634316556}
-  _effectPoint: {fileID: 0}
+  bulletPrefabs: {fileID: 139027123098052828, guid: 59f75e3a9228fb94da0998189da8a71d, type: 3}
+  effectPrefabs: {fileID: 0}
+  firePoint: {fileID: 2330585783634316556}
+  effectPoint: {fileID: 0}
   _enemyType: 0
 --- !u!50 &5529297831705101674
 Rigidbody2D:
