@@ -24,11 +24,11 @@ public class PlayerController : MonoBehaviour
     public float attackRate = 2f;
     float nextAttackTime = 0f;
 
-    private int comboStep = 0;
+    private int comboStep = 1;
     private float lastAttackTime = 0f;
-    public float comboResetTime = 1f;
     private bool isAttacking = false;
     public float attackCooldown = 0.5f;
+    private bool inputReceived = false;
 
     // Start is called before the first frame update
     void Start()
@@ -84,46 +84,10 @@ public class PlayerController : MonoBehaviour
             Flip();
         }
 
+        Debug.Log(isAttacking);
 
-        if (Time.time >= nextAttackTime)
-        {
-            if (Input.GetKeyDown(KeyCode.J))
-            {
-                Attack1();
-                nextAttackTime = Time.time + 1f / attackRate;
-            }
-            else if (Input.GetKeyDown(KeyCode.K))
-            {
-                Attack2();
-                nextAttackTime = Time.time + 1f / attackRate;
-            }
-            else if (Input.GetKeyDown(KeyCode.L))
-            {
-                Attack3();
-                nextAttackTime = Time.time + 1f / attackRate;
-            }
-        }
-
-        //COMBO
-        if (Time.time - lastAttackTime > comboResetTime)
-        {
-            comboStep = 0;
-        }
-
-
-        if (Input.GetKeyDown(KeyCode.U) && !isAttacking)
-        {
-            lastAttackTime = Time.time;
-            Combo();
-        }
-
-        // Reset isAttacking flag when the current animation is over
-        AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
-        if (stateInfo.IsTag("Attack") && stateInfo.normalizedTime >= 1.0f)
-        {
-            isAttacking = false;
-        }
-
+		Combo();
+		
     }
 
     void Run()
@@ -202,51 +166,40 @@ public class PlayerController : MonoBehaviour
         //Gizmos.DrawWireSphere(attackPoint.position, attackRange);
     }
 
-    void Combo()
+    public void StartCombo()
     {
-        comboStep++;
-        if (comboStep == 1)
+        isAttacking = false;
+        if (comboStep < 3)
+            comboStep++;
+        if (inputReceived)
         {
-            animator.SetTrigger("isAttack4");
-            //Detect enemies in range of attack
-            //Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
-            ////Damage Enemies
-            //foreach (Collider2D enemy in hitEnemies)
-            //{
-            //    Debug.Log("Hit " + enemy.name);
-            //    enemy.GetComponent<Enemy>().TakeDamage(15); //attackDamage
-            //}
-        }
-        else if (comboStep == 2)
-        {
-            animator.SetTrigger("isAttack5");
-            //Detect enemies in range of attack
-            //Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
-            ////Damage Enemies
-            //foreach (Collider2D enemy in hitEnemies)
-            //{
-            //    Debug.Log("Hit " + enemy.name);
-            //    enemy.GetComponent<Enemy>().TakeDamage(25); //attackDamage
-            //}
-        }
-        else if (comboStep == 3)
-        {
-            animator.SetTrigger("isAttack6");
-            //Detect enemies in range of attack
-            //Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
-            ////Damage Enemies
-            //foreach (Collider2D enemy in hitEnemies)
-            //{
-            //    Debug.Log("Hit " + enemy.name);
-            //    enemy.GetComponent<Enemy>().TakeDamage(35); //attackDamage
-            //}
-
-            comboStep = 0; // Reset combo after the final attack
-
-            isAttacking = true;
-            StartCoroutine(AttackCooldown());
+			isAttacking = true;
+			animator.SetTrigger("isAttack" + comboStep);
+			inputReceived = false;
         }
     }
+
+    public void EndCombo()
+    {
+        //animator.ResetTrigger("isAttack" + comboStep);
+        comboStep = 1;
+        //StartCoroutine(AttackCooldown());
+        isAttacking = false;
+    }
+
+    void Combo()
+    {
+		if (Input.GetKeyDown(KeyCode.J) && !isAttacking)
+		{
+            isAttacking = true;
+            animator.SetTrigger("isAttack" + comboStep);
+		}
+        else if(Input.GetKeyDown(KeyCode.J) && isAttacking)
+        {
+            inputReceived = true;
+        }
+        
+	}
 
     IEnumerator AttackCooldown()
     {
