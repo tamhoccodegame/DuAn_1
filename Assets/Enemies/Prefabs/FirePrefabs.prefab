@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 4512744531985236918}
   - component: {fileID: 7794512225040823580}
   - component: {fileID: -2989025952724110868}
+  - component: {fileID: 1426986840519518314}
+  - component: {fileID: 2238873095577636366}
   m_Layer: 0
   m_Name: FirePrefabs
   m_TagString: Untagged
@@ -131,7 +133,7 @@ Rigidbody2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -212,6 +214,33 @@ PolygonCollider2D:
       - {x: 0.145, y: 0.255}
       - {x: 0.125, y: 0.235}
   m_UseDelaunayMesh: 0
+--- !u!114 &1426986840519518314
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1582990583896489459}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 860cadeb60b4b5f449692de01800428e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 0
+--- !u!114 &2238873095577636366
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1582990583896489459}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0e0b31e24a91d14e8029b2887b2d93b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  knockbackForce: 5
+  knockbackDuration: 0.5
 --- !u!1 &8057649701802541754
 GameObject:
   m_ObjectHideFlags: 0
