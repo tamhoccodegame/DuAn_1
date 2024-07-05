@@ -514,6 +514,8 @@ MonoBehaviour:
     m_Bits: 128
   attackRange: 1
   attackRate: 2
+  comboResetTime: 1
+  attackCooldown: 0.5
 --- !u!4 &329256543 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4809056610422783597, guid: ca0c8bfa5d090744686fe4782d6ada7e, type: 3}
@@ -880,6 +882,53 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 329256543}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &767823700
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 767823702}
+  - component: {fileID: 767823701}
+  m_Layer: 0
+  m_Name: SoundManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &767823701
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 767823700}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d21c23859d91c664a936a05e086c87aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds: []
+  musicSlider: {fileID: 0}
+  soundSlider: {fileID: 0}
+--- !u!4 &767823702
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 767823700}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.8070636, y: 0.24924307, z: -0.657989}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &942148180
 GameObject:
@@ -1250,6 +1299,7 @@ MonoBehaviour:
   score_Text: {fileID: 2072202142}
   coin: 0
   coin_Text: {fileID: 425737709}
+  pauseMenuUI: {fileID: 0}
 --- !u!4 &1908405108
 Transform:
   m_ObjectHideFlags: 0
@@ -1274,30 +1324,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 495126084026977490, guid: f9f2ed3739d5fbb49ad556546a6c2e35, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: -826758703, guid: 3f15930644de4f245b9a039d8aa4deff, type: 3}
-    - target: {fileID: 495126084026977490, guid: f9f2ed3739d5fbb49ad556546a6c2e35, type: 3}
-      propertyPath: m_WasSpriteAssigned
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3532395755195965686, guid: f9f2ed3739d5fbb49ad556546a6c2e35, type: 3}
-      propertyPath: attackPoint
-      value: 
-      objectReference: {fileID: 655712677}
-    - target: {fileID: 3532395755195965686, guid: f9f2ed3739d5fbb49ad556546a6c2e35, type: 3}
-      propertyPath: enemyLayers.m_Bits
-      value: 128
-      objectReference: {fileID: 0}
-    - target: {fileID: 4761397073213521951, guid: f9f2ed3739d5fbb49ad556546a6c2e35, type: 3}
-      propertyPath: player_HealthBar
-      value: 
-      objectReference: {fileID: 418058227}
-    - target: {fileID: 7186534257328419952, guid: f9f2ed3739d5fbb49ad556546a6c2e35, type: 3}
-      propertyPath: slider
-      value: 
-      objectReference: {fileID: 418058228}
     - target: {fileID: 3251111563519928773, guid: ca0c8bfa5d090744686fe4782d6ada7e, type: 3}
       propertyPath: feet
       value: 
@@ -1370,6 +1396,30 @@ PrefabInstance:
       propertyPath: m_WasSpriteAssigned
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 495126084026977490, guid: f9f2ed3739d5fbb49ad556546a6c2e35, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -826758703, guid: 3f15930644de4f245b9a039d8aa4deff, type: 3}
+    - target: {fileID: 495126084026977490, guid: f9f2ed3739d5fbb49ad556546a6c2e35, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3532395755195965686, guid: f9f2ed3739d5fbb49ad556546a6c2e35, type: 3}
+      propertyPath: attackPoint
+      value: 
+      objectReference: {fileID: 655712677}
+    - target: {fileID: 3532395755195965686, guid: f9f2ed3739d5fbb49ad556546a6c2e35, type: 3}
+      propertyPath: enemyLayers.m_Bits
+      value: 128
+      objectReference: {fileID: 0}
+    - target: {fileID: 4761397073213521951, guid: f9f2ed3739d5fbb49ad556546a6c2e35, type: 3}
+      propertyPath: player_HealthBar
+      value: 
+      objectReference: {fileID: 418058227}
+    - target: {fileID: 7186534257328419952, guid: f9f2ed3739d5fbb49ad556546a6c2e35, type: 3}
+      propertyPath: slider
+      value: 
+      objectReference: {fileID: 418058228}
     m_RemovedComponents:
     - {fileID: 7979734005433184991, guid: ca0c8bfa5d090744686fe4782d6ada7e, type: 3}
     - {fileID: 3251111563519928773, guid: ca0c8bfa5d090744686fe4782d6ada7e, type: 3}
@@ -1904,3 +1954,4 @@ SceneRoots:
   - {fileID: 1955689560}
   - {fileID: 1908405108}
   - {fileID: 25099654}
+  - {fileID: 767823702}
