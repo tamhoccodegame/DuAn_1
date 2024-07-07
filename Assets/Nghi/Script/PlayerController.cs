@@ -58,7 +58,7 @@ public class PlayerController : MonoBehaviour
 
         if (!feet.IsTouchingLayers(LayerMask.GetMask("Ground"))) 
         {
-            return; 
+            return;
         }
         if (value.isPressed) 
         {
@@ -69,10 +69,11 @@ public class PlayerController : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-	{
-		Debug.Log(isJumping);   
-		if (isAlive == false) return;
-		Combo();
+    {
+        Debug.Log(isJumping);
+        if (isAlive == false) return;
+
+        Combo();
         AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
 
         if (stateInfo.IsTag("Attack"))
@@ -82,9 +83,12 @@ public class PlayerController : MonoBehaviour
         }
 
         Run();
+        
 
         bool havemove = Mathf.Abs(rig.velocity.x) > Mathf.Epsilon;
+
         animator.SetBool("isRunning", havemove);
+        animator.SetBool("isAttacking", isAttacking);
 
         if (moveInput.x > 0 && !facingRight)
         {
@@ -113,8 +117,8 @@ public class PlayerController : MonoBehaviour
         else
         {
             animator.SetBool("isJump", true);
-			isJumping = true;
-		}
+            isJumping = true;
+        }
 
     }
 
@@ -145,8 +149,8 @@ public class PlayerController : MonoBehaviour
         animator.ResetTrigger("isAttack1");
 		animator.ResetTrigger("isAttack2");
 		animator.ResetTrigger("isAttack3");
-		animator.ResetTrigger("isJumpAttack");
-		comboStep = 1;
+        animator.ResetTrigger("isJumpAttack");
+        comboStep = 1;
         isAttacking = false;
     }
 
@@ -167,10 +171,9 @@ public class PlayerController : MonoBehaviour
     IEnumerator JumpAttack()
     {
         animator.SetTrigger("isJumpAttack");
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.5f);
         EndCombo();
-    }
-
+	}
 
 	IEnumerator AttackCooldown()
     {
