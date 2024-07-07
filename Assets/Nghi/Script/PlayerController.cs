@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Resources;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -8,6 +9,7 @@ public class PlayerController : MonoBehaviour
     Vector2 moveInput;
     public bool isAlive = true;
     public bool facingRight = true;
+    private bool isJumping = false; 
 
     Rigidbody2D rig;
     Animator animator;
@@ -27,7 +29,7 @@ public class PlayerController : MonoBehaviour
     private int comboStep = 1;
     private float lastAttackTime = 0f;
     private bool isAttacking = false;
-    public float attackCooldown = 0.5f;
+    public float attackCooldown = 0.1f;
     private bool inputReceived = false;
 
     // Start is called before the first frame update
@@ -67,8 +69,17 @@ public class PlayerController : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
-        if (isAlive == false) return;
+	{
+		Debug.Log(isJumping);   
+		if (isAlive == false) return;
+		Combo();
+        AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
+
+        if (stateInfo.IsTag("Attack"))
+        {
+            rig.velocity = Vector2.zero;
+            return;
+        }
 
         Run();
 
@@ -84,25 +95,26 @@ public class PlayerController : MonoBehaviour
             Flip();
         }
 
-        Debug.Log(isAttacking);
+        //Debug.Log(isAttacking);
 
-		Combo();
 		
+                		
     }
 
     void Run()
     {
-        if (isAlive == false) return;
-
-        rig.velocity = new Vector2(moveInput.x * speed, rig.velocity.y);
+        
+		rig.velocity = new Vector2(moveInput.x * speed, rig.velocity.y);
         if (feet.IsTouchingLayers(LayerMask.GetMask("Ground")))
         {
             animator.SetBool("isJump", false);
+            isJumping = false;
         }
         else
         {
             animator.SetBool("isJump", true);
-        }
+			isJumping = true;
+		}
 
     }
 
@@ -114,57 +126,6 @@ public class PlayerController : MonoBehaviour
         transform.Rotate(0f, 180f, 0f);
     }
 
-    void Attack1()
-    {
-        //PLAY ATTACK ANIMATION
-        animator.SetTrigger("isAttack1");
-        //FindObjectOfType<SoundManager>().PlayAudio("Player_Attack");
-        //Detect enemies in range of attack
-        //Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
-        ////Damage Enemies
-        //foreach (Collider2D enemy in hitEnemies)
-        //{
-        //    Debug.Log("Hit " + enemy.name);
-        //    enemy.GetComponent<Enemy>().TakeDamage(10); //attackDamage
-        //}
-    }
-
-    void Attack2()
-    {
-        //PLAY ATTACK ANIMATION
-        animator.SetTrigger("isAttack2");
-        //FindObjectOfType<SoundManager>().PlayAudio("Player_Attack");
-        //Detect enemies in range of attack
-        //Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
-        ////Damage Enemies
-        //foreach (Collider2D enemy in hitEnemies)
-        //{
-        //    Debug.Log("Hit " + enemy.name);
-        //    enemy.GetComponent<Enemy>().TakeDamage(20); //attackDamage
-        //}
-    }
-
-    void Attack3()
-    {
-        //PLAY ATTACK ANIMATION
-        animator.SetTrigger("isAttack3");
-        //FindObjectOfType<SoundManager>().PlayAudio("Player_Attack");
-
-        //Detect enemies in range of attack
-        //Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
-        ////Damage Enemies
-        //foreach (Collider2D enemy in hitEnemies)
-        //{
-        //    Debug.Log("Hit " + enemy.name);
-        //    enemy.GetComponent<Enemy>().TakeDamage(30); //attackDamage
-        //}
-    }
-
-    private void OnDrawGizmosSelected()//Ve Gizmos de xac dinh AttackPoint
-    {
-        //if (attackPoint == null) return;
-        //Gizmos.DrawWireSphere(attackPoint.position, attackRange);
-    }
 
     public void StartCombo()
     {
@@ -181,9 +142,11 @@ public class PlayerController : MonoBehaviour
 
     public void EndCombo()
     {
-        //animator.ResetTrigger("isAttack" + comboStep);
-        comboStep = 1;
-        //StartCoroutine(AttackCooldown());
+        animator.ResetTrigger("isAttack1");
+		animator.ResetTrigger("isAttack2");
+		animator.ResetTrigger("isAttack3");
+		animator.ResetTrigger("isJumpAttack");
+		comboStep = 1;
         isAttacking = false;
     }
 
@@ -191,17 +154,25 @@ public class PlayerController : MonoBehaviour
     {
 		if (Input.GetKeyDown(KeyCode.J) && !isAttacking)
 		{
-            isAttacking = true;
-            animator.SetTrigger("isAttack" + comboStep);
+			isAttacking = true;
+            if (isJumping) StartCoroutine(JumpAttack());
+            else animator.SetTrigger("isAttack" + comboStep);
 		}
         else if(Input.GetKeyDown(KeyCode.J) && isAttacking)
         {
             inputReceived = true;
         }
-        
 	}
 
-    IEnumerator AttackCooldown()
+    IEnumerator JumpAttack()
+    {
+        animator.SetTrigger("isJumpAttack");
+        yield return new WaitForSeconds(1f);
+        EndCombo();
+    }
+
+
+	IEnumerator AttackCooldown()
     {
         yield return new WaitForSeconds(attackCooldown);
         isAttacking = false;
