@@ -6,7 +6,9 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    Vector2 moveInput;
+    private Vector2 moveInput;
+    private Vector2 currentInput;
+    private Vector2 pendingInput;
     public bool isAlive = true;
     public bool facingRight = true;
     private bool isJumping = false; 
@@ -49,7 +51,11 @@ public class PlayerController : MonoBehaviour
     {
         if (isAlive == false) return;
 
-        moveInput = value.Get<Vector2>();
+        //if(isAttacking) return;
+
+        pendingInput = value.Get<Vector2>();
+
+        if (!isAttacking) currentInput = pendingInput;
     }
 
     void OnJump(InputValue value)
@@ -60,7 +66,7 @@ public class PlayerController : MonoBehaviour
         {
             return;
         }
-        if (value.isPressed) 
+        if (value.isPressed && !isAttacking) 
         {
             rig.velocity += new Vector2(0f, jump);
 
@@ -74,13 +80,13 @@ public class PlayerController : MonoBehaviour
         if (isAlive == false) return;
 
         Combo();
-        AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
+        //AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
 
-        if (stateInfo.IsTag("Attack"))
-        {
-            rig.velocity = Vector2.zero;
-            return;
-        }
+        //if (stateInfo.IsTag("Attack"))
+        //{
+        //    rig.velocity = Vector2.zero;
+        //    return;
+        //}
 
         Run();
         
@@ -107,7 +113,7 @@ public class PlayerController : MonoBehaviour
 
     void Run()
     {
-        
+        moveInput = currentInput;
 		rig.velocity = new Vector2(moveInput.x * speed, rig.velocity.y);
         if (feet.IsTouchingLayers(LayerMask.GetMask("Ground")))
         {
@@ -152,6 +158,7 @@ public class PlayerController : MonoBehaviour
         animator.ResetTrigger("isJumpAttack");
         comboStep = 1;
         isAttacking = false;
+        currentInput = pendingInput;
     }
 
     void Combo()
@@ -159,7 +166,9 @@ public class PlayerController : MonoBehaviour
 		if (Input.GetKeyDown(KeyCode.J) && !isAttacking)
 		{
 			isAttacking = true;
-            if (isJumping) StartCoroutine(JumpAttack());
+            if (isJumping) StartCoroutine(SpecialAttack("isJumpAttack"));
+            else if (Mathf.Abs(rig.velocity.x) >= 1.0f) StartCoroutine(SpecialAttack("isRunAttack"));
+            else if (moveInput.y >= 1) StartCoroutine(SpecialAttack("isAirAttack"));
             else animator.SetTrigger("isAttack" + comboStep);
 		}
         else if(Input.GetKeyDown(KeyCode.J) && isAttacking)
@@ -168,9 +177,14 @@ public class PlayerController : MonoBehaviour
         }
 	}
 
-    IEnumerator JumpAttack()
+    IEnumerator SpecialAttack(string name)
     {
-        animator.SetTrigger("isJumpAttack");
+        animator.SetTrigger(name);
+        if (!isJumping)
+        {
+            EndCombo();
+            yield break;
+        }
         yield return new WaitForSeconds(0.5f);
         EndCombo();
 	}
