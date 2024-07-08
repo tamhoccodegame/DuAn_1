@@ -240,9 +240,7 @@ MonoBehaviour:
   - {fileID: 1451054108905466289}
   - {fileID: 4432096493909212583}
   bulletPrefabs: {fileID: 139027123098052828, guid: 59f75e3a9228fb94da0998189da8a71d, type: 3}
-  effectPrefabs: {fileID: 0}
   firePoint: {fileID: 2330585783634316556}
-  effectPoint: {fileID: 0}
   _enemyType: 0
 --- !u!50 &5529297831705101674
 Rigidbody2D:
@@ -362,7 +360,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5088883168781367941
 Transform:
   m_ObjectHideFlags: 0
