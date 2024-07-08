@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 2dfb62aa7dc1bb84a99e8a79077efb97
+guid: 7750063db5ce3d148b09a6f9f9eb674d
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -110,13 +110,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Chinese_Border1_0
+      name: Square_Border_1_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 648
-        width: 472
-        height: 130
+        x: 51
+        y: 255
+        width: 199
+        height: 199
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -124,20 +124,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4a2ef87fabdb5614bb7a769fc1daf344
-      internalID: -1197903787
+      spriteID: 4a088263389ccd648971626987a6c7bd
+      internalID: -1184968273
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Chinese_Border1_1
+      name: Square_Border_1_1
       rect:
         serializedVersion: 2
-        x: 0
-        y: 494
-        width: 472
-        height: 130
+        x: 268
+        y: 255
+        width: 200
+        height: 201
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -145,20 +145,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d0cbe74661c7afb468d800876edf2f6c
-      internalID: 1917759447
+      spriteID: 5b274c7e7ccc59a418c2271235d12345
+      internalID: -1018791520
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Chinese_Border1_2
+      name: Square_Border_1_2
       rect:
         serializedVersion: 2
-        x: 0
-        y: 407
-        width: 472
-        height: 72
+        x: 479
+        y: 245
+        width: 216
+        height: 213
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -166,20 +166,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2e2e244ffe296f74ca9c842b97e05b11
-      internalID: -360117408
+      spriteID: 73d6dda300932fd479d6f2a99f427bcb
+      internalID: 1938656257
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Chinese_Border1_3
+      name: Square_Border_1_3
       rect:
         serializedVersion: 2
-        x: 0
-        y: 244
-        width: 472
-        height: 137
+        x: 43
+        y: 31
+        width: 214
+        height: 217
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -187,20 +187,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ec0dca1920f69f4448742c56c73ce139
-      internalID: 126147484
+      spriteID: 440fdb6e0a99151498e92e754bc3487f
+      internalID: -926193187
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Chinese_Border1_4
+      name: Square_Border_1_4
       rect:
         serializedVersion: 2
-        x: 0
-        y: 114
-        width: 472
-        height: 113
+        x: 265
+        y: 37
+        width: 207
+        height: 208
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -208,20 +208,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d9cc6f4717d800248b624310a7ad355d
-      internalID: -563226390
+      spriteID: 19345939c29399c488afadaa2087b814
+      internalID: -1988262093
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Chinese_Border1_5
+      name: Square_Border_1_5
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 472
-        height: 96
+        x: 479
+        y: 35
+        width: 212
+        height: 210
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -229,8 +229,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 259c9fb62067daa4882c0b7749060dcd
-      internalID: 1722431508
+      spriteID: 10f4b2ade8f0df341b42af4857cb7e6b
+      internalID: 678383979
       vertices: []
       indices: 
       edges: []
@@ -246,12 +246,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Chinese_Border1_0: -1197903787
-      Chinese_Border1_1: 1917759447
-      Chinese_Border1_2: -360117408
-      Chinese_Border1_3: 126147484
-      Chinese_Border1_4: -563226390
-      Chinese_Border1_5: 1722431508
+      Square_Border_1_0: -1184968273
+      Square_Border_1_1: -1018791520
+      Square_Border_1_2: 1938656257
+      Square_Border_1_3: -926193187
+      Square_Border_1_4: -1988262093
+      Square_Border_1_5: 678383979
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
