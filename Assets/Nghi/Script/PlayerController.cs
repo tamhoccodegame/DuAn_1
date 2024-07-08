@@ -80,13 +80,6 @@ public class PlayerController : MonoBehaviour
         if (isAlive == false) return;
 
         Combo();
-        //AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
-
-        //if (stateInfo.IsTag("Attack"))
-        //{
-        //    rig.velocity = Vector2.zero;
-        //    return;
-        //}
 
         Run();
         
@@ -168,6 +161,7 @@ public class PlayerController : MonoBehaviour
 			isAttacking = true;
             if (isJumping) StartCoroutine(SpecialAttack("isJumpAttack"));
             else if (Mathf.Abs(rig.velocity.x) >= 1.0f) StartCoroutine(SpecialAttack("isRunAttack"));
+
             else if (moveInput.y >= 1) StartCoroutine(SpecialAttack("isAirAttack"));
             else animator.SetTrigger("isAttack" + comboStep);
 		}
@@ -176,6 +170,13 @@ public class PlayerController : MonoBehaviour
             inputReceived = true;
         }
 	}
+
+    IEnumerator StopMotion(float time)
+    {
+        currentInput = Vector2.zero;
+        yield return new WaitForSeconds(time);
+        currentInput = pendingInput;
+    }
 
     IEnumerator SpecialAttack(string name)
     {

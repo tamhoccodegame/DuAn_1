@@ -1,8 +1,9 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static Enemy;
 
-public class Captain : Enemy
+public class NoHead : Enemy
 {
 	[SerializeField] private float _maxHealth;
 	[SerializeField] private float _patrolSpeed;
@@ -11,11 +12,10 @@ public class Captain : Enemy
 	[SerializeField] private float _chaseRange;
 	[SerializeField] private int _damage;
 	[SerializeField] private Transform[] _patrolPoints;
-	[SerializeField] private GameObject bulletPrefabs;
-	[SerializeField] private GameObject firePoint;
+	[SerializeField] private ParticleSystem effectPrefab;
+	[SerializeField] private GameObject effectPoint;
 	[SerializeField] private EnemyType _enemyType;
 
-	// Start is called before the first frame update
 	public override void Awake()
 	{
 		base.Awake();
@@ -30,8 +30,6 @@ public class Captain : Enemy
 		patrolPoints = _patrolPoints;
 	}
 
-
-	// Update is called once per frame
 	public override void Attack()
 	{
 		if (isCoroutineRunning) return;
@@ -51,16 +49,8 @@ public class Captain : Enemy
 
 	public override IEnumerator AttackDelay()
 	{
-		yield return new WaitForSeconds(.3f);
+		yield return new WaitForSeconds(2f);
 		animator.ResetTrigger("isAttack");
-		yield return new WaitForSeconds(1f);
-		while(Mathf.Abs(player.position.x - transform.position.x) <= attackRange + 5)
-		{
-			animator.SetTrigger("isAttack2");
-			yield return new WaitForSeconds(.5f);
-			animator.ResetTrigger("isAttack2");
-			yield return new WaitForSeconds(1f);
-		}
 		if (Mathf.Abs(player.position.x - transform.position.x) > attackRange)
 		{
 			ChangeState(State.Chase);
@@ -68,14 +58,9 @@ public class Captain : Enemy
 		isCoroutineRunning = false;
 	}
 
-	public void FireBall()
+	public void SpawnEffect()
 	{
-		var spawnedBullet = Instantiate(bulletPrefabs, firePoint.transform.position, transform.rotation).GetComponent<Rigidbody2D>();
-		spawnedBullet.transform.localScale = new Vector3(direction.x * spawnedBullet.transform.localScale.x,
-															spawnedBullet.transform.localScale.z,
-															 spawnedBullet.transform.localScale.z);
-		spawnedBullet.velocity = new Vector2(direction.x * 5, 0);
-		spawnedBullet.GetComponent<RangeHitBox>().damage = damage;
+		var spawnEffet = Instantiate(effectPrefab, effectPoint.transform.position, effectPoint.transform.rotation);
 	}
-
+	
 }

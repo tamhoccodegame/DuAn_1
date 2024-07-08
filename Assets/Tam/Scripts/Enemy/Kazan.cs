@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Captain : Enemy
+public class Kazan : Enemy
 {
 	[SerializeField] private float _maxHealth;
 	[SerializeField] private float _patrolSpeed;
@@ -36,9 +36,7 @@ public class Captain : Enemy
 	{
 		if (isCoroutineRunning) return;
 
-		animator.SetTrigger("isAttack");
 		rb.velocity = Vector2.zero;
-
 
 		direction = direction = new Vector3(player.position.x - transform.position.x, 0, 0);
 		direction.Normalize();
@@ -47,24 +45,19 @@ public class Captain : Enemy
 
 		isCoroutineRunning = true;
 		StartCoroutine(AttackDelay());
+
 	}
 
 	public override IEnumerator AttackDelay()
 	{
-		yield return new WaitForSeconds(.3f);
-		animator.ResetTrigger("isAttack");
-		yield return new WaitForSeconds(1f);
-		while(Mathf.Abs(player.position.x - transform.position.x) <= attackRange + 5)
-		{
-			animator.SetTrigger("isAttack2");
-			yield return new WaitForSeconds(.5f);
-			animator.ResetTrigger("isAttack2");
-			yield return new WaitForSeconds(1f);
-		}
+		FireBall();
+		yield return new WaitForSeconds(2f);
+
 		if (Mathf.Abs(player.position.x - transform.position.x) > attackRange)
 		{
 			ChangeState(State.Chase);
 		}
+
 		isCoroutineRunning = false;
 	}
 
@@ -77,5 +70,4 @@ public class Captain : Enemy
 		spawnedBullet.velocity = new Vector2(direction.x * 5, 0);
 		spawnedBullet.GetComponent<RangeHitBox>().damage = damage;
 	}
-
 }
