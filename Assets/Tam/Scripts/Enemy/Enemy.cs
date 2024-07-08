@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
@@ -18,6 +19,7 @@ public class Enemy : MonoBehaviour
     protected Transform[] patrolPoints;
     private int currentPatrolIndex;
     protected bool isCoroutineRunning = false;
+    protected bool isAlive = true;
 
     protected Rigidbody2D rb;
     protected Animator animator;
@@ -126,7 +128,9 @@ public class Enemy : MonoBehaviour
         //Debug.Log("Direction: " + direction + " | Velocity: " + rb.velocity);
     }
 
-    public virtual void Attack()
+ 
+
+	public virtual void Attack()
 	{
        	
     }
@@ -147,16 +151,26 @@ public class Enemy : MonoBehaviour
 	public void TakeDamage(float damage)
     {
         currentHealth -= damage;
-        if (currentHealth < 0)
-        {
-            Die();
-        }
+		animator.SetTrigger("isHurt");
+		if (currentHealth < 0)
+		{
+			Die();
+            isAlive = false;
+		}
+		
     }
 
-    private void Die()
+	private void Die()
     {
         this.enabled = false;
         animator.SetBool("isDead", true);
+        StartCoroutine(DieDelay());
+    }
+
+    private IEnumerator DieDelay()
+    {
+		Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), gameObject.layer, true);
+		yield return new WaitForSeconds(2f);
         Destroy(gameObject);
     }
 

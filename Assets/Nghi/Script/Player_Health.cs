@@ -36,10 +36,14 @@ public class Player_Health : MonoBehaviour
         player_HealthBar.SetHealth(currentHealth);
 
         animator.SetTrigger("isHurt");
-        //FindObjectOfType<SoundManager>().PlayAudio("Player_Hurt");
-        //blood.Play();
+        animator.ResetTrigger("isAttack1");
+		animator.ResetTrigger("isAttack2");
+		animator.ResetTrigger("isAttack3");
+        GetComponent<PlayerController>().EndCombo();
+		//FindObjectOfType<SoundManager>().PlayAudio("Player_Hurt");
+		//blood.Play();
 
-        if (currentHealth <= 0)
+		if (currentHealth <= 0)
         {
             Die();
         }

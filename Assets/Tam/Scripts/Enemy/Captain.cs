@@ -12,9 +12,7 @@ public class Captain : Enemy
 	[SerializeField] private int _damage;
 	[SerializeField] private Transform[] _patrolPoints;
 	[SerializeField] private GameObject bulletPrefabs;
-	[SerializeField] private ParticleSystem effectPrefabs;
 	[SerializeField] private GameObject firePoint;
-	[SerializeField] private GameObject effectPoint;
 	[SerializeField] private EnemyType _enemyType;
 
 	// Start is called before the first frame update
