@@ -36,10 +36,14 @@ public class Player_Health : MonoBehaviour
         player_HealthBar.SetHealth(currentHealth);
 
         animator.SetTrigger("isHurt");
-        //FindObjectOfType<SoundManager>().PlayAudio("Player_Hurt");
-        //blood.Play();
+        animator.ResetTrigger("isAttack1");
+		animator.ResetTrigger("isAttack2");
+		animator.ResetTrigger("isAttack3");
+        GetComponent<PlayerController>().EndCombo();
+		//FindObjectOfType<SoundManager>().PlayAudio("Player_Hurt");
+		//blood.Play();
 
-        if (currentHealth <= 0)
+		if (currentHealth <= 0)
         {
             Die();
         }
@@ -49,11 +53,18 @@ public class Player_Health : MonoBehaviour
     {
      
         animator.SetBool("isDead", true);
-        GetComponent<Collider2D>().enabled = false; //Disable the collider 2D
+        Collider2D[] colliders = GetComponents<Collider2D>();
+
+        foreach(Collider2D col in colliders)
+        {
+            col.enabled = false;
+        }
+
+        //GetComponent<Collider2D>().enabled = false; //Disable the collider 2D
         this.enabled = false;
         
         //deathEffect.Play();
-        FindObjectOfType<GameSession>().PlayerDeath();
+        //FindObjectOfType<GameSession>().PlayerDeath();
     }
 
     public void OnTriggerEnter2D(Collider2D player)
