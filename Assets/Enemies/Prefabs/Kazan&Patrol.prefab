@@ -45,9 +45,9 @@ GameObject:
   - component: {fileID: 3042039549074959574}
   - component: {fileID: 2952859072788872789}
   - component: {fileID: 1769562856156898321}
-  - component: {fileID: 3872905980655169420}
   - component: {fileID: 2814741227750790503}
   - component: {fileID: 671100508059314034}
+  - component: {fileID: 2689061517772305257}
   m_Layer: 7
   m_Name: Kazan_0
   m_TagString: Untagged
@@ -146,32 +146,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &3872905980655169420
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3267324659334025203}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1f6f6d7258b6b364993a77d6eb9139c0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _maxHealth: 500
-  _patrolSpeed: 2
-  _chaseSpeed: 5
-  _attackRange: 10
-  _chaseRange: 15
-  _damage: 10
-  _patrolPoints:
-  - {fileID: 4660178501443850645}
-  - {fileID: 2203077482929174706}
-  _bulletPrefabs: {fileID: 1582990583896489459, guid: 5ed9c5148dff54f4395ea048775f5c9b, type: 3}
-  _effectPrefabs: {fileID: 0}
-  _firePoint: {fileID: 4718824380713483185}
-  _effectPoint: {fileID: 0}
-  _enemyType: 1
 --- !u!50 &2814741227750790503
 Rigidbody2D:
   serializedVersion: 4
@@ -292,6 +266,30 @@ PolygonCollider2D:
       - {x: 0.305, y: 0.47}
       - {x: 0.285, y: 0.45}
   m_UseDelaunayMesh: 0
+--- !u!114 &2689061517772305257
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3267324659334025203}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eee5e3e55d08d1549bc71aab6eeebda8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxHealth: 100
+  _patrolSpeed: 5
+  _chaseSpeed: 5
+  _attackRange: 15
+  _chaseRange: 7
+  _damage: 20
+  _patrolPoints:
+  - {fileID: 4660178501443850645}
+  - {fileID: 2203077482929174706}
+  bulletPrefabs: {fileID: 1582990583896489459, guid: 5ed9c5148dff54f4395ea048775f5c9b, type: 3}
+  firePoint: {fileID: 4718824380713483185}
+  _enemyType: 1
 --- !u!1 &4718824380713483185
 GameObject:
   m_ObjectHideFlags: 0
