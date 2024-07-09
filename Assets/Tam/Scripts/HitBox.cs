@@ -5,24 +5,42 @@ using UnityEngine;
 public class HitBox : MonoBehaviour
 {
 	private int damage;
-	int playerDamage;
-	int enemyDamage;
-
+	[SerializeField] private int playerDamage;
+	[SerializeField] private int enemyDamage;
 	private void Start()
 	{
-		//playerDamage = 
-		enemyDamage = GetComponentInParent<Enemy>().GetDamage();
+		if(playerDamage == 0)
+		playerDamage = GetComponentInParent<PlayerController>()?.GetDamage() ?? playerDamage; 
+
+		if(enemyDamage == 0)
+		enemyDamage = GetComponentInParent<Enemy>()?.GetDamage() ?? enemyDamage;
+	
+		Debug.Log(enemyDamage);
+	}
+
+	public int GetDamage()
+	{
+		return damage;
 	}
 
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
 		Enemy enemyHit = collision.gameObject.GetComponent<Enemy>();
 		Player_Health playerHit = collision.gameObject.GetComponent<Player_Health>();
-		Debug.Log(playerHit);
+		Vector3 direction = new Vector3(collision.transform.position.x - transform.position.x, 0, 0); 
+		direction.Normalize();
 		if (playerHit)
 		{
+			Debug.Log(enemyDamage);
 			playerHit.TakeDamage(enemyDamage);
-			GetComponent<Knockback>().ApplyKnockback(playerHit.transform, (playerHit.transform.position - transform.position).normalized);
+			Knockback knockback = GetComponent<Knockback>();
+			knockback.ApplyKnockback(collision.gameObject.transform, direction);
+		}
+		if(enemyHit)
+		{
+			enemyHit.TakeDamage(playerDamage);
+			Knockback knockback = GetComponent<Knockback>();
+			knockback.ApplyKnockback(collision.gameObject.transform, direction);
 		}
 	}
 }
