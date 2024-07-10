@@ -4115,11 +4115,11 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 585440185}
   - {fileID: 795329233}
   - {fileID: 1814425130}
   - {fileID: 1241308185}
   - {fileID: 1410041955}
-  - {fileID: 585440185}
   - {fileID: 1661089141}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4223,13 +4223,13 @@ MonoBehaviour:
   feet: {fileID: 576755644}
   speed: 10
   jump: 10
+  damage: 0
   attackPoint: {fileID: 655712677}
   enemyLayers:
     serializedVersion: 2
     m_Bits: 128
   attackRange: 1
   attackRate: 2
-  comboResetTime: 1
   attackCooldown: 0.5
 --- !u!4 &329256543 stripped
 Transform:
@@ -24198,8 +24198,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eff33e2bb0ae26142a0ebe6a81da6ed5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentState: 0
-  enemyType: 0
 --- !u!1 &1958587595
 GameObject:
   m_ObjectHideFlags: 0

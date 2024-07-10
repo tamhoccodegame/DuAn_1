@@ -34,6 +34,15 @@ public class PlayerController : MonoBehaviour
     public float attackCooldown = 0.1f;
     private bool inputReceived = false;
 
+    private bool isDashing;
+    public float dashTime;
+    public float dashSpeed;
+    public float distanceBetweenImages;
+    public float dashCooldown;
+    private float dashTimeLeft;
+    private float lastImageXposition;
+    private float lastDash = -100f;
+
     // Start is called before the first frame update
     void Start()
     {
