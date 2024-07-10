@@ -7,13 +7,13 @@ using UnityEngine;
 public class Equipment
 {
 	public event EventHandler OnEquipmentChange;
-	private List<Rune> equipment;
+	private List<Rune> equipments;
 	private int maxSlot;
 	private int avaSlot;
 
 	public Equipment()
 	{
-		equipment = new List<Rune>();
+		equipments = new List<Rune>();
 		maxSlot = 1;
 		avaSlot = 1;
 	}
@@ -33,7 +33,7 @@ public class Equipment
 	{
 		if(CanEquip())
 		{
-			equipment.Add(rune);
+			equipments.Add(rune);
 			avaSlot--;
 			OnEquipmentChange?.Invoke(this, EventArgs.Empty);
 		}
@@ -41,11 +41,14 @@ public class Equipment
 
 	public void Unequip(Rune rune)
 	{
-		equipment.Remove(rune);
+		equipments.Remove(rune);
 		avaSlot++;
 		OnEquipmentChange?.Invoke(this, EventArgs.Empty);
 	}
 
-
+	public List<Rune> GetEquipmentList()
+	{
+		return equipments;
+	}
 
 }
