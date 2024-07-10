@@ -34,14 +34,9 @@ public class PlayerController : MonoBehaviour
     public float attackCooldown = 0.1f;
     private bool inputReceived = false;
 
-    private bool isDashing;
-    public float dashTime;
-    public float dashSpeed;
-    public float distanceBetweenImages;
-    public float dashCooldown;
-    private float dashTimeLeft;
-    private float lastImageXposition;
-    private float lastDash = -100f;
+    private DashAfterImage dashAfterImage;
+    public float dashSpeed = 10f;
+    public float dashTime = 0.5f;
 
     // Start is called before the first frame update
     void Start()
@@ -49,6 +44,8 @@ public class PlayerController : MonoBehaviour
         rig = GetComponent<Rigidbody2D>();
         col = GetComponent<CapsuleCollider2D>();
         animator = GetComponent<Animator>();
+
+        dashAfterImage = GetComponent<DashAfterImage>();
     }
 
     public int GetDamage()
@@ -59,8 +56,6 @@ public class PlayerController : MonoBehaviour
     void OnMove(InputValue value)
     {
         if (isAlive == false) return;
-
-        //if(isAttacking) return;
 
         pendingInput = value.Get<Vector2>();
 
@@ -107,10 +102,28 @@ public class PlayerController : MonoBehaviour
             Flip();
         }
 
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            StartCoroutine(Dash());
+        }
+
         //Debug.Log(isAttacking);
 
-		
-                		
+
+    }
+
+    private IEnumerator Dash()
+    {
+        dashAfterImage.StartDashing();
+        float startTime = Time.time;
+
+        while (Time.time < startTime + dashTime)
+        {
+            transform.Translate(Vector3.right * dashSpeed * Time.deltaTime);
+            yield return null;
+        }
+
+        dashAfterImage.StopDashing();
     }
 
     void Run()
@@ -137,7 +150,6 @@ public class PlayerController : MonoBehaviour
         facingRight = !facingRight;
         transform.Rotate(0f, 180f, 0f);
     }
-
 
     public void StartCombo()
     {
