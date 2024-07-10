@@ -12,9 +12,7 @@ public class Captain : Enemy
 	[SerializeField] private int _damage;
 	[SerializeField] private Transform[] _patrolPoints;
 	[SerializeField] private GameObject bulletPrefabs;
-	[SerializeField] private ParticleSystem effectPrefabs;
 	[SerializeField] private GameObject firePoint;
-	[SerializeField] private GameObject effectPoint;
 	[SerializeField] private EnemyType _enemyType;
 
 	// Start is called before the first frame update
@@ -68,24 +66,6 @@ public class Captain : Enemy
 			ChangeState(State.Chase);
 		}
 		isCoroutineRunning = false;
-	}
-
-	private IEnumerator CaptainSequence()
-	{
-		// Kiểm tra khoảng cách giữa Captain và người chơi
-		float distanceToPlayer = Mathf.Abs(player.position.x - transform.position.x);
-		if (distanceToPlayer <= attackRange + 5)
-		{
-			animator.SetTrigger("isAttack2");
-			yield return new WaitForSeconds(.5f); // Thêm thời gian chờ nếu cần thiết
-		}
-
-		// Gọi lại logic trong AttackDelay của lớp cha nếu cần
-		if (distanceToPlayer > attackRange + 5)
-		{
-			ChangeState(State.Chase);
-		}
-		isCoroutineRunning= false;
 	}
 
 	public void FireBall()

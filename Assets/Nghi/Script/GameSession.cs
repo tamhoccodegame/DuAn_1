@@ -12,6 +12,9 @@ public class GameSession : MonoBehaviour
     public Text score_Text;
     public int coin = 0;
     public Text coin_Text;
+
+    public GameObject pauseMenuUI;
+    private bool isPaused = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,7 +26,7 @@ public class GameSession : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        OnPressESC();
     }
 
     private void Awake()
@@ -97,5 +100,31 @@ public class GameSession : MonoBehaviour
     public void ResumeGame()
     {
         Time.timeScale = 1;
+    }
+
+    void Resume()
+    {
+        pauseMenuUI.SetActive(false);
+        Time.timeScale = 1f;
+        isPaused = false;
+    }
+
+    void Pause()
+    {
+        pauseMenuUI.SetActive(true);
+        Time.timeScale = 0f;
+        isPaused = true;
+    }
+
+    void OnPressESC()
+    {
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (isPaused)
+            {
+                Resume();
+            }
+            else { Pause(); }
+        }
     }
 }
