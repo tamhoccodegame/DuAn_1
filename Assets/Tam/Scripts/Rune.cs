@@ -21,6 +21,9 @@ public class Rune
 		runeType = _runeType;
     }
 
-    
+    public Sprite GetSprite()
+	{
+		return RuneAssets.instance.attackRuneSprite; //this is ex, not offical
+	}
 
 }

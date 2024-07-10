@@ -31,4 +31,9 @@ public class Inventory
         return runes.Contains(rune);
     }
 
+    public List<Rune> GetItemList()
+    {
+        return runes;
+    }
+
 }
