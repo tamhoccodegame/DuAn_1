@@ -12,6 +12,7 @@ public class UI_Inventory : MonoBehaviour
 
     private Transform runeSlotTemplate;
     private Transform runeDetail;
+    private Transform equipButton;
     private Transform runeSlotContainer;
 
     // Start is called before the first frame update
@@ -20,6 +21,7 @@ public class UI_Inventory : MonoBehaviour
         runeSlotContainer = transform.Find("runeSlotContainer");
         runeSlotTemplate = runeSlotContainer.Find("runeSlotTemplate");
         runeDetail = transform.Find("runeDetail");
+        equipButton = transform.Find("EquipButton");
         
         Debug.Log(runeSlotContainer.name);
         Debug.Log(runeSlotTemplate.name);
@@ -34,7 +36,14 @@ public class UI_Inventory : MonoBehaviour
     public void SetEquipment(Equipment _equipment)
     {
         equipment = _equipment;
+		equipment.OnEquipmentChange += Equipment_OnEquipmentChange;
+        //RefreshInventory();
     }
+
+	private void Equipment_OnEquipmentChange(object sender, System.EventArgs e)
+	{
+		RefreshInventory();
+	}
 
 	private void Inventory_OnInventoryChange(object sender, System.EventArgs e)
 	{
@@ -58,13 +67,29 @@ public class UI_Inventory : MonoBehaviour
 
             Debug.Log(itemSlotRectTrasform.position);
 
-            itemSlotRectTrasform.GetComponent<Button_UI>().ClickFunc = () =>
+			itemSlotRectTrasform.anchoredPosition = Vector2.zero;
+			Image image = itemSlotRectTrasform.Find("Image").GetComponent<Image>();
+			image.sprite = rune.GetSprite();
+
+            //Equip
+			itemSlotRectTrasform.GetComponent<Button_UI>().ClickFunc = () =>
             {
-				//Equip
-				//equipment.Equip(rune);
-				//inventory.RemoveRune(rune);
                 runeDetail.gameObject.SetActive(true);
+                equipButton.gameObject.SetActive(true);
 				runeDetail.Find("Name").GetComponent<Text>().text = rune.runeType.ToString();
+                runeDetail.Find("Image").GetComponent<Image>().sprite = rune.GetSprite();
+				equipButton.GetComponent<Button_UI>().ClickFunc = () =>
+                {
+                    if(equipment.CanEquip())
+                    {
+						equipment.Equip(rune);
+                        inventory.RemoveRune(rune);
+                        runeDetail.gameObject.SetActive(false);
+                        equipButton.gameObject.SetActive(false);
+					}
+                  
+                };
+
                 
 			};
 
@@ -73,9 +98,7 @@ public class UI_Inventory : MonoBehaviour
             //    //Drop
             //};
 
-            itemSlotRectTrasform.anchoredPosition = Vector2.zero;
-            Image image = itemSlotRectTrasform.Find("Image").GetComponent<Image>();
-            image.sprite = rune.GetSprite();
+           
 
             
         }

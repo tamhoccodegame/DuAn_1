@@ -7,6 +7,7 @@ using UnityEngine;
 public class Equipment
 {
 	public event EventHandler OnEquipmentChange;
+	//public event EventHandler OnSlotUnlocked;
 	private List<Rune> equipments;
 	private int maxSlot;
 	private int avaSlot;
@@ -21,22 +22,20 @@ public class Equipment
 	{
 		maxSlot++;
 		avaSlot++;
-		OnEquipmentChange?.Invoke(this, EventArgs.Empty);
+		//OnSlotUnlocked?.Invoke(this, EventArgs.Empty);
+		OnEquipmentChange?.DynamicInvoke(this, EventArgs.Empty);
 	}
 
-	private bool CanEquip()
+	public bool CanEquip()
 	{
 		return avaSlot > 0;
 	}
 
 	public void Equip(Rune rune)
-	{
-		if(CanEquip())
-		{
-			equipments.Add(rune);
-			avaSlot--;
-			OnEquipmentChange?.Invoke(this, EventArgs.Empty);
-		}
+	{ 
+		equipments.Add(rune);
+		avaSlot--;
+		OnEquipmentChange?.Invoke(this, EventArgs.Empty);
 	}
 
 	public void Unequip(Rune rune)

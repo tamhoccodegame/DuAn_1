@@ -42,10 +42,6 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>();
     }
 
-    public int GetDamage()
-    {
-        return damage;
-    }
 
     void OnMove(InputValue value)
     {
@@ -195,4 +191,15 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(attackCooldown);
         isAttacking = false;
     }
+
+	public int GetDamage()
+	{
+		return damage;
+	}
+
+    public void SetDamage(int damage)
+    {
+        this.damage += damage;
+    }
 }
+

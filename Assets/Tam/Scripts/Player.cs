@@ -21,10 +21,12 @@ public class Player : MonoBehaviour
         inventory.AddRune(new Rune(Rune.RuneType.Damage));
         inventory.AddRune(new Rune(Rune.RuneType.AttackSpeed));
 
-        uiInventory.SetInventory(inventory);
+		uiInventory.SetInventory(inventory);
+		uiEquipment.SetInventory(inventory);
 		uiInventory.SetEquipment(equipment);
 
 		uiEquipment.SetEquipment(equipment);
+        
 
 		equipment.OnEquipmentChange += Equipment_OnEquipmentChange;
 
@@ -42,6 +44,7 @@ public class Player : MonoBehaviour
             switch (rune.runeType)
             {
                 case Rune.RuneType.Damage:
+                    playerController.SetDamage(15);
                     break;
                 case Rune.RuneType.AttackSpeed:
                     break;
