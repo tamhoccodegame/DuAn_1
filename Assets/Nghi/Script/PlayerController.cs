@@ -148,8 +148,9 @@ public class PlayerController : MonoBehaviour
             transform.Translate(Vector3.right * dashSpeed * Time.deltaTime);
             yield return null;
         }
-
+        GetComponent<Player_StaminaSystem>().ReduceStamina(10);
         dashAfterImage.StopDashing();
+        
     }
 
     void Run()

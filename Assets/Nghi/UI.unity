@@ -486,11 +486,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 25099652}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c55f9366f5f779d43b3a79276420afb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 20
+  maxDistance: 0
 --- !u!1 &26075274
 GameObject:
   m_ObjectHideFlags: 0
@@ -4833,7 +4835,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 329256533}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0d2899436ab7d5e469507e6081495764, type: 3}
   m_Name: 
@@ -4842,9 +4844,24 @@ MonoBehaviour:
   bulletPrefab: {fileID: 7892943538581841027, guid: 9fbd6ef2bf8e8d04ebb30d8aba04c156, type: 3}
   bulletSpawn: {fileID: 1841840902}
   bulletSpeed: 20
-  gunPivot: {fileID: 1841840902}
   isAiming: 0
   fireRate: 0.1
+  lineRenderer: {fileID: 8947570791232210233, guid: fb2c2ce2a670eb34ab34e566ec41f8ea, type: 3}
+  lineSegmentCount: 30
+--- !u!114 &329256556
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 329256533}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c55f9366f5f779d43b3a79276420afb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 20
+  maxDistance: 0
 --- !u!1 &332406534
 GameObject:
   m_ObjectHideFlags: 0
@@ -15164,6 +15181,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1049957872}
   m_CullTransparentMesh: 1
+--- !u!1 &1054375600 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7892943538581841027, guid: 9fbd6ef2bf8e8d04ebb30d8aba04c156, type: 3}
+  m_PrefabInstance: {fileID: 2144562765}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1054375601
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1054375600}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c55f9366f5f779d43b3a79276420afb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 20
+  maxDistance: 0
 --- !u!1 &1055758571
 GameObject:
   m_ObjectHideFlags: 0
@@ -25364,6 +25400,53 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1797519723}
   m_CullTransparentMesh: 1
+--- !u!1 &1809040467
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1809040469}
+  - component: {fileID: 1809040468}
+  m_Layer: 0
+  m_Name: Bomerang_Pool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1809040468
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1809040467}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef3c59ae035e1144aa33767c7102332f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectToPool: {fileID: 7892943538581841027, guid: 9fbd6ef2bf8e8d04ebb30d8aba04c156, type: 3}
+  amountToPool: 0
+  pooledObjects: []
+--- !u!4 &1809040469
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1809040467}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.5828279, y: -1.5477031, z: -2.7785568}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1814425127
 GameObject:
   m_ObjectHideFlags: 0
@@ -27111,6 +27194,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4818843011552870467, guid: ca0c8bfa5d090744686fe4782d6ada7e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 329256553}
+    - targetCorrespondingSourceObject: {fileID: 4818843011552870467, guid: ca0c8bfa5d090744686fe4782d6ada7e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 329256556}
     - targetCorrespondingSourceObject: {fileID: 4818843011552870467, guid: ca0c8bfa5d090744686fe4782d6ada7e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 329256539}
@@ -30412,6 +30498,66 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2144089440}
   m_CullTransparentMesh: 1
+--- !u!1001 &2144562765
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2347375414255349690, guid: 9fbd6ef2bf8e8d04ebb30d8aba04c156, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.69
+      objectReference: {fileID: 0}
+    - target: {fileID: 2347375414255349690, guid: 9fbd6ef2bf8e8d04ebb30d8aba04c156, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.89
+      objectReference: {fileID: 0}
+    - target: {fileID: 2347375414255349690, guid: 9fbd6ef2bf8e8d04ebb30d8aba04c156, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2347375414255349690, guid: 9fbd6ef2bf8e8d04ebb30d8aba04c156, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2347375414255349690, guid: 9fbd6ef2bf8e8d04ebb30d8aba04c156, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2347375414255349690, guid: 9fbd6ef2bf8e8d04ebb30d8aba04c156, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2347375414255349690, guid: 9fbd6ef2bf8e8d04ebb30d8aba04c156, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2347375414255349690, guid: 9fbd6ef2bf8e8d04ebb30d8aba04c156, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2347375414255349690, guid: 9fbd6ef2bf8e8d04ebb30d8aba04c156, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2347375414255349690, guid: 9fbd6ef2bf8e8d04ebb30d8aba04c156, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7892943538581841027, guid: 9fbd6ef2bf8e8d04ebb30d8aba04c156, type: 3}
+      propertyPath: m_Name
+      value: Blue Effect Bullet Impact Explosion 32x32_354
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7892943538581841027, guid: 9fbd6ef2bf8e8d04ebb30d8aba04c156, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1054375601}
+  m_SourcePrefab: {fileID: 100100000, guid: 9fbd6ef2bf8e8d04ebb30d8aba04c156, type: 3}
 --- !u!1001 &4028340764885943302
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -30766,3 +30912,5 @@ SceneRoots:
   - {fileID: 767823702}
   - {fileID: 329027178}
   - {fileID: 1714188047}
+  - {fileID: 1809040469}
+  - {fileID: 2144562765}
