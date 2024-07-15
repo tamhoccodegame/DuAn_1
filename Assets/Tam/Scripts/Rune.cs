@@ -14,7 +14,7 @@ public class Rune
 		AttackSpeed,
 	}
 
-	private RuneType runeType;
+	public RuneType runeType;
 
 	public Rune(RuneType _runeType)
     {

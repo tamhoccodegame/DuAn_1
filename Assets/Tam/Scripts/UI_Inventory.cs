@@ -11,13 +11,18 @@ public class UI_Inventory : MonoBehaviour
     private Equipment equipment;
 
     private Transform runeSlotTemplate;
+    private Transform runeDetail;
     private Transform runeSlotContainer;
 
     // Start is called before the first frame update
-    void Start()
-    {
-        runeSlotTemplate = transform.Find("runeSlotTemplate");
+    void Awake()
+    { 
         runeSlotContainer = transform.Find("runeSlotContainer");
+        runeSlotTemplate = runeSlotContainer.Find("runeSlotTemplate");
+        runeDetail = transform.Find("runeDetail");
+        
+        Debug.Log(runeSlotContainer.name);
+        Debug.Log(runeSlotTemplate.name);
     }
 
     public void SetInventory(Inventory _inventory)
@@ -25,6 +30,10 @@ public class UI_Inventory : MonoBehaviour
         inventory = _inventory;
 		inventory.OnInventoryChange += Inventory_OnInventoryChange;
         RefreshInventory();
+    }
+    public void SetEquipment(Equipment _equipment)
+    {
+        equipment = _equipment;
     }
 
 	private void Inventory_OnInventoryChange(object sender, System.EventArgs e)
@@ -34,34 +43,41 @@ public class UI_Inventory : MonoBehaviour
 
 	public void RefreshInventory()
     {
-        foreach(Transform child in runeSlotContainer)
+        foreach (Transform child in runeSlotContainer)
         {
             if (child == runeSlotTemplate) continue;
             Destroy(child.gameObject);
         }
 
-        int x = 0;
-        int y = 0;
-        float itemSlotCellSize = 75f;
-
-        foreach(Rune rune in inventory.GetItemList())
+        foreach (Rune rune in inventory.GetItemList())
         {
-            RectTransform itemSlotRectTrasform = Instantiate(runeSlotTemplate,runeSlotContainer)
+            RectTransform itemSlotRectTrasform = Instantiate(runeSlotTemplate, runeSlotContainer)
                                                 .GetComponent<RectTransform>();
+
+            itemSlotRectTrasform.gameObject.SetActive(true);
+
+            Debug.Log(itemSlotRectTrasform.position);
+
             itemSlotRectTrasform.GetComponent<Button_UI>().ClickFunc = () =>
             {
-                //Equip
+				//Equip
+				//equipment.Equip(rune);
+				//inventory.RemoveRune(rune);
+                runeDetail.gameObject.SetActive(true);
+				runeDetail.Find("Name").GetComponent<Text>().text = rune.runeType.ToString();
+                
+			};
 
-            };
+            //itemSlotRectTrasform.GetComponent<Button_UI>().MouseRightClickFunc = () =>
+            //{
+            //    //Drop
+            //};
 
-            itemSlotRectTrasform.GetComponent<Button_UI>().MouseRightClickFunc = () =>
-            {
-                //Drop
-            };
-            itemSlotRectTrasform.anchoredPosition = new Vector2(x * itemSlotCellSize, y * itemSlotCellSize);
+            itemSlotRectTrasform.anchoredPosition = Vector2.zero;
             Image image = itemSlotRectTrasform.Find("Image").GetComponent<Image>();
             image.sprite = rune.GetSprite();
 
+            
         }
     }
 

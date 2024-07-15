@@ -45,10 +45,15 @@ public class Equipment
 		avaSlot++;
 		OnEquipmentChange?.Invoke(this, EventArgs.Empty);
 	}
-
+	
 	public List<Rune> GetEquipmentList()
 	{
 		return equipments;
+	}
+
+	public bool IsEquipped(Rune rune)
+	{
+		return equipments.Contains(rune);
 	}
 
 }

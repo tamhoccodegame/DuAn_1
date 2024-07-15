@@ -6,14 +6,14 @@ using UnityEngine.UI;
 public class UI_Equipment : MonoBehaviour
 {
     private Equipment equipment;
-
-	private Transform runeSlotTemplate;
-	private Transform runeSlotContainer;
+	
+	private Transform runeEquipTemplate;
+	private Transform runeEquipContainer;
 	// Start is called before the first frame update
 	void Start()
     {
-		runeSlotTemplate = transform.Find("runeSlotTemplate");
-		runeSlotContainer = transform.Find("runeSlotContainer");
+		runeEquipContainer = transform.Find("runeEquipContainer");
+		runeEquipTemplate = runeEquipContainer.Find("runeEquipTemplate");
 	}
 
     public void SetEquipment(Equipment _equipment)
@@ -30,22 +30,19 @@ public class UI_Equipment : MonoBehaviour
 
 	private void RefreshEquipment()
     {
-		foreach (Transform child in runeSlotContainer)
+		foreach (Transform child in runeEquipContainer)
 		{
-			if (child == runeSlotTemplate) continue;
+			if (child == runeEquipTemplate) continue;
 			Destroy(child.gameObject);
 		}
 
-		int x = 0;
-		int y = 0;
-		float itemSlotCellSize = 75f;
-
 		foreach (Rune rune in equipment.GetEquipmentList())
 		{
-			RectTransform itemSlotRectTrasform = Instantiate(runeSlotTemplate, runeSlotContainer)
+			RectTransform itemSlotRectTrasform = Instantiate(runeEquipTemplate, runeEquipContainer)
 												.GetComponent<RectTransform>();
+			itemSlotRectTrasform.gameObject.SetActive(true);
 
-			itemSlotRectTrasform.anchoredPosition = new Vector2(x * itemSlotCellSize, y * itemSlotCellSize);
+			//itemSlotRectTrasform.anchoredPosition = new Vector2(x * itemSlotCellSize, y * itemSlotCellSize);
 			Image image = itemSlotRectTrasform.Find("Image").GetComponent<Image>();
 			image.sprite = rune.GetSprite();
 
