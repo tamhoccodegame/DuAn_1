@@ -8,7 +8,7 @@ public class Rune
 	
 	public enum RuneType
 	{
-		Speed,
+		Dash,
 		Damage,
 		DoubleJump,
 		AttackSpeed,

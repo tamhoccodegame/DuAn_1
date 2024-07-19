@@ -31,7 +31,8 @@ public class Enemy : MonoBehaviour
         Patrol,
         Attack,
         Chase,
-    }
+		Hurting,
+	}
 
     public enum EnemyType
     {
@@ -61,6 +62,7 @@ public class Enemy : MonoBehaviour
     void Update()
     {
         if (!isAlive) return;
+        if (isCoroutineRunning) return;
         switch (currentState)
         {
             case State.Patrol:
@@ -137,6 +139,10 @@ public class Enemy : MonoBehaviour
     }
 
     
+    private void Hurting()
+    {
+        rb.velocity = Vector2.zero;
+    }
 
     //private void SpawnEffect()
     //{
@@ -151,14 +157,19 @@ public class Enemy : MonoBehaviour
 
 	public void TakeDamage(float damage)
     {
-        currentHealth -= damage;
-		animator.SetTrigger("isHurt");
-		if (currentHealth < 0)
+        if (!isAlive) return;
+
+		rb.velocity = Vector2.zero;
+		currentHealth -= damage;
+
+		if (currentHealth <= 0)
 		{
 			Die();
-            isAlive = false;
+			isAlive = false;
+            return;
 		}
-		
+
+		animator.SetTrigger("isHurt");
     }
 
 	private void Die()

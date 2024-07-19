@@ -19,7 +19,7 @@ public class Player : MonoBehaviour
         equipment = new Equipment();
 
         inventory.AddRune(new Rune(Rune.RuneType.Damage));
-        inventory.AddRune(new Rune(Rune.RuneType.AttackSpeed));
+        inventory.AddRune(new Rune(Rune.RuneType.DoubleJump));
 
 		uiInventory.SetInventory(inventory);
 		uiEquipment.SetInventory(inventory);
@@ -49,8 +49,9 @@ public class Player : MonoBehaviour
                 case Rune.RuneType.AttackSpeed:
                     break;
                 case Rune.RuneType.DoubleJump:
+                    playerController.canDoubleJump = true;
                     break;
-                case Rune.RuneType.Speed:
+                case Rune.RuneType.Dash:
                     break;
             }
         }
