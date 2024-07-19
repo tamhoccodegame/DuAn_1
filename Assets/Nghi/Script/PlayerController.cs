@@ -39,6 +39,8 @@ public class PlayerController : MonoBehaviour
     public float dashSpeed = 10f;
     public float dashTime = 0.5f;
 
+    
+
     //private bool isDashing;
     //public float dashTime;
     //public float dashSpeed;
@@ -115,6 +117,22 @@ public class PlayerController : MonoBehaviour
         bool havemove = Mathf.Abs(rig.velocity.x) > Mathf.Epsilon;
 
         animator.SetBool("isRunning", havemove);
+
+
+
+        if (havemove && feet.IsTouchingLayers(LayerMask.GetMask("Ground")))
+        {
+            ////huong cua player
+            //int huong = (int)transform.localScale.x;
+            ////lay rotate cua dust
+            //Quaternion rotatedust = smokeEffect.transform.localRotation;
+            //if (huong == 1)
+            //    rotatedust.y = 180;
+            //else if (huong == -1)
+            //    rotatedust.y = 0;
+            //smokeEffect.transform.localRotation = rotatedust;//cap nhat
+            //smokeEffect.Play();
+        }
         animator.SetBool("isAttacking", isAttacking);
 
         if (moveInput.x > 0 && !facingRight)
@@ -142,7 +160,6 @@ public class PlayerController : MonoBehaviour
     {
         dashAfterImage.StartDashing();
         float startTime = Time.time;
-
         while (Time.time < startTime + dashTime)
         {
             transform.Translate(Vector3.right * dashSpeed * Time.deltaTime);

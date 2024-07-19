@@ -13,6 +13,8 @@ public class Player_Health : MonoBehaviour
     Rigidbody2D rig;
     CapsuleCollider2D col;
 
+    public ParticleSystem player_Blood_Effect;
+    public ParticleSystem player_Death_Effect;
     // Start is called before the first frame update
     void Start()
     {
@@ -36,6 +38,7 @@ public class Player_Health : MonoBehaviour
         player_HealthBar.SetHealth(currentHealth);
 
         animator.SetTrigger("isHurt");
+        player_Blood_Effect.Play();
         animator.ResetTrigger("isAttack1");
 		animator.ResetTrigger("isAttack2");
 		animator.ResetTrigger("isAttack3");
@@ -53,6 +56,7 @@ public class Player_Health : MonoBehaviour
     {
      
         animator.SetBool("isDead", true);
+        player_Death_Effect.Play();
         Collider2D[] colliders = GetComponents<Collider2D>();
 
         foreach(Collider2D col in colliders)
@@ -62,7 +66,7 @@ public class Player_Health : MonoBehaviour
 
         //GetComponent<Collider2D>().enabled = false; //Disable the collider 2D
         this.enabled = false;
-        
+
         //deathEffect.Play();
         //FindObjectOfType<GameSession>().PlayerDeath();
     }

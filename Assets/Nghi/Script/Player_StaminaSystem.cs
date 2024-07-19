@@ -26,6 +26,7 @@ public class Player_StaminaSystem : MonoBehaviour
         {
             currrentStamina -= staminaAmount;
         }
+        player_StaminaBar.SetStamina(currrentStamina);
 
 
         if(currrentStamina < 0)

@@ -15,7 +15,7 @@ public class Player_AimShoot_Weapon : MonoBehaviour
     public float fireRate = 2f;
     //private float fireTimer;
 
-    public LineRenderer lineRenderer;
+    //public LineRenderer lineRenderer;
     public int lineSegmentCount = 20;
     private Vector3 startPosition;
     private Vector3 aimPosition;
@@ -30,8 +30,8 @@ public class Player_AimShoot_Weapon : MonoBehaviour
         mainCamera = Camera.main;
         isAiming = false;
         //fireTimer = 0f;
-        lineRenderer.positionCount = lineSegmentCount;
-        lineRenderer = GetComponent<LineRenderer>();
+        //lineRenderer.positionCount = lineSegmentCount;
+        //lineRenderer = GetComponent<LineRenderer>();
         bomerang_Pool = GameObject.Find("Bomerang_Pool").GetComponent<Bomerang_Pool>();
     }
 
@@ -86,7 +86,7 @@ public class Player_AimShoot_Weapon : MonoBehaviour
         }
         else
         {
-            lineRenderer.positionCount = 0;
+            //lineRenderer.positionCount = 0;
         }
     }
 
@@ -103,8 +103,8 @@ public class Player_AimShoot_Weapon : MonoBehaviour
             points[i] = startPosition + lineDirection.normalized * (bulletSpeed * time) + new Vector3(gravityEffect.x, gravityEffect.y, 0f);
         }
 
-        lineRenderer.positionCount = points.Length;
-        lineRenderer.SetPositions(points);
+        //lineRenderer.positionCount = points.Length;
+        //lineRenderer.SetPositions(points);
     }
 
     public void Shoot()
