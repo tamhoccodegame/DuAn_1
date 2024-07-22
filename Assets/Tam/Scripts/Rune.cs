@@ -23,7 +23,12 @@ public class Rune
 
     public Sprite GetSprite()
 	{
-		return RuneAssets.instance.attackRuneSprite; //this is ex, not offical
+		switch(runeType)
+		{
+			default: 
+			case RuneType.Damage:			return RuneAssets.instance.damageRuneSprite;
+			case RuneType.DoubleJump:		return RuneAssets.instance.doublejumpRuneSprite;
+		}
 	}
 
 }

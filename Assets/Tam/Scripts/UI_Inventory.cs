@@ -15,6 +15,8 @@ public class UI_Inventory : MonoBehaviour
     private Transform equipButton;
     private Transform runeSlotContainer;
 
+    private static Transform lastHoverSlot;
+
     // Start is called before the first frame update
     void Awake()
     { 
@@ -22,7 +24,7 @@ public class UI_Inventory : MonoBehaviour
         runeSlotTemplate = runeSlotContainer.Find("runeSlotTemplate");
         runeDetail = transform.Find("runeDetail");
         equipButton = transform.Find("EquipButton");
-        
+        lastHoverSlot = null;
         Debug.Log(runeSlotContainer.name);
         Debug.Log(runeSlotTemplate.name);
     }
@@ -68,12 +70,16 @@ public class UI_Inventory : MonoBehaviour
             Debug.Log(itemSlotRectTrasform.position);
 
 			itemSlotRectTrasform.anchoredPosition = Vector2.zero;
+			itemSlotRectTrasform.Find("Hover").gameObject.SetActive(false);
 			Image image = itemSlotRectTrasform.Find("Image").GetComponent<Image>();
 			image.sprite = rune.GetSprite();
 
             //Equip
 			itemSlotRectTrasform.GetComponent<Button_UI>().ClickFunc = () =>
             {
+                if(lastHoverSlot != null) lastHoverSlot.gameObject.SetActive(false);
+                itemSlotRectTrasform.Find("Hover").gameObject.SetActive(true);
+                lastHoverSlot = itemSlotRectTrasform.Find("Hover");
                 runeDetail.gameObject.SetActive(true);
                 equipButton.gameObject.SetActive(true);
 				runeDetail.Find("Name").GetComponent<Text>().text = rune.runeType.ToString();
@@ -89,9 +95,9 @@ public class UI_Inventory : MonoBehaviour
 					}
                   
                 };
-
-                
 			};
+
+           
 
             //itemSlotRectTrasform.GetComponent<Button_UI>().MouseRightClickFunc = () =>
             //{

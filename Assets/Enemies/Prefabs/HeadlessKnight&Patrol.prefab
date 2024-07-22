@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 3916312259877541611}
   - component: {fileID: 5506979707584546666}
   - component: {fileID: 2140618678484822347}
-  - component: {fileID: 1415401945773946459}
   - component: {fileID: 2723211896393437705}
   - component: {fileID: 1374040008250760268}
   m_Layer: 0
@@ -109,31 +108,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &1415401945773946459
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 594023782360253831}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1f6f6d7258b6b364993a77d6eb9139c0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentState: 0
-  enemyType: 0
-  _maxHealth: 0
-  _patrolSpeed: 3
-  _chaseSpeed: 7
-  _attackRange: 3
-  _chaseRange: 20
-  _patrolPoints:
-  - {fileID: 9089881791623846048}
-  - {fileID: 2033869676623022158}
-  _bulletPrefabs: {fileID: 0}
-  _firePoint: {fileID: 0}
-  _enemyType: 0
 --- !u!50 &2723211896393437705
 Rigidbody2D:
   serializedVersion: 4

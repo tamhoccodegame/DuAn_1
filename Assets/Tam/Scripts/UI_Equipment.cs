@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class UI_Equipment : MonoBehaviour
 {
+	private static List<UI_Equipment> instance;
+
     private Equipment equipment;
 	private Inventory inventory;
 	
@@ -16,6 +18,9 @@ public class UI_Equipment : MonoBehaviour
 	// Start is called before the first frame update
 	void Start()
     {
+		instance = new List<UI_Equipment>();
+		instance.Add(this);
+
 		equipmentSlots = new EquipmentSlot[4];
 		//UpdateSlotsVisual();
 		runeEquipContainer = transform.Find("runeEquipContainer");
@@ -53,16 +58,19 @@ public class UI_Equipment : MonoBehaviour
 
 	private void Inventory_OnInventoryChange(object sender, System.EventArgs e)
 	{
-		RefreshEquipment();
+		foreach (var item in instance)
+			item.RefreshEquipment();
 	}
 
 	private void Equipment_OnEquipmentChange(object sender, System.EventArgs e)
 	{
-		RefreshEquipment();
+		foreach(var item in instance) 
+		item.RefreshEquipment();
 	}
 
 	private void RefreshEquipment()
     {
+		Debug.Log(gameObject.name);
 		foreach (Transform child in runeEquipContainer)
 		{
 			if (child == runeEquipTemplate) continue;
