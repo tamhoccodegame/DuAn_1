@@ -39,25 +39,21 @@ public class PlayerController : MonoBehaviour
     public float dashSpeed = 10f;
     public float dashTime = 0.5f;
 
-    public bool canDoubleJump = false;
+    
 
-    public GameObject videoPlayer;
-    public GameObject UIVideo;
-	public Camera cam;
+    //private bool isDashing;
+    //public float dashTime;
+    //public float dashSpeed;
+    //public float distanceBetweenImages;
+    //public float dashCooldown;
+    //private float dashTimeLeft;
+    //private float lastImageXposition;
+    //private float lastDash = -100f;
+    //private bool canMove = true;
+    //private bool canFlip = true;
 
-	//private bool isDashing;
-	//public float dashTime;
-	//public float dashSpeed;
-	//public float distanceBetweenImages;
-	//public float dashCooldown;
-	//private float dashTimeLeft;
-	//private float lastImageXposition;
-	//private float lastDash = -100f;
-	//private bool canMove = true;
-	//private bool canFlip = true;
-
-	// Start is called before the first frame update
-	void Start()
+    // Start is called before the first frame update
+    void Start()
     {
         rig = GetComponent<Rigidbody2D>();
         col = GetComponent<CapsuleCollider2D>();
@@ -66,6 +62,10 @@ public class PlayerController : MonoBehaviour
         dashAfterImage = GetComponent<DashAfterImage>();
     }
 
+    public int GetDamage()
+    {
+        return damage;
+    }
 
     void OnMove(InputValue value)
     {
@@ -87,20 +87,17 @@ public class PlayerController : MonoBehaviour
         //    return;
         //}
 
+        //if (value.isPressed && !isAttacking)
+        //{
+        //    rig.velocity += new Vector2(0f, jump);
+        //}
 
-        if ((feet.IsTouchingLayers(LayerMask.GetMask("Ground")) || jumpCount < 1) && !isAttacking)
+        if (feet.IsTouchingLayers(LayerMask.GetMask("Ground")) || jumpCount < 1)
         {
             if (value.isPressed)
             {
                 rig.velocity += new Vector2(0f, jump);
-                if(canDoubleJump)
-                {
-					jumpCount++;
-				}
-                else
-                {
-                    jumpCount = 2;
-                }                
+                jumpCount++;
             }
         }
 
@@ -120,6 +117,22 @@ public class PlayerController : MonoBehaviour
         bool havemove = Mathf.Abs(rig.velocity.x) > Mathf.Epsilon;
 
         animator.SetBool("isRunning", havemove);
+
+
+
+        if (havemove && feet.IsTouchingLayers(LayerMask.GetMask("Ground")))
+        {
+            ////huong cua player
+            //int huong = (int)transform.localScale.x;
+            ////lay rotate cua dust
+            //Quaternion rotatedust = smokeEffect.transform.localRotation;
+            //if (huong == 1)
+            //    rotatedust.y = 180;
+            //else if (huong == -1)
+            //    rotatedust.y = 0;
+            //smokeEffect.transform.localRotation = rotatedust;//cap nhat
+            //smokeEffect.Play();
+        }
         animator.SetBool("isAttacking", isAttacking);
 
         if (moveInput.x > 0 && !facingRight)
@@ -136,11 +149,6 @@ public class PlayerController : MonoBehaviour
             StartCoroutine(Dash());
         }
 
-        if (Input.GetKeyDown(KeyCode.I))
-        {
-            StartCoroutine(Skill());
-        }
-
         //Debug.Log(isAttacking);
         //Dash();
         //CheckDash();
@@ -148,43 +156,18 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    private IEnumerator Skill()
-    {
-        BoxCollider2D camCol = cam.GetComponent<BoxCollider2D>();
-        Vector3 originColPos = camCol.transform.position;
-    
-		videoPlayer.SetActive(true);
-		UIVideo.SetActive(true);
-        Time.timeScale = 0;
-
-		yield return new WaitForSecondsRealtime(2f);
-        videoPlayer.SetActive(false);
-		UIVideo.SetActive(false);
-
-		camCol.transform.position = new Vector3(1000, 1000, 1000);
-		camCol.enabled = true;
-        yield return new WaitForSecondsRealtime(.1f);
-
-        Time.timeScale = 1f;
-		camCol.transform.position = originColPos;
-		
-		
-
-        //Chay xong video thi moi bat trigger, sau do trong ham ontriggerstay se apply damage theo dot, het dot thi tat trigger
-	}
-
     private IEnumerator Dash()
     {
         dashAfterImage.StartDashing();
         float startTime = Time.time;
-
         while (Time.time < startTime + dashTime)
         {
             transform.Translate(Vector3.right * dashSpeed * Time.deltaTime);
             yield return null;
         }
-
+        GetComponent<Player_StaminaSystem>().ReduceStamina(10);
         dashAfterImage.StopDashing();
+        
     }
 
     void Run()
@@ -324,15 +307,4 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(attackCooldown);
         isAttacking = false;
     }
-
-	public int GetDamage()
-	{
-		return damage;
-	}
-
-    public void SetDamage(int damage)
-    {
-        this.damage += damage;
-    }
 }
-
