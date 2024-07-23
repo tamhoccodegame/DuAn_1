@@ -124,10 +124,6 @@ public class Enemy : MonoBehaviour
         {
             ChangeState(State.Attack);
         }
-        if (Mathf.Abs(player.position.x - transform.position.x) > chaseRange)
-        {
-            ChangeState(State.Patrol);
-        }
         //Debug.Log("Direction: " + direction + " | Velocity: " + rb.velocity);
     }
 
