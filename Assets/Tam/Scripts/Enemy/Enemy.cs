@@ -59,7 +59,7 @@ public class Enemy : MonoBehaviour
     }
 
     // Update is called once per frame  
-    void Update()
+    public virtual void Update()
     {
         if (!isAlive) return;
         if (isCoroutineRunning) return;
@@ -111,7 +111,7 @@ public class Enemy : MonoBehaviour
                                           transform.localScale.y, transform.localScale.z);
     }
 
-    private void Chase()
+    public virtual void Chase()
     {
         direction = new Vector3(player.position.x - transform.position.x, 0, 0);
         direction.Normalize();

@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     public bool isAlive = true;
     public bool facingRight = true;
     private bool isJumping = false; 
+    public bool canDoubleJump = false;
     public float jumpCount;
 
     Rigidbody2D rig;
@@ -67,6 +68,11 @@ public class PlayerController : MonoBehaviour
         return damage;
     }
 
+    public void SetDamage(int _damage)
+    {
+        damage = _damage;
+    }
+
     void OnMove(InputValue value)
     {
         if (isAlive == false) return;
@@ -91,15 +97,30 @@ public class PlayerController : MonoBehaviour
         //{
         //    rig.velocity += new Vector2(0f, jump);
         //}
-
-        if (feet.IsTouchingLayers(LayerMask.GetMask("Ground")) || jumpCount < 1)
+        
+        if (canDoubleJump)
         {
-            if (value.isPressed)
+			if (feet.IsTouchingLayers(LayerMask.GetMask("Ground")) || jumpCount < 1)
+			{
+				if (value.isPressed)
+				{
+					rig.velocity += new Vector2(0f, jump);
+					jumpCount++;
+				}
+			}
+		}
+        else
+        {
+			if (feet.IsTouchingLayers(LayerMask.GetMask("Ground")))
             {
-                rig.velocity += new Vector2(0f, jump);
-                jumpCount++;
-            }
+				if (value.isPressed)
+				{
+					rig.velocity += new Vector2(0f, jump);
+				}
+			}
+			
         }
+        
 
     }
 

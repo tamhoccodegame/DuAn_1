@@ -31,4 +31,13 @@ public class Rune
 		}
 	}
 
+	public int GetCost()
+	{
+		switch(runeType)
+		{
+			default:
+			case RuneType.Damage: return 1;
+		}
+	}
+
 }

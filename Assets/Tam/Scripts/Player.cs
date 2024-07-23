@@ -8,7 +8,7 @@ public class Player : MonoBehaviour
     private Equipment equipment;
 
     public UI_Inventory uiInventory;
-    public UI_Equipment uiEquipment;
+    private UI_Equipment[] uiEquipments;
 
     private PlayerController playerController;
 
@@ -17,44 +17,48 @@ public class Player : MonoBehaviour
     {
         inventory = new Inventory();
         equipment = new Equipment();
+		uiEquipments = FindObjectsByType<UI_Equipment>(FindObjectsSortMode.None);
 
-        inventory.AddRune(new Rune(Rune.RuneType.Damage));
-        inventory.AddRune(new Rune(Rune.RuneType.DoubleJump));
-
-		uiInventory.SetInventory(inventory);
-		uiEquipment.SetInventory(inventory);
-		uiInventory.SetEquipment(equipment);
-
-		uiEquipment.SetEquipment(equipment);
-        
-
+		playerController = GetComponent<PlayerController>();
 		equipment.OnEquipmentChange += Equipment_OnEquipmentChange;
 
-    }
+		inventory.AddRune(new Rune(Rune.RuneType.Damage));
+		inventory.AddRune(new Rune(Rune.RuneType.DoubleJump));
+
+		uiInventory.SetInventory(inventory);
+		uiInventory.SetEquipment(equipment);
+
+		foreach(var uiEquip in uiEquipments)
+		{
+			uiEquip.SetInventory(inventory);
+			uiEquip.SetEquipment(equipment);
+		}
+
+	}
 
 	private void Equipment_OnEquipmentChange(object sender, System.EventArgs e)
 	{
-		RefreshPlayerStat();
+		foreach (Rune rune in equipment.GetEquipmentList())
+		{
+			switch (rune.runeType)
+			{ 
+				case Rune.RuneType.Damage:
+					playerController.SetDamage(15);
+					break;
+				case Rune.RuneType.AttackSpeed:
+					break;
+				case Rune.RuneType.DoubleJump:
+					playerController.canDoubleJump = true;
+					break;
+				case Rune.RuneType.Dash:
+					break;
+			}
+		}
 	}
 
     private void RefreshPlayerStat()
     {
-        foreach (Rune rune in equipment.GetEquipmentList())
-        {
-            switch (rune.runeType)
-            {
-                case Rune.RuneType.Damage:
-                    playerController.SetDamage(15);
-                    break;
-                case Rune.RuneType.AttackSpeed:
-                    break;
-                case Rune.RuneType.DoubleJump:
-                    playerController.canDoubleJump = true;
-                    break;
-                case Rune.RuneType.Dash:
-                    break;
-            }
-        }
+        
     }
 
 	// Update is called once per frame

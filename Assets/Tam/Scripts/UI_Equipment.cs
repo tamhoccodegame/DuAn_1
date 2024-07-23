@@ -20,8 +20,6 @@ public class UI_Equipment : MonoBehaviour
     {
 		instance = new List<UI_Equipment>();
 		instance.Add(this);
-
-		equipmentSlots = new EquipmentSlot[4];
 		//UpdateSlotsVisual();
 		runeEquipContainer = transform.Find("runeEquipContainer");
 		runeEquipTemplate = runeEquipContainer.Find("runeEquipTemplate");
@@ -58,14 +56,17 @@ public class UI_Equipment : MonoBehaviour
 
 	private void Inventory_OnInventoryChange(object sender, System.EventArgs e)
 	{
-		foreach (var item in instance)
-			item.RefreshEquipment();
+		//foreach (var item in instance)
+		//	item.RefreshEquipment();
+		RefreshEquipment();
 	}
 
 	private void Equipment_OnEquipmentChange(object sender, System.EventArgs e)
 	{
-		foreach(var item in instance) 
-		item.RefreshEquipment();
+		//foreach(var item in instance) 
+		//item.RefreshEquipment();
+
+		RefreshEquipment();
 	}
 
 	private void RefreshEquipment()
@@ -89,9 +90,11 @@ public class UI_Equipment : MonoBehaviour
 
 			itemSlotRectTrasform.GetComponent<Button_UI>().ClickFunc = () =>
 			{
-				Debug.Log("Nhan input");
-				equipment.Unequip(rune);
-				inventory.AddRune(rune);
+				if(gameObject.name == "Equipped_Toolbar")
+				{
+					equipment.Unequip(rune);
+					inventory.AddRune(rune);
+				}
 			};
 
 		}
