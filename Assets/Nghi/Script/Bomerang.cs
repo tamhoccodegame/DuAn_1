@@ -11,7 +11,7 @@ public class Bomerang : MonoBehaviour
     private Vector2 startPosition;
     private Bomerang_Pool bomerang_Pool;
 
-    
+    public GameObject bomerangShootEffect;
     private void Start()
     {
         startPosition = transform.position;
@@ -49,6 +49,15 @@ public class Bomerang : MonoBehaviour
         
         isReturn = false;
         gameObject.SetActive(true);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Spike"))
+        {
+            //bomerangShootEffect.Play();
+            GameObject shootEffect = Instantiate(bomerangShootEffect, transform.position, Quaternion.identity);
+        }
     }
 
 }
