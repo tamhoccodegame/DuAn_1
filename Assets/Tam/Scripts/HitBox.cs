@@ -14,8 +14,6 @@ public class HitBox : MonoBehaviour
 
 		if(enemyDamage == 0)
 		enemyDamage = GetComponentInParent<Enemy>()?.GetDamage() ?? enemyDamage;
-	
-		Debug.Log(enemyDamage);
 	}
 
 	public int GetDamage()
@@ -35,6 +33,7 @@ public class HitBox : MonoBehaviour
 			playerHit.TakeDamage(enemyDamage);
 			Knockback knockback = GetComponent<Knockback>();
 			knockback.ApplyKnockback(collision.gameObject.transform, direction);
+			return;
 		}
 		if(enemyHit)
 		{
