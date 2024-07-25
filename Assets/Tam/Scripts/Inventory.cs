@@ -23,12 +23,17 @@ public class Inventory
     public void RemoveRune(Rune rune)
     {
         runes.Remove(rune);
-		OnInventoryChange?.Invoke(this, EventArgs.Empty);
+        OnInventoryChange?.Invoke(this, EventArgs.Empty);
 	}
 
     public bool IsContain(Rune rune)
     {
         return runes.Contains(rune);
+    }
+
+    public List<Rune> GetItemList()
+    {
+        return runes;
     }
 
 }

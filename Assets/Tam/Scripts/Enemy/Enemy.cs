@@ -31,7 +31,8 @@ public class Enemy : MonoBehaviour
         Patrol,
         Attack,
         Chase,
-    }
+		Hurting,
+	}
 
     public enum EnemyType
     {
@@ -58,9 +59,10 @@ public class Enemy : MonoBehaviour
     }
 
     // Update is called once per frame  
-    void Update()
+    public virtual void Update()
     {
         if (!isAlive) return;
+        if (isCoroutineRunning) return;
         switch (currentState)
         {
             case State.Patrol:
@@ -109,7 +111,7 @@ public class Enemy : MonoBehaviour
                                           transform.localScale.y, transform.localScale.z);
     }
 
-    private void Chase()
+    public virtual void Chase()
     {
         direction = new Vector3(player.position.x - transform.position.x, 0, 0);
         direction.Normalize();
@@ -122,10 +124,6 @@ public class Enemy : MonoBehaviour
         {
             ChangeState(State.Attack);
         }
-        if (Mathf.Abs(player.position.x - transform.position.x) > chaseRange)
-        {
-            ChangeState(State.Patrol);
-        }
         //Debug.Log("Direction: " + direction + " | Velocity: " + rb.velocity);
     }
 
@@ -137,6 +135,10 @@ public class Enemy : MonoBehaviour
     }
 
     
+    private void Hurting()
+    {
+        rb.velocity = Vector2.zero;
+    }
 
     //private void SpawnEffect()
     //{
@@ -151,14 +153,19 @@ public class Enemy : MonoBehaviour
 
 	public void TakeDamage(float damage)
     {
-        currentHealth -= damage;
-		animator.SetTrigger("isHurt");
-		if (currentHealth < 0)
+        if (!isAlive) return;
+
+		rb.velocity = Vector2.zero;
+		currentHealth -= damage;
+
+		if (currentHealth <= 0)
 		{
 			Die();
-            isAlive = false;
+			isAlive = false;
+            return;
 		}
-		
+
+		animator.SetTrigger("isHurt");
     }
 
 	private void Die()

@@ -12,6 +12,8 @@ public class PlayerController : MonoBehaviour
     public bool isAlive = true;
     public bool facingRight = true;
     private bool isJumping = false; 
+    public bool canDoubleJump = false;
+    public float jumpCount;
 
     Rigidbody2D rig;
     Animator animator;
@@ -34,17 +36,41 @@ public class PlayerController : MonoBehaviour
     public float attackCooldown = 0.1f;
     private bool inputReceived = false;
 
+    private DashAfterImage dashAfterImage;
+    public float dashSpeed = 10f;
+    public float dashTime = 0.5f;
+
+    
+
+    //private bool isDashing;
+    //public float dashTime;
+    //public float dashSpeed;
+    //public float distanceBetweenImages;
+    //public float dashCooldown;
+    //private float dashTimeLeft;
+    //private float lastImageXposition;
+    //private float lastDash = -100f;
+    //private bool canMove = true;
+    //private bool canFlip = true;
+
     // Start is called before the first frame update
     void Start()
     {
         rig = GetComponent<Rigidbody2D>();
         col = GetComponent<CapsuleCollider2D>();
         animator = GetComponent<Animator>();
+
+        dashAfterImage = GetComponent<DashAfterImage>();
     }
 
     public int GetDamage()
     {
         return damage;
+    }
+
+    public void SetDamage(int _damage)
+    {
+        damage = _damage;
     }
 
     void OnMove(InputValue value)
@@ -62,15 +88,40 @@ public class PlayerController : MonoBehaviour
     {
         if (isAlive == false) return;
 
-        if (!feet.IsTouchingLayers(LayerMask.GetMask("Ground"))) 
-        {
-            return;
-        }
-        if (value.isPressed && !isAttacking) 
-        {
-            rig.velocity += new Vector2(0f, jump);
+        //if (!feet.IsTouchingLayers(LayerMask.GetMask("Ground"))) 
+        //{
+        //    return;
+        //}
 
+        //if (value.isPressed && !isAttacking)
+        //{
+        //    rig.velocity += new Vector2(0f, jump);
+        //}
+        
+        if (canDoubleJump)
+        {
+			if (feet.IsTouchingLayers(LayerMask.GetMask("Ground")) || jumpCount < 1)
+			{
+				if (value.isPressed)
+				{
+					rig.velocity += new Vector2(0f, jump);
+					jumpCount++;
+				}
+			}
+		}
+        else
+        {
+			if (feet.IsTouchingLayers(LayerMask.GetMask("Ground")))
+            {
+				if (value.isPressed)
+				{
+					rig.velocity += new Vector2(0f, jump);
+				}
+			}
+			
         }
+        
+
     }
 
     // Update is called once per frame
@@ -87,6 +138,22 @@ public class PlayerController : MonoBehaviour
         bool havemove = Mathf.Abs(rig.velocity.x) > Mathf.Epsilon;
 
         animator.SetBool("isRunning", havemove);
+
+
+
+        if (havemove && feet.IsTouchingLayers(LayerMask.GetMask("Ground")))
+        {
+            ////huong cua player
+            //int huong = (int)transform.localScale.x;
+            ////lay rotate cua dust
+            //Quaternion rotatedust = smokeEffect.transform.localRotation;
+            //if (huong == 1)
+            //    rotatedust.y = 180;
+            //else if (huong == -1)
+            //    rotatedust.y = 0;
+            //smokeEffect.transform.localRotation = rotatedust;//cap nhat
+            //smokeEffect.Play();
+        }
         animator.SetBool("isAttacking", isAttacking);
 
         if (moveInput.x > 0 && !facingRight)
@@ -98,10 +165,30 @@ public class PlayerController : MonoBehaviour
             Flip();
         }
 
-        //Debug.Log(isAttacking);
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            StartCoroutine(Dash());
+        }
 
-		
-                		
+        //Debug.Log(isAttacking);
+        //Dash();
+        //CheckDash();
+
+
+    }
+
+    private IEnumerator Dash()
+    {
+        dashAfterImage.StartDashing();
+        float startTime = Time.time;
+        while (Time.time < startTime + dashTime)
+        {
+            transform.Translate(Vector3.right * dashSpeed * Time.deltaTime);
+            yield return null;
+        }
+        GetComponent<Player_StaminaSystem>().ReduceStamina(10);
+        dashAfterImage.StopDashing();
+        
     }
 
     void Run()
@@ -112,6 +199,7 @@ public class PlayerController : MonoBehaviour
         {
             animator.SetBool("isJump", false);
             isJumping = false;
+            jumpCount = 0; //Reset jumpCount
         }
         else
         {
@@ -129,6 +217,51 @@ public class PlayerController : MonoBehaviour
         transform.Rotate(0f, 180f, 0f);
     }
 
+    //void Dash()
+    //{
+    //    if (Input.GetButtonDown("Dash"))
+    //    {
+    //        if (Time.time > (lastDash + dashCooldown)) 
+    //        AttempToDash();
+    //    }
+    //}
+
+    //private void AttempToDash()
+    //{
+    //    isDashing = true;
+    //    dashTimeLeft = dashTime;
+    //    lastDash = Time.time;
+
+    //    PlayerAfterImagePool.Instance.GetFromPool();
+    //    lastImageXposition = transform.position.x;
+    //}
+
+    //private void CheckDash()
+    //{
+    //    if (isDashing)
+    //    {
+    //        if (dashTimeLeft > 0)
+    //        {
+    //            canMove = false;
+    //            canFlip = false;
+    //            rig.velocity = new Vector2(dashSpeed, rig.velocity.y);
+    //            dashTimeLeft -= Time.deltaTime;
+
+    //            if (Mathf.Abs(transform.position.x - lastImageXposition) > distanceBetweenImages)
+    //            {
+    //                PlayerAfterImagePool.Instance.GetFromPool();
+    //                lastImageXposition = transform.position.x;
+    //            }
+    //        }
+
+    //        if(dashTimeLeft <= 0)
+    //        {
+    //            isDashing = false;
+    //            canFlip = true;
+    //            canMove = true;
+    //        }
+    //    }
+    //}
 
     public void StartCombo()
     {

@@ -8,19 +8,36 @@ public class Rune
 	
 	public enum RuneType
 	{
-		Speed,
+		Dash,
 		Damage,
 		DoubleJump,
 		AttackSpeed,
 	}
 
-	private RuneType runeType;
+	public RuneType runeType;
 
 	public Rune(RuneType _runeType)
     {
 		runeType = _runeType;
     }
 
-    
+    public Sprite GetSprite()
+	{
+		switch(runeType)
+		{
+			default: 
+			case RuneType.Damage:			return RuneAssets.instance.damageRuneSprite;
+			case RuneType.DoubleJump:		return RuneAssets.instance.doublejumpRuneSprite;
+		}
+	}
+
+	public int GetCost()
+	{
+		switch(runeType)
+		{
+			default:
+			case RuneType.Damage: return 1;
+		}
+	}
 
 }
