@@ -6,6 +6,7 @@ using UnityEngine;
 public class Boss : Enemy
 {
 	[SerializeField] private GameObject effectPrefabs;
+	[SerializeField] private GameObject rockPrefabs;
 	public Transform effectPoint;
 
 	private int currentComboStrikes;
@@ -14,6 +15,8 @@ public class Boss : Enemy
 	private int countTouchWall = 0;
 	private int countChasePlayer = 0;
 	private float _attackRange = 5f;
+
+	[SerializeField] private float _maxHealth;
 	
 	public override void Awake()
 	{
@@ -24,6 +27,8 @@ public class Boss : Enemy
 		currentComboStrikes = 1;
 		direction = Vector2.right;
 		attackRange = _attackRange;
+		maxHealth = _maxHealth;
+		currentHealth = _maxHealth;
 	}
 
 	public override void Update()
@@ -60,6 +65,17 @@ public class Boss : Enemy
 			transform.localScale = new Vector3(direction.x * Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
 			Debug.Log(direction);
 			countTouchWall++;
+
+			Camera cam = Camera.main;
+			Vector3 viewportCheck = cam.ViewportToWorldPoint(new Vector3(0.5f, 1f, cam.nearClipPlane));
+			Vector3 spawnLocation = new Vector3(Random.Range(0, viewportCheck.x), viewportCheck.y, 0);
+
+			Instantiate(rockPrefabs, spawnLocation, Quaternion.identity);
+			spawnLocation = new Vector3(Random.Range(0, viewportCheck.x), viewportCheck.y, 0);
+			Instantiate(rockPrefabs, spawnLocation, Quaternion.identity);
+			spawnLocation = new Vector3(Random.Range(0, viewportCheck.x), viewportCheck.y, 0);
+			Instantiate(rockPrefabs, spawnLocation, Quaternion.identity);
+
 		}
 	}
 

@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     public bool facingRight = true;
     private bool isJumping = false; 
     public bool canDoubleJump = false;
+    public bool canDash = false;
     public float jumpCount;
 
     Rigidbody2D rig;
@@ -167,6 +168,7 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
+            if (!canDash) return;
             StartCoroutine(Dash());
         }
 
@@ -179,6 +181,7 @@ public class PlayerController : MonoBehaviour
 
     private IEnumerator Dash()
     {
+        animator.SetTrigger("isDash");
         dashAfterImage.StartDashing();
         float startTime = Time.time;
         while (Time.time < startTime + dashTime)
@@ -304,7 +307,7 @@ public class PlayerController : MonoBehaviour
         }
 	}
 
-    IEnumerator StopMotion(float time)
+    public IEnumerator StopMotion(float time)
     {
         currentInput = Vector2.zero;
         yield return new WaitForSeconds(time);
@@ -313,6 +316,7 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator SpecialAttack(string name)
     {
+        isAttacking = true;
         animator.SetTrigger(name);
         if (!isJumping)
         {

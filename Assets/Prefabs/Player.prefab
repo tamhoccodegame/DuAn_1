@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 755395487892016479}
   - component: {fileID: 1779889997598114326}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Light 2D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -122,7 +122,7 @@ GameObject:
   - component: {fileID: 7827306800286291020}
   - component: {fileID: 8455988548528139332}
   - component: {fileID: 1618795043687274805}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: HitBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -165,7 +165,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2300652781519751168}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -422,6 +422,8 @@ GameObject:
   - component: {fileID: 6066294885127648045}
   - component: {fileID: 550690712193381775}
   - component: {fileID: 5987889824820107079}
+  - component: {fileID: 3728910089246889960}
+  - component: {fileID: 6652116609355125339}
   m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
@@ -565,6 +567,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isAlive: 1
   facingRight: 1
+  canDoubleJump: 0
+  jumpCount: 0
   feet: {fileID: 6687705990334598996}
   speed: 10
   jump: 10
@@ -576,6 +580,8 @@ MonoBehaviour:
   attackRange: 1
   attackRate: 2
   attackCooldown: 0.5
+  dashSpeed: 10
+  dashTime: 0.5
 --- !u!222 &5393238138973065748
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -641,7 +647,7 @@ Rigidbody2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
@@ -674,3 +680,33 @@ MonoBehaviour:
   maxHealth: 200
   currentHealth: 0
   player_HealthBar: {fileID: 550690712193381775}
+  player_Blood_Effect: {fileID: 0}
+  player_Death_Effect: {fileID: 0}
+--- !u!114 &3728910089246889960
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5155699635807328689}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d43fd192c745ac7419edd2f8318f3ac7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uiInventory: {fileID: 0}
+--- !u!114 &6652116609355125339
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5155699635807328689}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a655d3ca4cfa61048a4e4090d45a7616, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  afterImagePrefab: {fileID: 6228255293664154657, guid: 01b9604d84c27ce4f8f916eb3258908f, type: 3}
+  afterImageLifetime: 0.5
+  spawnInterval: 0.1

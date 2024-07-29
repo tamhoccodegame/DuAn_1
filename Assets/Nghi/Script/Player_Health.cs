@@ -8,6 +8,7 @@ public class Player_Health : MonoBehaviour
     public int maxHealth = 200;
     public int currentHealth;
     public Player_HealthBar player_HealthBar;
+    private PlayerController playerController;
 
     Animator animator;
     Rigidbody2D rig;
@@ -23,6 +24,7 @@ public class Player_Health : MonoBehaviour
         col = GetComponent<CapsuleCollider2D>();
         rig = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        playerController = GetComponent<PlayerController>();
     }
 
     // Update is called once per frame
@@ -34,15 +36,15 @@ public class Player_Health : MonoBehaviour
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
-
         player_HealthBar.SetHealth(currentHealth);
-
-        animator.SetTrigger("isHurt");
+		playerController.EndCombo();
+        StartCoroutine(playerController.StopMotion(.2f));
+		animator.SetTrigger("isHurt");
         player_Blood_Effect.Play();
         animator.ResetTrigger("isAttack1");
 		animator.ResetTrigger("isAttack2");
 		animator.ResetTrigger("isAttack3");
-        GetComponent<PlayerController>().EndCombo();
+        
 		//FindObjectOfType<SoundManager>().PlayAudio("Player_Hurt");
 		//blood.Play();
 
@@ -75,10 +77,9 @@ public class Player_Health : MonoBehaviour
     {
         if (player.gameObject.CompareTag("Spike"))
         {          
-            GetComponent<Player_Health>().TakeDamage(25);
+            TakeDamage(25);
             //gameObject.SetActive(false);
             //Destroy(gameObject);
         }
-
     }
 }

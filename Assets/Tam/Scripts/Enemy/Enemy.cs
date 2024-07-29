@@ -8,7 +8,7 @@ public class Enemy : MonoBehaviour
     protected Transform player;
 
     protected float maxHealth;
-    protected float currentHealth;
+    [SerializeField] protected float currentHealth;
     protected float patrolSpeed;
     protected float chaseSpeed;
     protected float attackRange;
@@ -25,6 +25,8 @@ public class Enemy : MonoBehaviour
     protected Animator animator;
 
     protected Vector3 direction;
+
+    [SerializeField] private ParticleSystem vialityEffect;
 
     public enum State
     {
@@ -56,6 +58,7 @@ public class Enemy : MonoBehaviour
         player = GameObject.Find("Player").GetComponent<Transform>();
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Enemy"));
     }
 
     // Update is called once per frame  
@@ -172,6 +175,9 @@ public class Enemy : MonoBehaviour
     {
         this.enabled = false;
         animator.SetBool("isDead", true);
+        var go = Instantiate(vialityEffect, transform);
+		//Quaternion newRotation = Quaternion.Euler(-90, 0, 0);
+  //      go.transform.rotation = newRotation;
         StartCoroutine(DieDelay());
     }
 
