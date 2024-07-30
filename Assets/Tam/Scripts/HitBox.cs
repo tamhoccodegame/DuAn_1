@@ -7,6 +7,7 @@ public class HitBox : MonoBehaviour
 	private int damage;
 	[SerializeField] private int playerDamage;
 	[SerializeField] private int enemyDamage;
+	[SerializeField] private bool isRange = false;
 	private void Start()
 	{
 		if(playerDamage == 0)
@@ -27,12 +28,14 @@ public class HitBox : MonoBehaviour
 		Player_Health playerHit = collision.gameObject.GetComponent<Player_Health>();
 		Vector3 direction = new Vector3(collision.transform.position.x - transform.position.x, 0, 0); 
 		direction.Normalize();
+
 		if (playerHit)
 		{
 			Debug.Log(enemyDamage);
 			playerHit.TakeDamage(enemyDamage);
 			Knockback knockback = GetComponent<Knockback>();
 			knockback.ApplyKnockback(collision.gameObject.transform, direction);
+			if(isRange) Destroy(gameObject);
 			return;
 		}
 		if(enemyHit)
@@ -40,6 +43,7 @@ public class HitBox : MonoBehaviour
 			enemyHit.TakeDamage(playerDamage);
 			if (enemyHit is Boss) return;
 			Knockback knockback = GetComponent<Knockback>();
+			if (isRange) Destroy(gameObject);
 			knockback.ApplyKnockback(collision.gameObject.transform, direction);
 		}
 	}

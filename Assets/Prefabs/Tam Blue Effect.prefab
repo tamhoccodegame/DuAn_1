@@ -16,6 +16,10 @@ PrefabInstance:
       propertyPath: m_GravityScale
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -1187665025620921965, guid: 9fbd6ef2bf8e8d04ebb30d8aba04c156, type: 3}
+      propertyPath: m_ExcludeLayers.m_Bits
+      value: 128
+      objectReference: {fileID: 0}
     - target: {fileID: 2347375414255349690, guid: 9fbd6ef2bf8e8d04ebb30d8aba04c156, type: 3}
       propertyPath: m_LocalPosition.x
       value: 30.75
@@ -64,5 +68,45 @@ PrefabInstance:
     - {fileID: 667862030622062890, guid: 9fbd6ef2bf8e8d04ebb30d8aba04c156, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7892943538581841027, guid: 9fbd6ef2bf8e8d04ebb30d8aba04c156, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -1544637476224423007}
+    - targetCorrespondingSourceObject: {fileID: 7892943538581841027, guid: 9fbd6ef2bf8e8d04ebb30d8aba04c156, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -5518567962214842126}
   m_SourcePrefab: {fileID: 100100000, guid: 9fbd6ef2bf8e8d04ebb30d8aba04c156, type: 3}
+--- !u!1 &7591532018370691249 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7892943538581841027, guid: 9fbd6ef2bf8e8d04ebb30d8aba04c156, type: 3}
+  m_PrefabInstance: {fileID: 347855183648121906}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &-1544637476224423007
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7591532018370691249}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9804236d9adcda44186ab426ca79cc94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerDamage: 0
+  enemyDamage: 20
+  isRange: 1
+--- !u!114 &-5518567962214842126
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7591532018370691249}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0e0b31e24a91d14e8029b2887b2d93b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  knockbackForce: 20
+  knockbackDuration: 0.5

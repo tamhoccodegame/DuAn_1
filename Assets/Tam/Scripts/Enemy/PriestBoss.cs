@@ -12,7 +12,11 @@ public class PriestBoss : Enemy
 	[SerializeField] private float _maxHealth;
 
 	[SerializeField] private GameObject fireBallPrefab;
-	[SerializeField] private GameObject fireBallPoint;
+	[SerializeField] private GameObject dustPrefabs;
+	[SerializeField] private GameObject rockPrefabs;
+	[SerializeField] private GameObject effectPoint;
+	[SerializeField] private GameObject dustPoint;
+
 
 	// Start is called before the first frame update
 	//Combo 1: Dam 1 + (true, false) Dam 2
@@ -87,12 +91,47 @@ public class PriestBoss : Enemy
 
 	public void FireBall()
 	{
-		Rigidbody2D fireBall = Instantiate(fireBallPrefab, fireBallPoint.transform.position, Quaternion.identity).GetComponent<Rigidbody2D>();
-		fireBall.AddForce(new Vector2(1, 0) * 10f, ForceMode2D.Impulse);
+		Rigidbody2D fireBall = Instantiate(fireBallPrefab, effectPoint.transform.position, Quaternion.identity).GetComponent<Rigidbody2D>();
+		fireBall.transform.localScale = new Vector3(direction.x * fireBall.transform.localScale.x,
+															fireBall.transform.localScale.y,
+															 fireBall.transform.localScale.z);
+		fireBall.AddForce(new Vector2(direction.x * 10f, 0), ForceMode2D.Impulse);
 		Destroy(fireBall.gameObject, 2f);
-
 	}
+
 	
+	public void DustWave()
+	{
+		Camera cam = Camera.main;
+
+		Vector3 viewportCheck = cam.ViewportToWorldPoint(new Vector3(0.5f, 1f, cam.nearClipPlane));
+		Vector3 spawnLocation = new Vector3(Random.Range(0, viewportCheck.x), viewportCheck.y, 0);
+
+		Instantiate(rockPrefabs, spawnLocation, Quaternion.identity);
+		spawnLocation = new Vector3(Random.Range(0, viewportCheck.x), viewportCheck.y, 0);
+		Instantiate(rockPrefabs, spawnLocation, Quaternion.identity);
+		spawnLocation = new Vector3(Random.Range(0, viewportCheck.x), viewportCheck.y, 0);
+		Instantiate(rockPrefabs, spawnLocation, Quaternion.identity);
+
+		Rigidbody2D dustOne = Instantiate(dustPrefabs, dustPoint.transform.position, Quaternion.identity).GetComponent<Rigidbody2D>();
+		Rigidbody2D dustTwo = Instantiate(dustPrefabs, dustPoint.transform.position, Quaternion.identity).GetComponent<Rigidbody2D>();
+
+		dustOne.transform.localScale = new Vector3(direction.x * dustOne.transform.localScale.x,
+													dustOne.transform.localScale.y,
+													dustOne.transform.localScale.z);
+
+		dustTwo.transform.localScale = new Vector3(-direction.x * dustTwo.transform.localScale.x,
+													dustTwo.transform.localScale.y,
+													dustTwo.transform.localScale.z);
+
+		dustOne.AddForce(new Vector2(direction.x * 10f, 0), ForceMode2D.Impulse);
+		dustTwo.AddForce(new Vector2(-direction.x * 10f, 0), ForceMode2D.Impulse);
+
+		Destroy(dustOne.gameObject, 1f);
+		Destroy(dustTwo.gameObject, 1f);
+	}
+
+
 	//Don quay riu bo sung hieu ung 
 	private IEnumerator Combo2()
 	{
@@ -148,13 +187,14 @@ public class PriestBoss : Enemy
 	//Dam dat bo sung dot song va da roi
 	private IEnumerator Combo4()
 	{
-		for (int i = 0; i < 3; i++)
+		for (int i = 0; i < Random.Range(2,5); i++)
 		{
 			animator.Play("CastSkill");
 			yield return new WaitForSeconds(animator.GetCurrentAnimatorClipInfo(0).Length + .5f);
+
+
 			animator.Play("Idle");
 			yield return new WaitForSeconds(1f);
-			Debug.Log(i);
 		}
 
 		RandomComboStrike();
