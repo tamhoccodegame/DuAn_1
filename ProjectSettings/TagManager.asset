@@ -9,7 +9,6 @@ TagManager:
   - FirePoint
   - FxTemporaire
   - Enemy
-  - Wall
   layers:
   - Default
   - TransparentFX
@@ -19,10 +18,10 @@ TagManager:
   - UI
   - Ground
   - Enemy
-  - Decor
-  - Trap
-  - Light
-  - Minimap Icon
+  - 
+  - 
+  - 
+  - 
   - 
   - 
   - 
@@ -47,21 +46,27 @@ TagManager:
   - name: Background
     uniqueID: 372353319
     locked: 0
-  - name: Elements
-    uniqueID: 2356778009
+  - name: BG1
+    uniqueID: 2381660289
+    locked: 0
+  - name: BG2
+    uniqueID: 3384432563
+    locked: 0
+  - name: BG3
+    uniqueID: 2436378303
+    locked: 0
+  - name: Default
+    uniqueID: 0
     locked: 0
   - name: Ground
     uniqueID: 1627640423
+    locked: 0
+  - name: Elements
+    uniqueID: 2356778009
     locked: 0
   - name: Player
     uniqueID: 3356409257
     locked: 0
   - name: UI
     uniqueID: 3484935709
-    locked: 0
-  - name: Default
-    uniqueID: 0
-    locked: 0
-  - name: Light
-    uniqueID: 3193267325
     locked: 0
