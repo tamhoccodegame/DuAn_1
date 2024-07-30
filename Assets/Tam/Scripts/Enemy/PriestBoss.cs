@@ -8,9 +8,11 @@ public class PriestBoss : Enemy
 
 	[SerializeField] private int speed;
 	[SerializeField] private float _attackRange;
-	private bool isRage = false;
-
+	[SerializeField] private bool isRage = false;
 	[SerializeField] private float _maxHealth;
+
+	[SerializeField] private GameObject fireBallPrefab;
+	[SerializeField] private GameObject fireBallPoint;
 
 	// Start is called before the first frame update
 	//Combo 1: Dam 1 + (true, false) Dam 2
@@ -42,10 +44,8 @@ public class PriestBoss : Enemy
         if (isCoroutineRunning) return;
 
 		isCoroutineRunning = true;	
-        StartCoroutine("Combo" + "3");
+        StartCoroutine("Combo" + currentComboStrikes);
     }
-
-	//public Chase(
 
 	public override void Chase()
 	{
@@ -74,6 +74,7 @@ public class PriestBoss : Enemy
 			}
 			animator.Play("Idle");
 			yield return new WaitForSeconds(.8f);
+			RandomComboStrike();
 			isCoroutineRunning = false;
 		}
 		else
@@ -84,6 +85,15 @@ public class PriestBoss : Enemy
 		
 	}
 
+	public void FireBall()
+	{
+		Rigidbody2D fireBall = Instantiate(fireBallPrefab, fireBallPoint.transform.position, Quaternion.identity).GetComponent<Rigidbody2D>();
+		fireBall.AddForce(new Vector2(1, 0) * 10f, ForceMode2D.Impulse);
+		Destroy(fireBall.gameObject, 2f);
+
+	}
+	
+	//Don quay riu bo sung hieu ung 
 	private IEnumerator Combo2()
 	{
 		if (Mathf.Abs(player.transform.position.x - transform.position.x) <= attackRange)
@@ -99,6 +109,7 @@ public class PriestBoss : Enemy
 			}
 			animator.Play("Idle");
 			yield return new WaitForSeconds(.8f);
+			RandomComboStrike();
 			isCoroutineRunning = false;
 		}
 		else
@@ -124,6 +135,7 @@ public class PriestBoss : Enemy
 			}
 			animator.Play("Idle");
 			yield return new WaitForSeconds(.8f);
+			RandomComboStrike();
 			isCoroutineRunning = false;
 		}
 		else
@@ -131,6 +143,23 @@ public class PriestBoss : Enemy
 			Chase();
 			isCoroutineRunning = false;
 		}
+	}
+
+	//Dam dat bo sung dot song va da roi
+	private IEnumerator Combo4()
+	{
+		for (int i = 0; i < 3; i++)
+		{
+			animator.Play("CastSkill");
+			yield return new WaitForSeconds(animator.GetCurrentAnimatorClipInfo(0).Length + .5f);
+			animator.Play("Idle");
+			yield return new WaitForSeconds(1f);
+			Debug.Log(i);
+		}
+
+		RandomComboStrike();
+		isCoroutineRunning = false;
+		
 	}
 
 }
