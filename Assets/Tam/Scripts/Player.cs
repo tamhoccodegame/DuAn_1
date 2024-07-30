@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Timeline;
 
 public class Player : MonoBehaviour, IShopCustomer
 {
@@ -8,9 +9,11 @@ public class Player : MonoBehaviour, IShopCustomer
     private Equipment equipment;
 
     public UI_Inventory uiInventory;
-	public UI_Market uiMarket;
+	private UI_Market[] uiMarkets;
 	public LockSlotUI uiLockSlotUI;
     private UI_Equipment[] uiEquipments;
+
+	public Sword sword;
 
     private PlayerController playerController;
 	
@@ -20,6 +23,7 @@ public class Player : MonoBehaviour, IShopCustomer
         inventory = new Inventory();
 		inventory.AddRune(new Rune(Rune.RuneType.Damage));
 		inventory.AddRune(new Rune(Rune.RuneType.DoubleJump));
+		inventory.AddRune(new Rune(Rune.RuneType.Fire));
 
 		equipment = new Equipment();
 		
@@ -32,11 +36,19 @@ public class Player : MonoBehaviour, IShopCustomer
 		equipment.OnEquipmentChange += Equipment_OnEquipmentChange;
 
 		uiEquipments = FindObjectsByType<UI_Equipment>(FindObjectsSortMode.None);
+		uiMarkets = FindObjectsByType<UI_Market>(FindObjectsSortMode.None);
+
+		sword.SetEquipment(equipment);
 
 		uiInventory.SetInventory(inventory);
 		uiInventory.SetEquipment(equipment);
 
-		uiMarket.SetInventory(inventory);
+		foreach(var uiMar in uiMarkets)
+		{
+			uiMar.transform.parent.gameObject.SetActive(false);
+			uiMar.SetInventory(inventory);
+		}
+
 		uiLockSlotUI.SetEquipment(equipment);
 
 		foreach (var uiEquip in uiEquipments)

@@ -418,8 +418,8 @@ GameObject:
   - component: {fileID: 7842525540745562678}
   - component: {fileID: 2480865776625043804}
   - component: {fileID: 5393238138973065748}
-  - component: {fileID: 776857156853217626}
   - component: {fileID: 6066294885127648045}
+  - component: {fileID: 776857156853217626}
   - component: {fileID: 550690712193381775}
   - component: {fileID: 5987889824820107079}
   - component: {fileID: 3728910089246889960}
@@ -489,7 +489,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -938558039
-  m_SortingLayer: 3
+  m_SortingLayer: -2
   m_SortingOrder: 0
   m_Sprite: {fileID: -2141946238, guid: 124edbc1a45006a45a577a48907fb37d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -568,6 +568,7 @@ MonoBehaviour:
   isAlive: 1
   facingRight: 1
   canDoubleJump: 0
+  canDash: 0
   jumpCount: 0
   feet: {fileID: 6687705990334598996}
   speed: 10
@@ -590,6 +591,33 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5155699635807328689}
   m_CullTransparentMesh: 1
+--- !u!50 &6066294885127648045
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5155699635807328689}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 2
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 128
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 1
+  m_Constraints: 4
 --- !u!70 &776857156853217626
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -625,33 +653,6 @@ CapsuleCollider2D:
   m_Offset: {x: 0.50989515, y: 1.7213049}
   m_Size: {x: 1.1235244, y: 2.3890753}
   m_Direction: 0
---- !u!50 &6066294885127648045
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5155699635807328689}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 2
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 128
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 1
-  m_Constraints: 4
 --- !u!114 &550690712193381775
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -695,6 +696,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiInventory: {fileID: 0}
+  uiMarket: {fileID: 0}
+  uiLockSlotUI: {fileID: 0}
 --- !u!114 &6652116609355125339
 MonoBehaviour:
   m_ObjectHideFlags: 0

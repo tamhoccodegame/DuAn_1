@@ -15,6 +15,7 @@ public class Boss : Enemy
 	private int countTouchWall = 0;
 	private int countChasePlayer = 0;
 	private float _attackRange = 5f;
+	private bool isRage = false;
 
 	[SerializeField] private float _maxHealth;
 	
@@ -33,27 +34,18 @@ public class Boss : Enemy
 
 	public override void Update()
 	{
-		Debug.Log(countTouchWall);
 
 		if (isCoroutineRunning) return;
 
-		switch (currentComboStrikes)
+		isCoroutineRunning = true;
+
+		if (currentHealth <= 0.5 * maxHealth && !isRage)
 		{
-			case 1:
-				isCoroutineRunning = true;
-				StartCoroutine(Combo1());
-				break;
-			case 2:
-				isCoroutineRunning = true;
-				StartCoroutine(Combo2());
-				break;
-			case 3:
-				isCoroutineRunning = true;
-				StartCoroutine(Combo3());
-				break;
-			case 4:
-				break;
+			isRage = true;	
+			speed += 5;
 		}
+
+		StartCoroutine("Combo" + currentComboStrikes);
 	}
 
 	private void OnTriggerEnter2D(Collider2D collision)
@@ -192,9 +184,4 @@ public class Boss : Enemy
 		isCoroutineRunning = false;	
 	}
 
-	//Random the others Combo with less duration but more speed.
-	private IEnumerator Combo4()
-	{
-		yield return null;
-	}
 }

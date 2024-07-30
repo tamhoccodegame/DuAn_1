@@ -58,13 +58,12 @@ public class Enemy : MonoBehaviour
         player = GameObject.Find("Player").GetComponent<Transform>();
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Enemy"));
     }
 
     // Update is called once per frame  
     public virtual void Update()
     {
-        if (!isAlive) return;
+		if (!isAlive) return;
         if (isCoroutineRunning) return;
         switch (currentState)
         {
@@ -163,8 +162,9 @@ public class Enemy : MonoBehaviour
 
 		if (currentHealth <= 0)
 		{
-			Die();
+
 			isAlive = false;
+			Die();
             return;
 		}
 
@@ -175,7 +175,7 @@ public class Enemy : MonoBehaviour
     {
         this.enabled = false;
         animator.SetBool("isDead", true);
-        var go = Instantiate(vialityEffect, transform);
+        //var go = Instantiate(vialityEffect, transform);
 		//Quaternion newRotation = Quaternion.Euler(-90, 0, 0);
   //      go.transform.rotation = newRotation;
         StartCoroutine(DieDelay());
@@ -183,7 +183,6 @@ public class Enemy : MonoBehaviour
 
     private IEnumerator DieDelay()
     {
-		Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), gameObject.layer, true);
 		yield return new WaitForSeconds(2f);
         Destroy(gameObject);
     }

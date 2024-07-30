@@ -38,6 +38,7 @@ public class HitBox : MonoBehaviour
 		if(enemyHit)
 		{
 			enemyHit.TakeDamage(playerDamage);
+			if (enemyHit is Boss) return;
 			Knockback knockback = GetComponent<Knockback>();
 			knockback.ApplyKnockback(collision.gameObject.transform, direction);
 		}
