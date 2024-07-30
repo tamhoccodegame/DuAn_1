@@ -21,7 +21,7 @@ TagManager:
   - Decor
   - Trap
   - Light
-  - 
+  - Wall
   - 
   - 
   - 
@@ -43,6 +43,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Wall
+    uniqueID: 706318981
+    locked: 0
   - name: Background
     uniqueID: 372353319
     locked: 0
