@@ -41,7 +41,11 @@ public class PlayerController : MonoBehaviour
     public float dashSpeed = 10f;
     public float dashTime = 0.5f;
 
-    
+    public ParticleSystem coinEffect;
+
+    public GameObject snakePrefab;
+    private float snakeLifetime = 1f;
+    private float summonRange = 10f;
 
     //private bool isDashing;
     //public float dashTime;
@@ -173,7 +177,7 @@ public class PlayerController : MonoBehaviour
         //Debug.Log(isAttacking);
         //Dash();
         //CheckDash();
-
+        SnakeAttack();
 
     }
 
@@ -329,5 +333,71 @@ public class PlayerController : MonoBehaviour
     {
         yield return new WaitForSeconds(attackCooldown);
         isAttacking = false;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Coin"))
+        {
+            var go = Instantiate(coinEffect, transform.position, transform.rotation);
+
+            Destroy(collision.gameObject);
+            FindObjectOfType<GameSession>().AddCoin(1);
+        }
+        if (collision.CompareTag("Next_Level"))
+        {
+            Animator doorAnimation = collision.GetComponent<Animator>();
+
+            if (doorAnimation != null)
+            {
+                doorAnimation.SetTrigger("Open");
+            }
+
+        }
+    }
+
+    public GameObject FindNearestEnemy(Vector3 playerPosition)
+    {
+        GameObject[] enemyList = GameObject.FindGameObjectsWithTag("Enemy");
+        GameObject nearestEnemy = null;
+        float shortestDistance = summonRange;
+        foreach (GameObject enemy in enemyList)
+        {
+            float distance = Vector3.Distance(playerPosition, enemy.transform.position);
+            if (distance <= shortestDistance)
+            {
+                shortestDistance = distance;
+                nearestEnemy = enemy;
+            }
+        }
+        return nearestEnemy;
+    }
+
+    public void SummonSnakeAtEnemy(Vector3 playerPosition)
+    {
+        GameObject nearestEnemy = FindNearestEnemy(playerPosition);
+        if (nearestEnemy != null)
+        {
+            Vector3 nearestEnemyPosition = nearestEnemy.transform.position;
+            SpawnSnakeAtEnemy(nearestEnemyPosition);
+        }
+        else
+        {
+            Debug.Log("Not found any enemy in range");
+        }
+    }
+
+    public void SpawnSnakeAtEnemy(Vector3 enemyPosition)
+    {
+        GameObject snake = Instantiate(snakePrefab, enemyPosition, Quaternion.identity);
+        Destroy(snake, snakeLifetime);
+    }
+
+    public void SnakeAttack()
+    {
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            SummonSnakeAtEnemy(transform.position);
+        }
     }
 }

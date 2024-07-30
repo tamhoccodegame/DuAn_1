@@ -8,7 +8,6 @@ public class Player_Health : MonoBehaviour
     public int maxHealth = 200;
     public int currentHealth;
     public Player_HealthBar player_HealthBar;
-    private PlayerController playerController;
 
     Animator animator;
     Rigidbody2D rig;
@@ -24,7 +23,6 @@ public class Player_Health : MonoBehaviour
         col = GetComponent<CapsuleCollider2D>();
         rig = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-        playerController = GetComponent<PlayerController>();
     }
 
     // Update is called once per frame
@@ -36,15 +34,16 @@ public class Player_Health : MonoBehaviour
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
+
         player_HealthBar.SetHealth(currentHealth);
-		playerController.EndCombo();
-        StartCoroutine(playerController.StopMotion(.2f));
-		animator.SetTrigger("isHurt");
+
+        animator.SetTrigger("isHurt");
+        FindObjectOfType<SoundManager>().PlayAudio("Player_Hurt");
         player_Blood_Effect.Play();
         animator.ResetTrigger("isAttack1");
 		animator.ResetTrigger("isAttack2");
 		animator.ResetTrigger("isAttack3");
-        
+        GetComponent<PlayerController>().EndCombo();
 		//FindObjectOfType<SoundManager>().PlayAudio("Player_Hurt");
 		//blood.Play();
 
@@ -56,7 +55,7 @@ public class Player_Health : MonoBehaviour
 
     void Die()
     {
-     
+        FindObjectOfType<SoundManager>().PlayAudio("Player_Death");
         animator.SetBool("isDead", true);
         player_Death_Effect.Play();
         Collider2D[] colliders = GetComponents<Collider2D>();
@@ -68,18 +67,28 @@ public class Player_Health : MonoBehaviour
 
         //GetComponent<Collider2D>().enabled = false; //Disable the collider 2D
         this.enabled = false;
-
+        StartCoroutine(WaitAndRespawn());
         //deathEffect.Play();
         //FindObjectOfType<GameSession>().PlayerDeath();
     }
 
+    private IEnumerator WaitAndRespawn()
+    {
+        yield return new WaitForSeconds(2f);
+        Checkpoint_System checkpoint = GetComponent<Checkpoint_System>();
+        checkpoint.Respawn();
+        currentHealth = maxHealth;
+        player_HealthBar.SetHealth(currentHealth);
+    }
+
     public void OnTriggerEnter2D(Collider2D player)
     {
-        if (player.gameObject.CompareTag("Spike"))
+        if (player.gameObject.CompareTag("Enemy"))
         {          
-            TakeDamage(25);
+            GetComponent<Player_Health>().TakeDamage(25);
             //gameObject.SetActive(false);
             //Destroy(gameObject);
         }
+
     }
 }
