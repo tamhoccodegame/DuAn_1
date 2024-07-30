@@ -6,7 +6,6 @@ using UnityEngine.UI;
 
 public class UI_Equipment : MonoBehaviour
 {
-	private static List<UI_Equipment> instance;
 
     private Equipment equipment;
 	private Inventory inventory;
@@ -17,19 +16,22 @@ public class UI_Equipment : MonoBehaviour
 	// Start is called before the first frame update
 	void Awake()
     {
-		instance = new List<UI_Equipment>();
-		instance.Add(this);
-		//UpdateSlotsVisual();
 		runeEquipContainer = transform.Find("runeEquipContainer");
 		runeEquipTemplate = runeEquipContainer.Find("runeEquipTemplate");
 	}
 
     public void SetEquipment(Equipment _equipment)
     {
-        equipment = _equipment;
+		equipment = null;
+		equipment = _equipment;
 		equipment.OnEquipmentChange += Equipment_OnEquipmentChange;
         RefreshEquipment();
     }
+
+	public void Unsubscribe()
+	{
+		equipment.OnEquipmentChange -= Equipment_OnEquipmentChange;
+	}
 
 	//private void Equipment_OnSlotUnlocked(object sender, System.EventArgs e)
 	//{
@@ -46,7 +48,6 @@ public class UI_Equipment : MonoBehaviour
 
 	public void SetInventory(Inventory _inventory)
 	{
-		Debug.Log("Set Inventory!");
 		inventory = _inventory;
 		//inventory.OnInventoryChange += Inventory_OnInventoryChange;
 		//RefreshEquipment();
@@ -61,14 +62,17 @@ public class UI_Equipment : MonoBehaviour
 
 	private void Equipment_OnEquipmentChange(object sender, System.EventArgs e)
 	{
-		foreach (var item in instance)
-			item.RefreshEquipment();
-
 		RefreshEquipment();
 	}
 
 	private void RefreshEquipment()
     {
+		if (runeEquipContainer == null)
+		{
+			Debug.LogError("runeSlotContainer is null");
+			return;
+		}
+
 		foreach (Transform child in runeEquipContainer)
 		{
 			if (child == runeEquipTemplate) continue;

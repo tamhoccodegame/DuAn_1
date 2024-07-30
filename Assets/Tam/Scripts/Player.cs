@@ -1,49 +1,49 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Timeline;
 
 public class Player : MonoBehaviour, IShopCustomer
 {
-    private Inventory inventory;
-    private Equipment equipment;
+    [SerializeField] private Inventory inventory;
+    [SerializeField] private Equipment equipment;
 
-    public UI_Inventory uiInventory;
-	private UI_Market[] uiMarkets;
-	public LockSlotUI uiLockSlotUI;
-    private UI_Equipment[] uiEquipments;
+    [SerializeField] private UI_Inventory uiInventory;
+	[SerializeField] private UI_Market[] uiMarkets;
+	[SerializeField] private LockSlotUI uiLockSlotUI;
+    [SerializeField] private UI_Equipment[] uiEquipments;
 
 	public Sword sword;
 
     private PlayerController playerController;
-	
-    // Start is called before the first frame update
-    void Awake()
+
+
+	// Start is called before the first frame update
+	void Awake()
     {
-        inventory = new Inventory();
-		inventory.AddRune(new Rune(Rune.RuneType.Damage));
-		inventory.AddRune(new Rune(Rune.RuneType.DoubleJump));
-		inventory.AddRune(new Rune(Rune.RuneType.Fire));
 
-		equipment = new Equipment();
-		
-
-		playerController = GetComponent<PlayerController>();
-		
 	}
 	private void Start()
 	{
-		equipment.OnEquipmentChange += Equipment_OnEquipmentChange;
+		inventory = GameSession.instance.GetInventory();
+		equipment = GameSession.instance.GetEquipment();
 
-		uiEquipments = FindObjectsByType<UI_Equipment>(FindObjectsSortMode.None);
-		uiMarkets = FindObjectsByType<UI_Market>(FindObjectsSortMode.None);
+		uiInventory = GameSession.instance.GetUI_Inventory();
+		uiMarkets = GameSession.instance.GetUI_Market();
+		uiEquipments = GameSession.instance.GetUI_Equipment();
+		uiLockSlotUI = GameSession.instance.GetLockSlotUI();
+
+
+		equipment.OnEquipmentChange += Equipment_OnEquipmentChange;
 
 		sword.SetEquipment(equipment);
 
 		uiInventory.SetInventory(inventory);
 		uiInventory.SetEquipment(equipment);
 
-		foreach(var uiMar in uiMarkets)
+		foreach (UI_Market uiMar in uiMarkets)
 		{
 			uiMar.transform.parent.gameObject.SetActive(false);
 			uiMar.SetInventory(inventory);
@@ -51,16 +51,19 @@ public class Player : MonoBehaviour, IShopCustomer
 
 		uiLockSlotUI.SetEquipment(equipment);
 
-		foreach (var uiEquip in uiEquipments)
+		foreach (UI_Equipment uiEquip in uiEquipments)
 		{
 			uiEquip.SetInventory(inventory);
 			uiEquip.SetEquipment(equipment);
 		}
-		
+
+		playerController = GetComponent<PlayerController>();
+
 	}
 
 	private void Equipment_OnEquipmentChange(object sender, System.EventArgs e)
 	{
+		Debug.Log("Player EquipmentChange");
 		//ResetPlayerStat first
 		playerController.SetDamage(-50);
 		playerController.canDoubleJump = false;

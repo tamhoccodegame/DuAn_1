@@ -29,29 +29,28 @@ public class UI_Inventory : MonoBehaviour
         Debug.Log(runeSlotTemplate.name);
     }
 
-	private void Start()
-	{
-	    transform.parent.gameObject.SetActive(false);	
-	}
 
 	public void SetInventory(Inventory _inventory)
     {
+        inventory = null;
         Debug.Log("SetInventory");
         inventory = _inventory;
 		inventory.OnInventoryChange += Inventory_OnInventoryChange;
         RefreshInventory();
     }
-    public void SetEquipment(Equipment _equipment)
+	public void Unsubscribe()
+	{
+		inventory.OnInventoryChange -= Inventory_OnInventoryChange;
+	}
+
+	public void SetEquipment(Equipment _equipment)
     {
+        equipment = null;
         equipment = _equipment;
-		equipment.OnEquipmentChange += Equipment_OnEquipmentChange;
         //RefreshInventory();
     }
 
-	private void Equipment_OnEquipmentChange(object sender, System.EventArgs e)
-	{
-		RefreshInventory();
-	}
+
 
 	private void Inventory_OnInventoryChange(object sender, System.EventArgs e)
 	{
@@ -65,8 +64,6 @@ public class UI_Inventory : MonoBehaviour
 			Debug.LogError("runeSlotContainer is null");
 			return;
 		}
-
-		Debug.Log("Child count: " + runeSlotContainer.childCount);
 
 		foreach (Transform child in runeSlotContainer)
         {

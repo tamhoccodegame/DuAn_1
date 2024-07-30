@@ -344,16 +344,16 @@ public class PlayerController : MonoBehaviour
             Destroy(collision.gameObject);
             FindObjectOfType<GameSession>().AddCoin(1);
         }
-        if (collision.CompareTag("Next_Level"))
-        {
-            Animator doorAnimation = collision.GetComponent<Animator>();
+        //if (collision.CompareTag("Next_Level"))
+        //{
+        //    Animator doorAnimation = collision.GetComponent<Animator>();
 
-            if (doorAnimation != null)
-            {
-                doorAnimation.SetTrigger("Open");
-            }
+        //    if (doorAnimation != null)
+        //    {
+        //        doorAnimation.SetTrigger("Open");
+        //    }
 
-        }
+        //}
     }
 
     public GameObject FindNearestEnemy(Vector3 playerPosition)

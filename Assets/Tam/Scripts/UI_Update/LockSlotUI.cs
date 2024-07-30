@@ -8,7 +8,7 @@ public class LockSlotUI : MonoBehaviour
     private Equipment equipment;
     void Start()
     {
-		RefreshSlot();
+		//RefreshSlot();
 	}
 
     public void SetEquipment(Equipment _equipment)
@@ -25,7 +25,6 @@ public class LockSlotUI : MonoBehaviour
 
     private void RefreshSlot()
     {
-		Debug.Log("Run this! Max slot: " + equipment.maxSlot);
 		switch (equipment.maxSlot)
 		{
 			case 1:

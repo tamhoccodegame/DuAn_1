@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class GameSession : MonoBehaviour
 {
+    public static GameSession instance;
+    
     public int playerlives = 3;
     public Text playerlives_Text;
     public int score = 0;
@@ -15,34 +17,94 @@ public class GameSession : MonoBehaviour
 
     public GameObject pauseMenuUI;
     private bool isPaused = false;
-    // Start is called before the first frame update
-    void Start()
+
+    private Inventory inventory;
+    private Equipment equipment;
+
+	[SerializeField] private UI_Inventory uiInventory;
+	[SerializeField] private UI_Market[] uiMarkets;
+	[SerializeField] private LockSlotUI uiLockSlotUI;
+	[SerializeField] private UI_Equipment[] uiEquipments;
+
+	// Start is called before the first frame update
+
+	public Inventory GetInventory()
     {
-        playerlives_Text.text = "LIVES: "+playerlives.ToString();
-        score_Text.text = "SCORES: "+score.ToString();
-        coin_Text.text="COINS: "+coin_Text.ToString();
+        return inventory;
     }
 
-    // Update is called once per frame
-    void Update()
+    public Equipment GetEquipment()
     {
-        OnPressESC();
+        return equipment;
+    }
+
+    public UI_Inventory GetUI_Inventory()
+    {
+        return uiInventory;
+    }
+
+    public UI_Market[] GetUI_Market()
+    {
+        return uiMarkets;
+    }
+
+    public LockSlotUI GetLockSlotUI()
+    {
+        return uiLockSlotUI;
+    }
+
+    public UI_Equipment[] GetUI_Equipment()
+    {
+        return uiEquipments;
+    }
+
+    IEnumerator LoadSceneTest()
+    {
+        string savedSceneName = SceneManager.GetActiveScene().name;
+
+		yield return SceneManager.LoadSceneAsync("Land Of Holy");
+        yield return new WaitForSeconds(15f);
+        yield return SceneManager.LoadSceneAsync(savedSceneName);
     }
 
     private void Awake()
     {
-        int number = FindObjectsOfType<GameSession>().Length;
-        if (number > 1)
+        if (instance != null)
         {
             Destroy(gameObject);
         }
         else
         {
-            DontDestroyOnLoad(gameObject);
+            instance = this;
+			DontDestroyOnLoad(gameObject);
         }
+
+		inventory = new Inventory();
+		inventory.AddRune(new Rune(Rune.RuneType.Damage));
+		inventory.AddRune(new Rune(Rune.RuneType.DoubleJump));
+		inventory.AddRune(new Rune(Rune.RuneType.Fire));
+
+		equipment = new Equipment();
+	}
+
+	void Start()
+	{
+        pauseMenuUI.SetActive(false);
     }
 
-    public void PlayerDeath()
+
+	// Update is called once per frame
+	void Update()
+	{
+		OnPressESC();
+		if (Input.GetKeyDown(KeyCode.P))
+		{
+			StartCoroutine(LoadSceneTest());
+		}
+	}
+
+
+	public void PlayerDeath()
     {
         if (playerlives > 1)
         {
@@ -90,16 +152,6 @@ public class GameSession : MonoBehaviour
     {
         coin += num;
         coin_Text.text = "COINS: " + coin.ToString();
-    }
-
-    public void PauseGame()
-    {
-        Time.timeScale = 0;
-    }
-
-    public void ResumeGame()
-    {
-        Time.timeScale = 1;
     }
 
     void Resume()
