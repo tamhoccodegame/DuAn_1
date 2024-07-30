@@ -38,6 +38,7 @@ public class Player_Health : MonoBehaviour
         player_HealthBar.SetHealth(currentHealth);
 
         animator.SetTrigger("isHurt");
+        FindObjectOfType<SoundManager>().PlayAudio("Player_Hurt");
         player_Blood_Effect.Play();
         animator.ResetTrigger("isAttack1");
 		animator.ResetTrigger("isAttack2");
@@ -54,7 +55,7 @@ public class Player_Health : MonoBehaviour
 
     void Die()
     {
-     
+        FindObjectOfType<SoundManager>().PlayAudio("Player_Death");
         animator.SetBool("isDead", true);
         player_Death_Effect.Play();
         Collider2D[] colliders = GetComponents<Collider2D>();
@@ -66,14 +67,23 @@ public class Player_Health : MonoBehaviour
 
         //GetComponent<Collider2D>().enabled = false; //Disable the collider 2D
         this.enabled = false;
-
+        StartCoroutine(WaitAndRespawn());
         //deathEffect.Play();
         //FindObjectOfType<GameSession>().PlayerDeath();
     }
 
+    private IEnumerator WaitAndRespawn()
+    {
+        yield return new WaitForSeconds(2f);
+        Checkpoint_System checkpoint = GetComponent<Checkpoint_System>();
+        checkpoint.Respawn();
+        currentHealth = maxHealth;
+        player_HealthBar.SetHealth(currentHealth);
+    }
+
     public void OnTriggerEnter2D(Collider2D player)
     {
-        if (player.gameObject.CompareTag("Spike"))
+        if (player.gameObject.CompareTag("Enemy"))
         {          
             GetComponent<Player_Health>().TakeDamage(25);
             //gameObject.SetActive(false);
