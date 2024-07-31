@@ -4,15 +4,42 @@ using UnityEngine;
 
 public class Checkpoint_System : MonoBehaviour
 {
+    public static Checkpoint_System Instance { get; private set; }
+
+    private Vector3 lastCheckpointPosition;
     public Transform respawnPoint;
     public Vector3 lastestCheckpointPosition;
+    //private Vector3 respawnPosition;
 
     // Start is called before the first frame update
     void Start()
     {
         //Dat vi tri checkpoint ban dau la vi tri ban dau cua nhan vat
         lastestCheckpointPosition = transform.position;
+        //respawnPosition = transform.position;
+    }
 
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    public void SetLastCheckpointPosition(Vector3 position)
+    {
+        lastCheckpointPosition = position;
+    }
+
+    public Vector3 GetLastCheckpointPosition()
+    {
+        return lastCheckpointPosition;
     }
 
     // Update is called once per frame
@@ -28,8 +55,10 @@ public class Checkpoint_System : MonoBehaviour
             Animator checkpointAnimation = collision.GetComponent<Animator>();
             //if (checkpointAnimation != null)
             //{
+            FindObjectOfType<SoundManager>().PlayAudio("Checkpoint");
             checkpointAnimation.SetTrigger("Appear");
             lastestCheckpointPosition = collision.transform.position;
+            //respawnPosition = collision.transform.position;
             //}
 
         }
@@ -37,6 +66,8 @@ public class Checkpoint_System : MonoBehaviour
 
     public void Respawn()//Ham duoc goi khi nhan vat chet va duoc hoi sinh tai vi tri checkpoint gan nhat
     {
-        transform.position = lastestCheckpointPosition;
+        transform.position = Checkpoint_System.Instance.GetLastCheckpointPosition();
+        //transform.position = lastestCheckpointPosition;
+        //transform.position= respawnPosition;
     }
 }

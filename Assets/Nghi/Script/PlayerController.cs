@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Resources;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -109,7 +110,8 @@ public class PlayerController : MonoBehaviour
 				if (value.isPressed)
 				{
 					rig.velocity += new Vector2(0f, jump);
-					jumpCount++;
+                    FindObjectOfType<SoundManager>().PlayAudio("Player_Jump");
+                    jumpCount++;
 				}
 			}
 		}
@@ -120,7 +122,8 @@ public class PlayerController : MonoBehaviour
 				if (value.isPressed)
 				{
 					rig.velocity += new Vector2(0f, jump);
-				}
+                    FindObjectOfType<SoundManager>().PlayAudio("Player_Jump");
+                }
 			}
 			
         }
@@ -184,6 +187,7 @@ public class PlayerController : MonoBehaviour
     private IEnumerator Dash()
     {
         dashAfterImage.StartDashing();
+        FindObjectOfType<SoundManager>().PlayAudio("Player_Dash");
         float startTime = Time.time;
         while (Time.time < startTime + dashTime)
         {
@@ -275,7 +279,8 @@ public class PlayerController : MonoBehaviour
         if (inputReceived)
         {
 			isAttacking = true;
-			animator.SetTrigger("isAttack" + comboStep);
+            
+            animator.SetTrigger("isAttack" + comboStep);
 			inputReceived = false;
         }
     }
@@ -308,6 +313,11 @@ public class PlayerController : MonoBehaviour
         }
 	}
 
+    public void PlayAttackSound(string soundName)
+    {
+        FindObjectOfType<SoundManager>().PlayAudio(soundName);
+    }
+
     IEnumerator StopMotion(float time)
     {
         currentInput = Vector2.zero;
@@ -317,6 +327,7 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator SpecialAttack(string name)
     {
+
         animator.SetTrigger(name);
         if (!isJumping)
         {
@@ -337,8 +348,9 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.CompareTag("Coin"))
         {
-            var go = Instantiate(coinEffect, transform.position, transform.rotation);
-
+            //var go = Instantiate(coinEffect, transform.position, transform.rotation);
+            Debug.Log("Coin collected!");
+            FindObjectOfType<SoundManager>().PlayAudio("Coin_Collect");
             Destroy(collision.gameObject);
             FindObjectOfType<GameSession>().AddCoin(1);
         }
@@ -348,6 +360,7 @@ public class PlayerController : MonoBehaviour
 
             if (doorAnimation != null)
             {
+                FindObjectOfType<SoundManager>().PlayAudio("Next_Level");
                 doorAnimation.SetTrigger("Open");
             }
 
@@ -396,6 +409,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.K))
         {
             SummonSnakeAtEnemy(transform.position);
+            FindObjectOfType<SoundManager>().PlayAudio("Snake_Attack");
         }
     }
 }

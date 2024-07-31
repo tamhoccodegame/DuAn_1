@@ -67,6 +67,7 @@ public class Player_Health : MonoBehaviour
 
         //GetComponent<Collider2D>().enabled = false; //Disable the collider 2D
         this.enabled = false;
+        //transform.position = Checkpoint_System.Instance.GetLastCheckpointPosition();
         StartCoroutine(WaitAndRespawn());
         //deathEffect.Play();
         //FindObjectOfType<GameSession>().PlayerDeath();
