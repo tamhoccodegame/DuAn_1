@@ -1,22 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Checkpoint : MonoBehaviour
 {
-    
-   //GameController gameController;
-   // private void Awake()
-   // {
-   //     gameController = GameObject.FindGameObjectWithTag("Player").GetComponent<GameController>();
-   // }
-   // private void OnTriggerEnter2D(Collider2D collision)
-   // {
-   //     if (collision.CompareTag("Player"))
-   //     {
-   //         gameController.UpdateCheckpoint(transform.position);
-   //     }
-   // }
+	private void OnTriggerEnter2D(Collider2D collision)
+	{
+		float posX = transform.position.x;
+		float posY = transform.position.y;
+		string mapName = SceneManager.GetActiveScene().name;
 
+		FindObjectOfType<GameSession>().UpdateCheckpoint(posX, posY, mapName);
+	}
 }
 

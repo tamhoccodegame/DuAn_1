@@ -68,6 +68,6 @@ public class Kazan : Enemy
 															spawnedBullet.transform.localScale.z,
 															 spawnedBullet.transform.localScale.z);
 		spawnedBullet.velocity = new Vector2(direction.x * 5, 0);
-		spawnedBullet.GetComponent<RangeHitBox>().damage = damage;
+		Destroy(spawnedBullet.gameObject, 1.5f);
 	}
 }

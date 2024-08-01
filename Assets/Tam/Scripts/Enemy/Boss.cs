@@ -11,7 +11,7 @@ public class Boss : Enemy
 
 	private int currentComboStrikes;
 
-	private int speed = 15;
+	private int speed = 25;
 	private int countTouchWall = 0;
 	private int countChasePlayer = 0;
 	private float _attackRange = 5f;
@@ -62,11 +62,13 @@ public class Boss : Enemy
 			Vector3 viewportCheck = cam.ViewportToWorldPoint(new Vector3(0.5f, 1f, cam.nearClipPlane));
 			Vector3 spawnLocation = new Vector3(Random.Range(0, viewportCheck.x), viewportCheck.y, 0);
 
-			Instantiate(rockPrefabs, spawnLocation, Quaternion.identity);
-			spawnLocation = new Vector3(Random.Range(0, viewportCheck.x), viewportCheck.y, 0);
-			Instantiate(rockPrefabs, spawnLocation, Quaternion.identity);
-			spawnLocation = new Vector3(Random.Range(0, viewportCheck.x), viewportCheck.y, 0);
-			Instantiate(rockPrefabs, spawnLocation, Quaternion.identity);
+			for(int i = 0; i< 3; i++)
+			{
+				var go = Instantiate(rockPrefabs, spawnLocation, Quaternion.identity);
+				spawnLocation = new Vector3(Random.Range(0, viewportCheck.x), viewportCheck.y, 0);
+				Destroy(go,1f);
+			}
+		
 
 		}
 	}

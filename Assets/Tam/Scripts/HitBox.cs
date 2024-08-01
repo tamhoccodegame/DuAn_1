@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -31,20 +31,40 @@ public class HitBox : MonoBehaviour
 
 		if (playerHit)
 		{
-			Debug.Log(enemyDamage);
-			playerHit.TakeDamage(enemyDamage);
-			Knockback knockback = GetComponent<Knockback>();
-			knockback.ApplyKnockback(collision.gameObject.transform, direction);
-			if(isRange) Destroy(gameObject);
-			return;
+			StartCoroutine(HandlePlayerHit(playerHit, collision.gameObject.transform, direction));
 		}
 		if(enemyHit)
 		{
-			enemyHit.TakeDamage(playerDamage);
-			if (enemyHit is Boss) return;
-			Knockback knockback = GetComponent<Knockback>();
-			if (isRange) Destroy(gameObject);
-			knockback.ApplyKnockback(collision.gameObject.transform, direction);
+			StartCoroutine(HandleEnemyrHit(enemyHit, collision.gameObject.transform, direction));	
 		}
+	}
+
+	private IEnumerator HandlePlayerHit(Player_Health playerHit, Transform target, Vector3 direction)
+	{
+		Knockback knockback = GetComponent<Knockback>();
+		
+		yield return StartCoroutine(playerHit.TakeDamage(enemyDamage));
+
+		if (knockback != null)
+		{
+			yield return StartCoroutine(knockback.ApplyKnockback(target, direction));
+		}
+
+
+		if (isRange) Destroy(gameObject);
+	}
+
+	private IEnumerator HandleEnemyrHit(Enemy enemyHit, Transform target, Vector3 direction)
+	{
+		Knockback knockback = GetComponent<Knockback>();
+
+		enemyHit.TakeDamage(playerDamage);
+
+		if (knockback != null)
+		{
+			yield return StartCoroutine(knockback.ApplyKnockback(target, direction));
+		}
+
+		if (isRange) Destroy(gameObject);
 	}
 }

@@ -7,24 +7,33 @@ using UnityEngine.UI;
 public class GameSession : MonoBehaviour
 {
     public static GameSession instance;
-    
-    public int playerlives = 3;
-    public Text playerlives_Text;
-    public int score = 0;
-    public Text score_Text;
-    public int coin = 0;
+
+    [Header("Portal")]
+    public int desPortalID;
+
+	[Header("Checkpoint")]
+	public float playerPositionX;
+    public float playerPositionY;
+    public string mapName;
+
+	[Header("Coins")]
+	public int coin = 0;
     public Text coin_Text;
 
-    public GameObject pauseMenuUI;
+	[Header("Pause Menu")]
+	public GameObject pauseMenuUI;
     private bool isPaused = false;
 
     private Inventory inventory;
     private Equipment equipment;
 
+	[Header("UI")]
 	[SerializeField] private UI_Inventory uiInventory;
 	[SerializeField] private UI_Market[] uiMarkets;
 	[SerializeField] private LockSlotUI uiLockSlotUI;
 	[SerializeField] private UI_Equipment[] uiEquipments;
+    [SerializeField] private Player_HealthBar player_HealthBar;
+
 
 	// Start is called before the first frame update
 
@@ -58,13 +67,56 @@ public class GameSession : MonoBehaviour
         return uiEquipments;
     }
 
-    IEnumerator LoadSceneTest()
+    public Player_HealthBar GetPlayer_HealthBar()
     {
-        string savedSceneName = SceneManager.GetActiveScene().name;
+        return player_HealthBar;
+    }
 
-		yield return SceneManager.LoadSceneAsync("Land Of Holy");
-        yield return new WaitForSeconds(15f);
-        yield return SceneManager.LoadSceneAsync(savedSceneName);
+    public void UpdateCheckpoint(float _posX, float _posY, string _mapName)
+    {
+        playerPositionX = _posX;
+        playerPositionY = _posY;
+        mapName = _mapName;
+    }
+
+    public void Respawn()
+    {
+        StartCoroutine(LoadCheckpointCoroutine(mapName));
+    }
+
+
+    public IEnumerator LoadCheckpointCoroutine(string _mapName)
+    {
+        yield return SceneManager.LoadSceneAsync("Loading Scene");
+        yield return new WaitForSeconds(8f);
+        yield return SceneManager.LoadSceneAsync(_mapName);
+        Transform player = GameObject.Find("Player").transform;
+		player.position = new Vector2(playerPositionX, playerPositionY);
+	}
+    public void LoadScene(string _mapName)
+    {
+        StartCoroutine(LoadSceneCoroutine(_mapName));
+    }
+
+    public IEnumerator LoadSceneCoroutine(string _mapName)
+    {
+		yield return SceneManager.LoadSceneAsync("Loading Scene");
+        yield return new WaitForSeconds(5f);
+        yield return SceneManager.LoadSceneAsync(_mapName);
+        Transform player = GameObject.Find("Player").transform;
+        
+        //Tim tat ca cac PORTAL trong scene moi
+        Portal[] portals = FindObjectsOfType<Portal>();
+        foreach(Portal portal in portals)
+        {
+            Debug.Log(portal.name);
+            if(portal.portalID == desPortalID)
+            {
+                player.transform.position = portal.spawnPoint.position;
+                break;
+            }
+        }
+
     }
 
     private void Awake()
@@ -83,6 +135,7 @@ public class GameSession : MonoBehaviour
 		inventory.AddRune(new Rune(Rune.RuneType.Damage));
 		inventory.AddRune(new Rune(Rune.RuneType.DoubleJump));
 		inventory.AddRune(new Rune(Rune.RuneType.Fire));
+        inventory.AddRune(new Rune(Rune.RuneType.Dash));
 
 		equipment = new Equipment();
 	}
@@ -97,56 +150,8 @@ public class GameSession : MonoBehaviour
 	void Update()
 	{
 		OnPressESC();
-		if (Input.GetKeyDown(KeyCode.P))
-		{
-			StartCoroutine(LoadSceneTest());
-		}
 	}
 
-
-	public void PlayerDeath()
-    {
-        if (playerlives > 1)
-        {
-            TakeLife();
-        }
-        else
-        {
-            ResetGameSession();
-        }
-    }
-
-    public void TakeLife()
-    {
-        playerlives--;
-        UpdateLiveAmount();
-        
-        //lay index cua scene hien tai
-        int currentsceneindex = SceneManager.GetActiveScene().buildIndex;
-        //load lai scene hien tai
-        SceneManager.LoadScene(currentsceneindex);
-        //slider.value = playerlives;
-        //liveSlider.value = health.maxHealth;
-    }
-
-    public void ResetGameSession()
-    {
-
-        SceneManager.LoadScene(1);
-        Destroy(gameObject); //destroy GameSession
-        Time.timeScale = 1;
-    }
-
-    public void AddScore(int num)
-    {
-        score += num;
-        score_Text.text = "SCORES: " + score.ToString();
-    }
-
-    public void UpdateLiveAmount()
-    {
-        playerlives_Text.text = "LIVES: " + playerlives.ToString();
-    }
 
     public void AddCoin(int num)
     {

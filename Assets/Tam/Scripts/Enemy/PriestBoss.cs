@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PriestBoss : Enemy
 {
@@ -16,6 +17,8 @@ public class PriestBoss : Enemy
 	[SerializeField] private GameObject rockPrefabs;
 	[SerializeField] private GameObject effectPoint;
 	[SerializeField] private GameObject dustPoint;
+
+	[SerializeField] private Slider healthBar_slider;
 
 
 	// Start is called before the first frame update
@@ -37,6 +40,12 @@ public class PriestBoss : Enemy
 		currentHealth = _maxHealth;
 	}
 
+	private void Start()
+	{
+		healthBar_slider.maxValue = maxHealth;
+		healthBar_slider.value = maxHealth;
+	}
+
 	private void RandomComboStrike()
 	{
 		currentComboStrikes = Random.Range(1, 5);
@@ -49,7 +58,14 @@ public class PriestBoss : Enemy
 
 		isCoroutineRunning = true;	
         StartCoroutine("Combo" + currentComboStrikes);
-    }
+
+
+		if (currentHealth <= 0.5f * maxHealth && !isRage)
+		{
+			isRage = true;
+			Instantiate(vialityEffect, transform.position, Quaternion.identity);
+		}
+	}
 
 	public override void Chase()
 	{
@@ -107,12 +123,12 @@ public class PriestBoss : Enemy
 		Vector3 viewportCheck = cam.ViewportToWorldPoint(new Vector3(0.5f, 1f, cam.nearClipPlane));
 		Vector3 spawnLocation = new Vector3(Random.Range(0, viewportCheck.x), viewportCheck.y, 0);
 
-		Instantiate(rockPrefabs, spawnLocation, Quaternion.identity);
-		spawnLocation = new Vector3(Random.Range(0, viewportCheck.x), viewportCheck.y, 0);
-		Instantiate(rockPrefabs, spawnLocation, Quaternion.identity);
-		spawnLocation = new Vector3(Random.Range(0, viewportCheck.x), viewportCheck.y, 0);
-		Instantiate(rockPrefabs, spawnLocation, Quaternion.identity);
-
+		for (int i = 0; i < 3; i++)
+		{
+			var go = Instantiate(rockPrefabs, spawnLocation, Quaternion.identity);
+			spawnLocation = new Vector3(Random.Range(0, viewportCheck.x), viewportCheck.y, 0);
+			Destroy(go, 1f);
+		}
 		Rigidbody2D dustOne = Instantiate(dustPrefabs, dustPoint.transform.position, Quaternion.identity).GetComponent<Rigidbody2D>();
 		Rigidbody2D dustTwo = Instantiate(dustPrefabs, dustPoint.transform.position, Quaternion.identity).GetComponent<Rigidbody2D>();
 
@@ -200,6 +216,12 @@ public class PriestBoss : Enemy
 		RandomComboStrike();
 		isCoroutineRunning = false;
 		
+	}
+
+	public override void TakeDamage(float damage)
+	{
+		base.TakeDamage(damage);
+		healthBar_slider.value = currentHealth;
 	}
 
 }

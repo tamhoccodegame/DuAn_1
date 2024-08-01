@@ -100,6 +100,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7924371403132222136, guid: dc0dcd1aa86e1e74c94eafd8a4beb5c7, type: 3}
+      propertyPath: m_SortingLayer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7924371403132222136, guid: dc0dcd1aa86e1e74c94eafd8a4beb5c7, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 1036407973
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -138,6 +146,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerDamage: 0
   enemyDamage: 25
+  isRange: 0
 --- !u!61 &2717489341241192512
 BoxCollider2D:
   m_ObjectHideFlags: 0

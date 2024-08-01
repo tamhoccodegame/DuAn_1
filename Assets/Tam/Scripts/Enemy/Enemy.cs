@@ -26,7 +26,7 @@ public class Enemy : MonoBehaviour
 
     protected Vector3 direction;
 
-    [SerializeField] private ParticleSystem vialityEffect;
+    [SerializeField] protected ParticleSystem vialityEffect;
 
     public enum State
     {
@@ -153,7 +153,7 @@ public class Enemy : MonoBehaviour
 	}
 
 
-	public void TakeDamage(float damage)
+	public virtual void TakeDamage(float damage)
     {
         if (!isAlive) return;
 
@@ -174,15 +174,14 @@ public class Enemy : MonoBehaviour
 	private void Die()
     {
         this.enabled = false;
-        animator.SetBool("isDead", true);
-        //var go = Instantiate(vialityEffect, transform);
-		//Quaternion newRotation = Quaternion.Euler(-90, 0, 0);
-  //      go.transform.rotation = newRotation;
         StartCoroutine(DieDelay());
     }
 
     private IEnumerator DieDelay()
     {
+		animator.SetBool("isDead", true);
+        FindObjectOfType<TriggerBlockDoor>().HideDoor();
+        Instantiate(vialityEffect, transform.position, Quaternion.identity);
 		yield return new WaitForSeconds(2f);
         Destroy(gameObject);
     }

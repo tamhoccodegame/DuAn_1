@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using static UnityEditor.Experimental.GraphView.GraphView;
@@ -7,22 +7,28 @@ public class Player_Health : MonoBehaviour
 {
     public int maxHealth = 200;
     public int currentHealth;
-    public Player_HealthBar player_HealthBar;
+    private Player_HealthBar player_HealthBar;
+    private PlayerController playerController;
 
     Animator animator;
     Rigidbody2D rig;
     CapsuleCollider2D col;
 
     public ParticleSystem player_Blood_Effect;
+    public ParticleSystem player_Hurt_Effect;
     public ParticleSystem player_Death_Effect;
     // Start is called before the first frame update
     void Start()
     {
         currentHealth = maxHealth;
+        player_HealthBar = GameSession.instance.GetPlayer_HealthBar();
         player_HealthBar.SetMaxHealth(maxHealth);
+        player_HealthBar.SetHealth(maxHealth);
+
         col = GetComponent<CapsuleCollider2D>();
         rig = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        playerController = GetComponent<PlayerController>();
     }
 
     // Update is called once per frame
@@ -31,33 +37,63 @@ public class Player_Health : MonoBehaviour
         
     }
 
-    public void TakeDamage(int damage)
+    public void RestoreHealth(int health)
+    {
+        currentHealth = Mathf.Clamp(currentHealth + health, 0, maxHealth);
+		player_HealthBar.SetHealth(currentHealth);
+	}
+    public IEnumerator TakeDamage(int damage)
     {
         currentHealth -= damage;
 
-        player_HealthBar.SetHealth(currentHealth);
+		if (currentHealth <= 0)
+		{
+			Die();
+		}
+
+        Instantiate(player_Hurt_Effect, transform.position, Quaternion.identity);
+		player_HealthBar.SetHealth(currentHealth);
 
         animator.SetTrigger("isHurt");
-        FindObjectOfType<SoundManager>().PlayAudio("Player_Hurt");
-        player_Blood_Effect.Play();
+        //FindObjectOfType<SoundManager>().PlayAudio("Player_Hurt");
+        //player_Blood_Effect.Play();
         animator.ResetTrigger("isAttack1");
 		animator.ResetTrigger("isAttack2");
 		animator.ResetTrigger("isAttack3");
-        GetComponent<PlayerController>().EndCombo();
-		//FindObjectOfType<SoundManager>().PlayAudio("Player_Hurt");
-		//blood.Play();
+        playerController.EndCombo();
+        //FindObjectOfType<SoundManager>().PlayAudio("Player_Hurt");
+        //blood.Play();
+        yield return null;
 
-		if (currentHealth <= 0)
-        {
-            Die();
-        }
+        float stopTime = .3f;
+
+        yield return StartCoroutine(StopTime(stopTime));
     }
 
-    void Die()
+	private IEnumerator StopTime(float duration)
+	{
+		// Dừng thời gian
+		Time.timeScale = 0f;
+
+		// Lưu thời gian bắt đầu
+		float startTime = Time.realtimeSinceStartup;
+
+		// Đợi cho đến khi đủ thời gian trôi qua
+		while (Time.realtimeSinceStartup - startTime < duration)
+		{
+			// Đợi một chút để không làm treo game
+			yield return null;
+		}
+
+		// Khôi phục thời gian
+		Time.timeScale = 1f;
+	}
+
+	void Die()
     {
-        FindObjectOfType<SoundManager>().PlayAudio("Player_Death");
+        //FindObjectOfType<SoundManager>().PlayAudio("Player_Death");
         animator.SetBool("isDead", true);
-        player_Death_Effect.Play();
+        //player_Death_Effect.Play();
         Collider2D[] colliders = GetComponents<Collider2D>();
 
         foreach(Collider2D col in colliders)
@@ -66,10 +102,12 @@ public class Player_Health : MonoBehaviour
         }
 
         //GetComponent<Collider2D>().enabled = false; //Disable the collider 2D
-        this.enabled = false;
-        StartCoroutine(WaitAndRespawn());
+        //this.enabled = false;
+        //StartCoroutine(WaitAndRespawn());
         //deathEffect.Play();
         //FindObjectOfType<GameSession>().PlayerDeath();
+        FindObjectOfType<GameSession>().Respawn();
+
     }
 
     private IEnumerator WaitAndRespawn()

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4104200235769439067}
   - component: {fileID: 7336597854245570738}
   - component: {fileID: 3653606043495390240}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: hitBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,7 +92,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerDamage: 0
-  enemyDamage: 0
+  enemyDamage: 10
+  isRange: 0
 --- !u!114 &3653606043495390240
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -230,6 +231,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1350e9e55fbe284f940e60d69a4ca50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentHealth: 0
+  vialityEffect: {fileID: 0}
   _maxHealth: 500
   _patrolSpeed: 2
   _chaseSpeed: 4
@@ -360,7 +363,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &5088883168781367941
 Transform:
   m_ObjectHideFlags: 0

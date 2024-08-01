@@ -105,13 +105,17 @@ public class PlayerController : MonoBehaviour
         
         if (canDoubleJump)
         {
-			if (feet.IsTouchingLayers(LayerMask.GetMask("Ground")) || jumpCount < 1)
+			if (feet.IsTouchingLayers(LayerMask.GetMask("Ground")))
 			{
 				if (value.isPressed)
 				{
 					rig.velocity += new Vector2(0f, jump);
-					jumpCount++;
 				}
+			}
+            else if (jumpCount < 1)
+            {
+				rig.velocity += new Vector2(0f, jump - 5);
+				jumpCount++;
 			}
 		}
         else
@@ -177,7 +181,7 @@ public class PlayerController : MonoBehaviour
         //Debug.Log(isAttacking);
         //Dash();
         //CheckDash();
-        SnakeAttack();
+        //SnakeAttack();
 
     }
 

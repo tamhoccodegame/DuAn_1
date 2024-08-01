@@ -22,11 +22,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2347375414255349690, guid: 9fbd6ef2bf8e8d04ebb30d8aba04c156, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 30.75
+      value: 957.31
       objectReference: {fileID: 0}
     - target: {fileID: 2347375414255349690, guid: 9fbd6ef2bf8e8d04ebb30d8aba04c156, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.24
+      value: -194.27
       objectReference: {fileID: 0}
     - target: {fileID: 2347375414255349690, guid: 9fbd6ef2bf8e8d04ebb30d8aba04c156, type: 3}
       propertyPath: m_LocalPosition.z
@@ -59,6 +59,34 @@ PrefabInstance:
     - target: {fileID: 2347375414255349690, guid: 9fbd6ef2bf8e8d04ebb30d8aba04c156, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4499229299543020740, guid: 9fbd6ef2bf8e8d04ebb30d8aba04c156, type: 3}
+      propertyPath: m_SortingLayer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4499229299543020740, guid: 9fbd6ef2bf8e8d04ebb30d8aba04c156, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 1036407973
+      objectReference: {fileID: 0}
+    - target: {fileID: 7318587085560588039, guid: 9fbd6ef2bf8e8d04ebb30d8aba04c156, type: 3}
+      propertyPath: m_Color.b
+      value: 0.021311762
+      objectReference: {fileID: 0}
+    - target: {fileID: 7318587085560588039, guid: 9fbd6ef2bf8e8d04ebb30d8aba04c156, type: 3}
+      propertyPath: m_Color.g
+      value: 0.009718701
+      objectReference: {fileID: 0}
+    - target: {fileID: 7318587085560588039, guid: 9fbd6ef2bf8e8d04ebb30d8aba04c156, type: 3}
+      propertyPath: m_Color.r
+      value: 0.3433962
+      objectReference: {fileID: 0}
+    - target: {fileID: 7318587085560588039, guid: 9fbd6ef2bf8e8d04ebb30d8aba04c156, type: 3}
+      propertyPath: m_Intensity
+      value: 5.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 7318587085560588039, guid: 9fbd6ef2bf8e8d04ebb30d8aba04c156, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.data[6]
+      value: 1036407973
       objectReference: {fileID: 0}
     - target: {fileID: 7892943538581841027, guid: 9fbd6ef2bf8e8d04ebb30d8aba04c156, type: 3}
       propertyPath: m_Name

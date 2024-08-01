@@ -11,6 +11,8 @@ public class ParticleCollector : MonoBehaviour
     void Start()
     {
         ps = GetComponent<ParticleSystem>();
+        Collider2D triggerCollider = GameObject.Find("Particle Collector").GetComponent<Collider2D>();
+        ps.trigger.SetCollider(0, triggerCollider);
     }
 
 	private void OnParticleTrigger()
@@ -21,9 +23,9 @@ public class ParticleCollector : MonoBehaviour
         {
             ParticleSystem.Particle p = particles[i];
             p.remainingLifetime = 0;
-            Debug.Log("We collected 1 particle");
             particles[i] = p;
-        }
+			FindObjectOfType<Player_Health>().RestoreHealth(2);
+		}
 
         ps.SetTriggerParticles(ParticleSystemTriggerEventType.Enter, particles);
 	}

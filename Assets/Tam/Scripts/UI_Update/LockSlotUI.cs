@@ -25,20 +25,11 @@ public class LockSlotUI : MonoBehaviour
 
     private void RefreshSlot()
     {
-		switch (equipment.maxSlot)
+		Debug.Log(equipment.maxSlot);
+		for(int i = 0; i < equipment.maxSlot; i++)
 		{
-			case 1:
-				Destroy(lockedSlots[0].gameObject);
-				break;
-			case 2:
-				Destroy(lockedSlots[1].gameObject);
-				break;
-			case 3:
-				Destroy(lockedSlots[2].gameObject);
-				break;
-			case 4:
-				Destroy(lockedSlots[3].gameObject);
-				break;
+			if(lockedSlots[i] != null) 
+			Destroy(lockedSlots[i]);
 		}
 	}
 

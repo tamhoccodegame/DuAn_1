@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4593678965575217980}
   - component: {fileID: 6463048694915887092}
   - component: {fileID: 2722988358653164138}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: hitBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41,7 +41,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 343053934242604407}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -92,7 +92,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerDamage: 0
-  enemyDamage: 0
+  enemyDamage: 5
+  isRange: 0
 --- !u!114 &2722988358653164138
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -301,6 +302,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: facd68a9167eb4940aea57fe60d98571, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentHealth: 0
+  vialityEffect: {fileID: 0}
   _maxHealth: 50
   _patrolSpeed: 3
   _chaseSpeed: 4
@@ -336,7 +339,7 @@ Transform:
   m_GameObject: {fileID: 3660013248159635633}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -5.787909, y: -1.7531607, z: -0.0029912367}
+  m_LocalPosition: {x: -6, y: 0.14, z: -0.0029912367}
   m_LocalScale: {x: 2.5981, y: 2.5981, z: 2.5981}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -401,7 +404,7 @@ Transform:
   m_GameObject: {fileID: 7304548175777808914}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 9.25209, y: -1.7531607, z: -0.0029912367}
+  m_LocalPosition: {x: 11.2, y: -0.07, z: -0.0029912367}
   m_LocalScale: {x: 2.5981, y: 2.5981, z: 2.5981}
   m_ConstrainProportionsScale: 0
   m_Children: []
