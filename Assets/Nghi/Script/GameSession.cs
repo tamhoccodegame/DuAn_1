@@ -33,6 +33,7 @@ public class GameSession : MonoBehaviour
 	[SerializeField] private LockSlotUI uiLockSlotUI;
 	[SerializeField] private UI_Equipment[] uiEquipments;
     [SerializeField] private Player_HealthBar player_HealthBar;
+    [SerializeField] private Slider bossHealthBar;
 
 
 	// Start is called before the first frame update
@@ -70,6 +71,11 @@ public class GameSession : MonoBehaviour
     public Player_HealthBar GetPlayer_HealthBar()
     {
         return player_HealthBar;
+    }
+
+    public Slider GetBossHealthBar()
+    {
+        return bossHealthBar;
     }
 
     public void UpdateCheckpoint(float _posX, float _posY, string _mapName)
@@ -132,10 +138,10 @@ public class GameSession : MonoBehaviour
         }
 
 		inventory = new Inventory();
-		inventory.AddRune(new Rune(Rune.RuneType.Damage));
-		inventory.AddRune(new Rune(Rune.RuneType.DoubleJump));
-		inventory.AddRune(new Rune(Rune.RuneType.Fire));
-        inventory.AddRune(new Rune(Rune.RuneType.Dash));
+		//inventory.AddRune(new Rune(Rune.RuneType.Damage));
+		//inventory.AddRune(new Rune(Rune.RuneType.DoubleJump));
+		//inventory.AddRune(new Rune(Rune.RuneType.Fire));
+  //      inventory.AddRune(new Rune(Rune.RuneType.Dash));
 
 		equipment = new Equipment();
 	}

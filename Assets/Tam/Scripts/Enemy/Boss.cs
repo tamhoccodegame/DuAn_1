@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Boss : Enemy
 {
@@ -18,6 +19,7 @@ public class Boss : Enemy
 	private bool isRage = false;
 
 	[SerializeField] private float _maxHealth;
+	Slider healthBar_slider;
 	
 	public override void Awake()
 	{
@@ -30,8 +32,14 @@ public class Boss : Enemy
 		attackRange = _attackRange;
 		maxHealth = _maxHealth;
 		currentHealth = _maxHealth;
+		healthBar_slider = GameSession.instance.GetBossHealthBar();
 	}
 
+	private void Start()
+	{
+		healthBar_slider.maxValue = maxHealth;
+		healthBar_slider.value = maxHealth;
+	}
 	public override void Update()
 	{
 
@@ -184,6 +192,12 @@ public class Boss : Enemy
 		yield return new WaitForSeconds(1.5f);
 		RandomComboStrike();
 		isCoroutineRunning = false;	
+	}
+
+	public override void TakeDamage(float damage)
+	{
+		base.TakeDamage(damage);
+		healthBar_slider.value = currentHealth;
 	}
 
 }
