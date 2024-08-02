@@ -122,6 +122,7 @@ public class Player_AimShoot_Weapon : MonoBehaviour
         {
             Bomerang boomerangScript = boomerang.GetComponent<Bomerang>();
             boomerangScript.ActivateBomerang(bulletSpawn.position);
+            FindObjectOfType<SoundManager>().PlayAudio("Player_Bomerang_Attack");
         }
     }
 
