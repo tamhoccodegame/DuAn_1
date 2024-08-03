@@ -47,6 +47,11 @@ public class PlayerController : MonoBehaviour
     private float snakeLifetime = 1f;
     private float summonRange = 10f;
 
+    public GameObject teammatePrefab;
+    public Transform summonTeammatePosition;//Vi tri trieu hoi dong doi
+    public float summonTime = 30f;//Thoi gian ton tai cua dong doi
+    private GameObject currentTeammate;
+
     //private bool isDashing;
     //public float dashTime;
     //public float dashSpeed;
@@ -181,7 +186,7 @@ public class PlayerController : MonoBehaviour
         //Dash();
         //CheckDash();
         SnakeAttack();
-
+        SummonTeammateWhenPressButton();
     }
 
     private IEnumerator Dash()
@@ -410,6 +415,36 @@ public class PlayerController : MonoBehaviour
         {
             SummonSnakeAtEnemy(transform.position);
             FindObjectOfType<SoundManager>().PlayAudio("Snake_Attack");
+        }
+    }
+
+    public void SummonTeammate()
+    {
+        if(currentTeammate == null)
+        {
+            currentTeammate = Instantiate(teammatePrefab, summonTeammatePosition.position, summonTeammatePosition.rotation);
+            StartCoroutine(DismissTeammateAfterTime(summonTime)); 
+        }
+        else
+        {
+            Debug.Log("Teammate is already summoned!");
+        }
+    }
+
+    private IEnumerator DismissTeammateAfterTime(float time)
+    {
+        yield return new WaitForSeconds(time);
+        if (currentTeammate != null)
+        {
+            Destroy(currentTeammate);
+        }
+    }
+
+    public void SummonTeammateWhenPressButton()
+    {
+        if (Input.GetKey(KeyCode.O))
+        {
+            SummonTeammate();
         }
     }
 }

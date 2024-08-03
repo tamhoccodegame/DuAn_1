@@ -34,7 +34,7 @@ public class Player_Health : MonoBehaviour
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
-
+                
         player_HealthBar.SetHealth(currentHealth);
 
         animator.SetTrigger("isHurt");
@@ -76,10 +76,13 @@ public class Player_Health : MonoBehaviour
     private IEnumerator WaitAndRespawn()
     {
         yield return new WaitForSeconds(2f);
-        Checkpoint_System checkpoint = GetComponent<Checkpoint_System>();
-        checkpoint.Respawn();
+        Checkpoint_System.Instance.Respawn(transform);
+        //Checkpoint_System checkpoint = GetComponent<Checkpoint_System>();
+        //checkpoint.Respawn();
         currentHealth = maxHealth;
         player_HealthBar.SetHealth(currentHealth);
+        animator.SetBool("isDead", false);
+
     }
 
     public void OnTriggerEnter2D(Collider2D player)

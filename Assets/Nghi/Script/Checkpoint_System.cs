@@ -57,16 +57,18 @@ public class Checkpoint_System : MonoBehaviour
             //{
             FindObjectOfType<SoundManager>().PlayAudio("Checkpoint");
             checkpointAnimation.SetTrigger("Appear");
-            lastestCheckpointPosition = collision.transform.position;
+            SetLastCheckpointPosition(collision.transform.position);
+            //lastestCheckpointPosition = collision.transform.position;
             //respawnPosition = collision.transform.position;
             //}
 
         }
     }
 
-    public void Respawn()//Ham duoc goi khi nhan vat chet va duoc hoi sinh tai vi tri checkpoint gan nhat
+    public void Respawn(Transform player)//Ham duoc goi khi nhan vat chet va duoc hoi sinh tai vi tri checkpoint gan nhat
     {
-        transform.position = Checkpoint_System.Instance.GetLastCheckpointPosition();
+        player.position = GetLastCheckpointPosition();
+        //transform.position = Checkpoint_System.Instance.GetLastCheckpointPosition();
         //transform.position = lastestCheckpointPosition;
         //transform.position= respawnPosition;
     }

@@ -168,11 +168,12 @@ public class Enemy : MonoBehaviour
 		animator.SetTrigger("isHurt");
     }
 
-	private void Die()
+	public bool Die()
     {
         this.enabled = false;
         animator.SetBool("isDead", true);
         StartCoroutine(DieDelay());
+        return true;
     }
 
     private IEnumerator DieDelay()
