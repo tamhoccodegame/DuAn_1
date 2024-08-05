@@ -183,10 +183,11 @@ public class Enemy : MonoBehaviour
 		animator.SetTrigger("isHurt");
     }
 
-	private void Die()
+	public bool Die()
     {
         this.enabled = false;
         StartCoroutine(DieDelay());
+        return true;
     }
 
     private IEnumerator DieDelay()

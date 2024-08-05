@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Resources;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -13,14 +14,12 @@ public class PlayerController : MonoBehaviour
     public bool facingRight = true;
     private bool isJumping = false; 
     public bool canDoubleJump = false;
-    public bool canDash = false;
     public float jumpCount;
 
     Rigidbody2D rig;
     Animator animator;
-    Transform aura;
     CapsuleCollider2D col;
-    public Collider2D feet;
+    public BoxCollider2D feet;
     [SerializeField] float speed = 10f;
     [SerializeField] float jump = 20f;
     [SerializeField] private int damage;
@@ -48,6 +47,13 @@ public class PlayerController : MonoBehaviour
     private float snakeLifetime = 1f;
     private float summonRange = 10f;
 
+    public GameObject teammatePrefab;
+    public Transform summonTeammatePosition;//Vi tri trieu hoi dong doi
+    public float summonTime = 30f;//Thoi gian ton tai cua dong doi
+    private GameObject currentTeammate;
+
+    public Skill_Mana skillManager;
+
     //private bool isDashing;
     //public float dashTime;
     //public float dashSpeed;
@@ -65,8 +71,13 @@ public class PlayerController : MonoBehaviour
         rig = GetComponent<Rigidbody2D>();
         col = GetComponent<CapsuleCollider2D>();
         animator = GetComponent<Animator>();
-        aura = transform.Find("Aura");
+
         dashAfterImage = GetComponent<DashAfterImage>();
+
+        if (skillManager == null)
+        {
+            skillManager = FindObjectOfType<Skill_Mana>();
+        }
     }
 
     public int GetDamage()
@@ -106,17 +117,14 @@ public class PlayerController : MonoBehaviour
         
         if (canDoubleJump)
         {
-			if (feet.IsTouchingLayers(LayerMask.GetMask("Ground")))
+			if (feet.IsTouchingLayers(LayerMask.GetMask("Ground")) || jumpCount < 1)
 			{
 				if (value.isPressed)
 				{
 					rig.velocity += new Vector2(0f, jump);
+                    FindObjectOfType<SoundManager>().PlayAudio("Player_Jump");
+                    jumpCount++;
 				}
-			}
-            else if (jumpCount < 1)
-            {
-				rig.velocity += new Vector2(0f, jump - 5);
-				jumpCount++;
 			}
 		}
         else
@@ -126,7 +134,8 @@ public class PlayerController : MonoBehaviour
 				if (value.isPressed)
 				{
 					rig.velocity += new Vector2(0f, jump);
-				}
+                    FindObjectOfType<SoundManager>().PlayAudio("Player_Jump");
+                }
 			}
 			
         }
@@ -137,14 +146,15 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Debug.Log(isJumping);***
         if (isAlive == false) return;
-		Combo();
+
+        Combo();
 
         Run();
         
 
         bool havemove = Mathf.Abs(rig.velocity.x) > Mathf.Epsilon;
-        aura.gameObject.SetActive(!havemove);
 
         animator.SetBool("isRunning", havemove);
 
@@ -176,21 +186,20 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
-            if (!canDash) return;
             StartCoroutine(Dash());
         }
 
         //Debug.Log(isAttacking);
         //Dash();
         //CheckDash();
-        //SnakeAttack();
-
+        SnakeAttack();
+        SummonTeammateWhenPressButton();
     }
 
     private IEnumerator Dash()
     {
-        animator.SetTrigger("isDash");
         dashAfterImage.StartDashing();
+        FindObjectOfType<SoundManager>().PlayAudio("Player_Dash");
         float startTime = Time.time;
         while (Time.time < startTime + dashTime)
         {
@@ -282,7 +291,8 @@ public class PlayerController : MonoBehaviour
         if (inputReceived)
         {
 			isAttacking = true;
-			animator.SetTrigger("isAttack" + comboStep);
+            
+            animator.SetTrigger("isAttack" + comboStep);
 			inputReceived = false;
         }
     }
@@ -315,7 +325,12 @@ public class PlayerController : MonoBehaviour
         }
 	}
 
-    public IEnumerator StopMotion(float time)
+    public void PlayAttackSound(string soundName)
+    {
+        FindObjectOfType<SoundManager>().PlayAudio(soundName);
+    }
+
+    IEnumerator StopMotion(float time)
     {
         currentInput = Vector2.zero;
         yield return new WaitForSeconds(time);
@@ -324,7 +339,7 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator SpecialAttack(string name)
     {
-        isAttacking = true;
+
         animator.SetTrigger(name);
         if (!isJumping)
         {
@@ -345,21 +360,23 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.CompareTag("Coin"))
         {
-            var go = Instantiate(coinEffect, transform.position, transform.rotation);
-
+            //var go = Instantiate(coinEffect, transform.position, transform.rotation);
+            Debug.Log("Coin collected!");
+            FindObjectOfType<SoundManager>().PlayAudio("Coin_Collect");
             Destroy(collision.gameObject);
             FindObjectOfType<GameSession>().AddCoin(1);
         }
-        //if (collision.CompareTag("Next_Level"))
-        //{
-        //    Animator doorAnimation = collision.GetComponent<Animator>();
+        if (collision.CompareTag("Next_Level"))
+        {
+            Animator doorAnimation = collision.GetComponent<Animator>();
 
-        //    if (doorAnimation != null)
-        //    {
-        //        doorAnimation.SetTrigger("Open");
-        //    }
+            if (doorAnimation != null)
+            {
+                FindObjectOfType<SoundManager>().PlayAudio("Next_Level");
+                doorAnimation.SetTrigger("Open");
+            }
 
-        //}
+        }
     }
 
     public GameObject FindNearestEnemy(Vector3 playerPosition)
@@ -404,6 +421,51 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.K))
         {
             SummonSnakeAtEnemy(transform.position);
+            skillManager.UseSkill(25f);
+            FindObjectOfType<SoundManager>().PlayAudio("Snake_Attack");
         }
+    }
+
+    public void SummonTeammate()
+    {
+        if(currentTeammate == null)
+        {
+            currentTeammate = Instantiate(teammatePrefab, summonTeammatePosition.position, summonTeammatePosition.rotation);
+            skillManager.UseSkill(50f);
+            StartCoroutine(DismissTeammateAfterTime(summonTime)); 
+        }
+        else
+        {
+            Debug.Log("Teammate is already summoned!");
+        }
+    }
+
+    private IEnumerator DismissTeammateAfterTime(float time)
+    {
+        yield return new WaitForSeconds(time);
+        if (currentTeammate != null)
+        {
+            Destroy(currentTeammate);
+        }
+    }
+
+    public void SummonTeammateWhenPressButton()
+    {
+        if (Input.GetKey(KeyCode.O))
+        {
+            SummonTeammate();
+        }
+    }
+
+    public void SkillManaUpdate(int damage)
+    {
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+
+        foreach(GameObject enemy in enemies)
+        {
+            enemy.GetComponent<Enemy>().TakeDamage(damage);
+            skillManager.AddSkillMana(damage);
+        }
+        
     }
 }
