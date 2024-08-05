@@ -52,6 +52,8 @@ public class PlayerController : MonoBehaviour
     public float summonTime = 30f;//Thoi gian ton tai cua dong doi
     private GameObject currentTeammate;
 
+    public Skill_Mana skillManager;
+
     //private bool isDashing;
     //public float dashTime;
     //public float dashSpeed;
@@ -71,6 +73,11 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>();
 
         dashAfterImage = GetComponent<DashAfterImage>();
+
+        if (skillManager == null)
+        {
+            skillManager = FindObjectOfType<Skill_Mana>();
+        }
     }
 
     public int GetDamage()
@@ -139,7 +146,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(isJumping);
+        //Debug.Log(isJumping);***
         if (isAlive == false) return;
 
         Combo();
@@ -414,6 +421,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.K))
         {
             SummonSnakeAtEnemy(transform.position);
+            skillManager.UseSkill(25f);
             FindObjectOfType<SoundManager>().PlayAudio("Snake_Attack");
         }
     }
@@ -423,6 +431,7 @@ public class PlayerController : MonoBehaviour
         if(currentTeammate == null)
         {
             currentTeammate = Instantiate(teammatePrefab, summonTeammatePosition.position, summonTeammatePosition.rotation);
+            skillManager.UseSkill(50f);
             StartCoroutine(DismissTeammateAfterTime(summonTime)); 
         }
         else
@@ -446,5 +455,17 @@ public class PlayerController : MonoBehaviour
         {
             SummonTeammate();
         }
+    }
+
+    public void SkillManaUpdate(int damage)
+    {
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+
+        foreach(GameObject enemy in enemies)
+        {
+            enemy.GetComponent<Enemy>().TakeDamage(damage);
+            skillManager.AddSkillMana(damage);
+        }
+        
     }
 }

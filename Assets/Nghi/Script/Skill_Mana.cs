@@ -29,10 +29,29 @@ public class Skill_Mana : MonoBehaviour
         {
             currentSkillMana -= cost;
             skillSlider.value = currentSkillMana;
+            SetSkillMana(currentSkillMana);
         }
         else
         {
             Debug.Log("Not enough skill mana!");
         }
+    }
+
+    public void AddSkillMana(float amount)
+    {
+        currentSkillMana = Mathf.Clamp(currentSkillMana + amount, 0, maxSkillMana);
+        skillSlider.value = currentSkillMana;
+        SetSkillMana(currentSkillMana);
+    }
+
+    public void SetMaxSkillMana(float amount)
+    {
+        skillSlider.maxValue = amount;
+        skillSlider.value = amount;
+    }
+
+    public void SetSkillMana(float amount)
+    {
+        skillSlider.value = amount;
     }
 }

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6908086314057700860}
   - component: {fileID: 1552182625957101686}
   - component: {fileID: 8239855611787094215}
-  - component: {fileID: 8320003626436742751}
+  - component: {fileID: 7360744458696063150}
   m_Layer: 0
   m_Name: Teammate
   m_TagString: Teammate
@@ -176,14 +176,14 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6975537774928148687}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -216,7 +216,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &8320003626436742751
+--- !u!114 &7360744458696063150
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -225,11 +225,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 6975537774928148687}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d09d89820c6958d4e85ef70ed1124cec, type: 3}
+  m_Script: {fileID: 11500000, guid: 06ccb1585e153c04799970496fbd81f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   followDistance: 2
-  attackRange: 10
+  chaseRange: 1
+  moveSpeed: 11
+  attackRange: 5
   attackInterval: 1
   attackDamage: 10
   enemyLayer:

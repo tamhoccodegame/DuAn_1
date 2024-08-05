@@ -1,13 +1,15 @@
-﻿using UnityEngine;
-using UnityEngine.AI;
-using System.Collections;
+﻿using System.Collections;
+using System.Collections.Generic;
+using Unity.VisualScripting;
+using UnityEngine;
 
-
-
-public class Teammate_Behavior : MonoBehaviour
+public class Teammate_Behavior_2 : MonoBehaviour
 {
     public float followDistance = 2f;
-    public float moveSpeed = 5f;
+    //public float chaseRange = 1f; // Khoảng cách gần hơn trước khi bắt đầu tấn công*****
+    public float moveSpeed = 9f;
+
+    public Transform attackPoint;//*
     public float attackRange = 5f;
     public float attackInterval = 1f;
     public int attackDamage = 10;
@@ -22,10 +24,13 @@ public class Teammate_Behavior : MonoBehaviour
     private Animator animator;
     private Rigidbody2D rb;
 
+    private bool facingRight = true; // Biến để theo dõi hướng hiện tại
+
     private enum State
     {
         Idle,
         FollowPlayer,
+        ChaseEnemy,
         AttackEnemy
     }
 
@@ -50,14 +55,18 @@ public class Teammate_Behavior : MonoBehaviour
             case State.FollowPlayer:
                 FollowPlayer();
                 break;
+            case State.ChaseEnemy:
+                ChaseTarget();
+                break;
             case State.AttackEnemy:
                 AttackTarget();
                 break;
         }
 
-        if (currentState != State.AttackEnemy)
+        if (currentState != State.AttackEnemy && currentState != State.ChaseEnemy)
         {
             FindTarget();
+
         }
     }
 
@@ -67,7 +76,7 @@ public class Teammate_Behavior : MonoBehaviour
         if (enemies.Length > 0)
         {
             target = enemies[0].transform; // Tìm kẻ thù gần nhất
-            currentState = State.AttackEnemy;
+            currentState = State.ChaseEnemy;
         }
     }
 
@@ -78,7 +87,8 @@ public class Teammate_Behavior : MonoBehaviour
         {
             animator.SetBool("isRunning", true);
             Vector2 direction = (player.position - transform.position).normalized;
-            rb.MovePosition(rb.position + direction * moveSpeed * followDistance * Time.deltaTime);
+            rb.MovePosition(rb.position + direction * moveSpeed * Time.deltaTime);
+            FlipCharacter(direction.x);//***
         }
         else
         {
@@ -87,34 +97,58 @@ public class Teammate_Behavior : MonoBehaviour
         }
     }
 
+    void ChaseTarget()
+    {
+        if (target != null)
+        {
+            float distanceToTarget = Vector2.Distance(transform.position, target.position);
+            if (distanceToTarget > attackRange)//(distanceToTarget > attackRange)
+            {
+                animator.SetBool("isRunning", true);
+                Vector2 direction = (target.position - transform.position).normalized;
+                rb.MovePosition(rb.position + direction * moveSpeed * Time.deltaTime);
+                FlipCharacter(direction.x);//***
+            }
+            else
+            {
+                animator.SetBool("isRunning", false);
+                currentState = State.AttackEnemy;
+            }
+        }
+        else
+        {
+            currentState = State.FollowPlayer; // Quay lại trạng thái FollowPlayer nếu không còn target
+        }
+    }
+
     void AttackTarget()
     {
-        if (target != null)//Da tim thay enemy trong pham vi tan cong
+        if (target != null)
         {
-            //if (Vector2.Distance(transform.position, target.transform.position) > attackRange)
-            //{
-            //    animator.SetBool("isRunning", true);
-            //    transform.position = Vector2.MoveTowards(transform.position, target.position, followDistance * Time.deltaTime * moveSpeed);
-            //    //Vector2 direction = (target.position - transform.position).normalized;
-            //    //rb.MovePosition(rb.position + direction * moveSpeed * followDistance * Time.deltaTime);
-            //}
-
-
             attackTimer += Time.deltaTime;
             if (attackTimer >= attackInterval)
             {
                 PerformComboAttack();
                 attackTimer = 0;
 
-                // Thực hiện hành vi tấn công (ví dụ: giảm máu kẻ thù)
-                target.GetComponent<Enemy>().TakeDamage(attackDamage);
+                // Thực hiện hành vi tấn công (ví dụ: giảm máu kẻ thù)***
+                Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayer);
+                foreach(Collider2D enemy in hitEnemies)
+                {
+                    Debug.Log("Teammate hit " + enemy.name);
+                    target.GetComponent<Enemy>().TakeDamage(attackDamage);
+                }
+                
 
                 // Nếu kẻ thù đã chết
                 if (target.GetComponent<Enemy>().Die())
                 {
-                    target.GetComponent<Enemy>().Die();
                     target = null;
-                    currentState = State.FollowPlayer; // Quay lại trạng thái FollowPlayer
+                    FindTarget(); // Kiểm tra xem có kẻ thù khác trong phạm vi không
+                    if (target == null)
+                    {
+                        currentState = State.FollowPlayer; // Quay lại trạng thái FollowPlayer nếu không còn target
+                    }
                 }
             }
         }
@@ -133,6 +167,7 @@ public class Teammate_Behavior : MonoBehaviour
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
+        animator.SetTrigger("isHurt");
         if (currentHealth <= 0)
         {
             Die();
@@ -141,13 +176,33 @@ public class Teammate_Behavior : MonoBehaviour
 
     void Die()
     {
+        StartCoroutine(WaitBeforeDisappear());
         Destroy(gameObject);
+    }
+
+    IEnumerator WaitBeforeDisappear()
+    {
+        yield return new WaitForSeconds(2f);
+        animator.SetBool("isDead", true);
+    }
+    //***
+    private void FlipCharacter(float moveDirection)
+    {
+        if (moveDirection > 0 && !facingRight || moveDirection < 0 && facingRight)
+        {
+            facingRight = !facingRight;
+            Vector3 theScale = transform.localScale;
+            theScale.x *= -1;
+            transform.localScale = theScale;
+        }
     }
 
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, attackRange);
+        Gizmos.DrawWireSphere(attackPoint.position, attackRange);//***
     }
 }
+
 
