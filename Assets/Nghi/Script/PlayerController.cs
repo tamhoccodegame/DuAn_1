@@ -14,12 +14,14 @@ public class PlayerController : MonoBehaviour
     public bool facingRight = true;
     private bool isJumping = false; 
     public bool canDoubleJump = false;
+    public bool canDash = false;
     public float jumpCount;
 
     Rigidbody2D rig;
     Animator animator;
     CapsuleCollider2D col;
-    public BoxCollider2D feet;
+    Transform aura;
+    public Collider2D feet;
     [SerializeField] float speed = 10f;
     [SerializeField] float jump = 20f;
     [SerializeField] private int damage;
@@ -38,8 +40,8 @@ public class PlayerController : MonoBehaviour
     private bool inputReceived = false;
 
     private DashAfterImage dashAfterImage;
-    public float dashSpeed = 10f;
-    public float dashTime = 0.5f;
+    public float dashSpeed = 15f;
+    public float dashTime = 1f;
 
     public ParticleSystem coinEffect;
 
@@ -53,6 +55,9 @@ public class PlayerController : MonoBehaviour
     private GameObject currentTeammate;
 
     public Skill_Mana skillManager;
+
+
+    private bool isGrounded = true;
 
     //private bool isDashing;
     //public float dashTime;
@@ -71,7 +76,7 @@ public class PlayerController : MonoBehaviour
         rig = GetComponent<Rigidbody2D>();
         col = GetComponent<CapsuleCollider2D>();
         animator = GetComponent<Animator>();
-
+        aura = transform.Find("Aura");
         dashAfterImage = GetComponent<DashAfterImage>();
 
         if (skillManager == null)
@@ -117,14 +122,18 @@ public class PlayerController : MonoBehaviour
         
         if (canDoubleJump)
         {
-			if (feet.IsTouchingLayers(LayerMask.GetMask("Ground")) || jumpCount < 1)
+			if (feet.IsTouchingLayers(LayerMask.GetMask("Ground")))
 			{
 				if (value.isPressed)
 				{
 					rig.velocity += new Vector2(0f, jump);
                     FindObjectOfType<SoundManager>().PlayAudio("Player_Jump");
-                    jumpCount++;
 				}
+			}
+            else if(jumpCount < 1)
+            {
+                rig.velocity += new Vector2(0f, jump - 5);
+				jumpCount++;
 			}
 		}
         else
@@ -155,7 +164,7 @@ public class PlayerController : MonoBehaviour
         
 
         bool havemove = Mathf.Abs(rig.velocity.x) > Mathf.Epsilon;
-
+        aura.gameObject.SetActive(!havemove);
         animator.SetBool("isRunning", havemove);
 
 
@@ -186,7 +195,12 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
-            StartCoroutine(Dash());
+            if (havemove)
+            { 
+                if(GetComponent<Player_StaminaSystem>().ReduceStamina())
+				StartCoroutine(Dash());
+			}
+                
         }
 
         //Debug.Log(isAttacking);
@@ -198,6 +212,8 @@ public class PlayerController : MonoBehaviour
 
     private IEnumerator Dash()
     {
+        this.gameObject.layer = LayerMask.NameToLayer("Default");
+        animator.SetTrigger("isDash");
         dashAfterImage.StartDashing();
         FindObjectOfType<SoundManager>().PlayAudio("Player_Dash");
         float startTime = Time.time;
@@ -206,10 +222,10 @@ public class PlayerController : MonoBehaviour
             transform.Translate(Vector3.right * dashSpeed * Time.deltaTime);
             yield return null;
         }
-        GetComponent<Player_StaminaSystem>().ReduceStamina(10);
+        //GetComponent<Player_StaminaSystem>().ReduceStamina(10);
         dashAfterImage.StopDashing();
-        
-    }
+		this.gameObject.layer = LayerMask.NameToLayer("Player");
+	}
 
     void Run()
     {
@@ -217,12 +233,19 @@ public class PlayerController : MonoBehaviour
 		rig.velocity = new Vector2(moveInput.x * speed, rig.velocity.y);
         if (feet.IsTouchingLayers(LayerMask.GetMask("Ground")))
         {
+            if (!isGrounded)
+            {
+                PlayAttackSound("Land");
+                isGrounded = true;
+            }
+
             animator.SetBool("isJump", false);
             isJumping = false;
             jumpCount = 0; //Reset jumpCount
         }
         else
         {
+            isGrounded = false;
             animator.SetBool("isJump", true);
             isJumping = true;
         }
@@ -286,6 +309,10 @@ public class PlayerController : MonoBehaviour
     public void StartCombo()
     {
         isAttacking = false;
+        if(Random.Range(0, 2) == 1)
+        {
+            PlayAttackSound("Yelling_" + Random.Range(1, 3));
+        }
         if (comboStep < 3)
             comboStep++;
         if (inputReceived)
@@ -401,7 +428,8 @@ public class PlayerController : MonoBehaviour
         GameObject nearestEnemy = FindNearestEnemy(playerPosition);
         if (nearestEnemy != null)
         {
-            Vector3 nearestEnemyPosition = nearestEnemy.transform.position;
+			FindObjectOfType<SoundManager>().PlayAudio("Snake_Attack");
+			Vector3 nearestEnemyPosition = nearestEnemy.transform.position;
             SpawnSnakeAtEnemy(nearestEnemyPosition);
         }
         else
@@ -420,19 +448,31 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.K))
         {
-            SummonSnakeAtEnemy(transform.position);
-            skillManager.UseSkill(25f);
-            FindObjectOfType<SoundManager>().PlayAudio("Snake_Attack");
-        }
+            if (skillManager.UseSkill(25f))
+            {
+			    SummonSnakeAtEnemy(transform.position);
+            }
+			else
+			{
+				return;
+			}
+		}
     }
 
     public void SummonTeammate()
     {
         if(currentTeammate == null)
         {
-            currentTeammate = Instantiate(teammatePrefab, summonTeammatePosition.position, summonTeammatePosition.rotation);
-            skillManager.UseSkill(50f);
-            StartCoroutine(DismissTeammateAfterTime(summonTime)); 
+            if (skillManager.UseSkill(50f))
+            {
+                FindObjectOfType<SoundManager>().PlayAudio("CastSkill");
+                currentTeammate = Instantiate(teammatePrefab, summonTeammatePosition.position, summonTeammatePosition.rotation);
+                StartCoroutine(DismissTeammateAfterTime(summonTime));
+            }
+            else
+            {
+                return;
+            }
         }
         else
         {

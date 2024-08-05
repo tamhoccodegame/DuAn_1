@@ -18,15 +18,15 @@ public class TriggerUIMarket : MonoBehaviour
 		shopCustomer = collision.GetComponent<IShopCustomer>();
 	}
 
-	private void OnTriggerStay2D(Collider2D collision)
+	private void Update()
 	{
-		if (collision.GetComponent<Player>())
+		if (shopCustomer != null)
 		{
 			if (Input.GetKeyDown(KeyCode.F))
 			{
 				StartCoroutine(ShowShopUI());
 			}
-			if(Input.GetKeyDown(KeyCode.Escape))
+			if (Input.GetKeyDown(KeyCode.Escape))
 			{
 				uiMarket.Hide();
 			}
@@ -37,6 +37,7 @@ public class TriggerUIMarket : MonoBehaviour
 	{
 		if (!isDialoguing)
 		{
+			text.gameObject.SetActive(true);
 			text.transform.parent.gameObject.SetActive(true);
 			isDialoguing = true;
 			yield return StartCoroutine(Diaglogue());

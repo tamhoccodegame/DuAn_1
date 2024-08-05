@@ -81,7 +81,7 @@ GameObject:
   - component: {fileID: 7686580144597232203}
   m_Layer: 7
   m_Name: NoHead
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -218,7 +218,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -398,7 +398,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerDamage: 0
   enemyDamage: 15
-  isRange: 0
+  canDestroySelf: 0
 --- !u!114 &7788115024242240440
 MonoBehaviour:
   m_ObjectHideFlags: 0

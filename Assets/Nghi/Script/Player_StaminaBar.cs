@@ -19,13 +19,13 @@ public class Player_StaminaBar : MonoBehaviour
         
     }
 
-    public void SetMaxStamina(int staminaAmount)
+    public void SetMaxStamina(float staminaAmount)
     {
         stamina_Slider.maxValue = staminaAmount;
         stamina_Slider.value = staminaAmount;
     }
 
-    public void SetStamina(int staminaAmount)
+    public void SetStamina(float staminaAmount)
     {
         stamina_Slider.value = staminaAmount;
     }

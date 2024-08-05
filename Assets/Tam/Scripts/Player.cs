@@ -23,10 +23,12 @@ public class Player : MonoBehaviour, IShopCustomer
 	// Start is called before the first frame update
 	void Awake()
     {
-
+		
 	}
 	private void Start()
 	{
+		GameSession.instance.UpdateCheckpoint(transform.position.x, transform.position.y, SceneManager.GetActiveScene().name);
+
 		inventory = GameSession.instance.GetInventory();
 		equipment = GameSession.instance.GetEquipment();
 

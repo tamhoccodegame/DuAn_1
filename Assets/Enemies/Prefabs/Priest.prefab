@@ -101,7 +101,7 @@ GameObject:
   - component: {fileID: 6175036119779205727}
   m_Layer: 7
   m_Name: Priest
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -476,7 +476,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerDamage: 0
   enemyDamage: 5
-  isRange: 0
+  canDestroySelf: 0
 --- !u!1 &5721611232839321945
 GameObject:
   m_ObjectHideFlags: 0

@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 4266126287994041507}
   m_Layer: 7
   m_Name: Headless Knight
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -378,7 +378,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerDamage: 0
   enemyDamage: 30
-  isRange: 0
+  canDestroySelf: 0
 --- !u!61 &5439031859367064951
 BoxCollider2D:
   m_ObjectHideFlags: 0

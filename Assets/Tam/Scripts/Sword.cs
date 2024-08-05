@@ -66,6 +66,7 @@ public class Sword : MonoBehaviour
 		Enemy enemy = collision.GetComponent<Enemy>();
 		if (enemy != null)
 		{
+			FindObjectOfType<SoundManager>().PlayAudio("HitImpact_" + Random.Range(1, 3));
 			enemy.TakeDamage(damage);
 			if (isFireBuff)
 			{

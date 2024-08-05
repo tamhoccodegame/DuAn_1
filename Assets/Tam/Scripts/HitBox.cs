@@ -24,6 +24,9 @@ public class HitBox : MonoBehaviour
 
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
+		if ((collision.gameObject.layer != LayerMask.NameToLayer("Player"))
+		&& (collision.gameObject.layer != LayerMask.NameToLayer("Enemy"))) return;
+
 		if (collision.gameObject.layer == LayerMask.NameToLayer("Ground") && canDestroySelf)
 		{
 			Destroy(this.gameObject);

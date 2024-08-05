@@ -45,19 +45,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sounds:
-  - clip: {fileID: 8300000, guid: ca284eceb569f6747ad9c0cba9dff10c, type: 3}
+  - clip: {fileID: 8300000, guid: df5b18ddfe1020548971abb37a6c6de2, type: 3}
     name: Player_AttackCombo_1
     volume: 1
     pitch: 1
     loop: 0
     source: {fileID: 0}
-  - clip: {fileID: 8300000, guid: 1e59901f1b780af4bb376f4d1b9d3162, type: 3}
+  - clip: {fileID: 8300000, guid: df5b18ddfe1020548971abb37a6c6de2, type: 3}
     name: Player_AttackCombo_2
     volume: 1
     pitch: 1
     loop: 0
     source: {fileID: 0}
-  - clip: {fileID: 8300000, guid: 86b730d8c2d1ff34a81e4991c4dfab79, type: 3}
+  - clip: {fileID: 8300000, guid: df5b18ddfe1020548971abb37a6c6de2, type: 3}
     name: Player_AttackCombo_3
     volume: 1
     pitch: 1
@@ -75,7 +75,7 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     source: {fileID: 0}
-  - clip: {fileID: 8300000, guid: e7072fc0a41ed1a41b5a9b76a7410441, type: 3}
+  - clip: {fileID: 8300000, guid: 5c87ae170b7ff4c47b3f032c37fec25c, type: 3}
     name: Player_Death
     volume: 1
     pitch: 1
@@ -93,13 +93,13 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     source: {fileID: 0}
-  - clip: {fileID: 8300000, guid: 4498809efee811547875559a25db232d, type: 3}
+  - clip: {fileID: 8300000, guid: 4a1f6612eb0982e478cec2ac8758867a, type: 3}
     name: Player_Jump
     volume: 1
     pitch: 1
     loop: 0
     source: {fileID: 0}
-  - clip: {fileID: 8300000, guid: 2255df3cbcfd47047a7a0d6db1a50f13, type: 3}
+  - clip: {fileID: 8300000, guid: 4a1f6612eb0982e478cec2ac8758867a, type: 3}
     name: Player_Dash
     volume: 1
     pitch: 1
@@ -137,6 +137,54 @@ MonoBehaviour:
     source: {fileID: 0}
   - clip: {fileID: 8300000, guid: 373475f394375334784455ae1a93f487, type: 3}
     name: Enemy_Stomping
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: e9164e399606704468947ee30da9ae34, type: 3}
+    name: CastSkill
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: f339eb32f0f063a459abf9e8c362ac70, type: 3}
+    name: Yelling_1
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: cadb397c231f70c41b90e73820b68565, type: 3}
+    name: Yelling_2
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: c8484698132827f46930e6d83766186c, type: 3}
+    name: Yelling_3
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: cce6f4d8de10fe643a38214483e2f082, type: 3}
+    name: Land
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: c0e57f0b1bf3dae4f95d46ca8fe854ea, type: 3}
+    name: Footstep
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: a3a3fe9d009df394b86962160fe114df, type: 3}
+    name: HitImpact_1
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 1b762d4d79441334ea7c22de937de42e, type: 3}
+    name: HitImpact_2
     volume: 1
     pitch: 1
     loop: 0

@@ -15,7 +15,7 @@ public class SoundManager : MonoBehaviour
     //Start is called before the first frame update
     void Start()
     {
-        PlayAudio("Theme_Song");
+        //PlayAudio("Theme_Song");
     }
 
     //Update is called once per frame
@@ -23,6 +23,7 @@ public class SoundManager : MonoBehaviour
     {
 
     }
+
 
     private void Awake()
     {

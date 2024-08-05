@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Analytics;
+using UnityEngine.Playables;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -25,7 +27,7 @@ public class GameSession : MonoBehaviour
     private bool isPaused = false;
 
     [Header("Dialogue Canvas")]
-    public GameObject dialogueCanvas;
+    public GameObject dialoguePanel;
 
     [Header("Map")]
     public GameObject map;
@@ -39,7 +41,12 @@ public class GameSession : MonoBehaviour
 	[SerializeField] private LockSlotUI uiLockSlotUI;
 	[SerializeField] private UI_Equipment[] uiEquipments;
     [SerializeField] private Player_HealthBar player_HealthBar;
-    [SerializeField] private Slider bossHealthBar;
+    [SerializeField] private Player_StaminaBar player_StaminaBar;
+	[SerializeField] private Slider player_SkillBar;
+	[SerializeField] private Slider bossHealthBar;
+
+    [Header("TransitionImage")]
+    [SerializeField] private Animator transitionAnimator;
 
 
 	// Start is called before the first frame update
@@ -79,6 +86,16 @@ public class GameSession : MonoBehaviour
         return player_HealthBar;
     }
 
+    public Player_StaminaBar GetPlayer_StaminaBar()
+    {
+        return player_StaminaBar;
+    }
+
+    public Slider GetPlayer_SkillBar()
+    {
+        return player_SkillBar;
+    }
+
     public Slider GetBossHealthBar()
     {
         return bossHealthBar;
@@ -102,17 +119,60 @@ public class GameSession : MonoBehaviour
 	}
 
 	public IEnumerator LoadCheckpointCoroutine()
-    { 
-        yield return SceneManager.LoadSceneAsync("Loading Scene");
-        Debug.Log("Loading Scene Complete");
-        yield return new WaitForSeconds(5f);
+    {
+		transitionAnimator.SetTrigger("FadeOut");
+		yield return new WaitForSeconds(3f);
+
+		foreach (Transform child in transform)
+		{
+            if(transitionAnimator.transform.IsChildOf(child))
+                continue;
+			child.gameObject.SetActive(false);
+		}
+       
+		yield return SceneManager.LoadSceneAsync("Loading Scene");
+		transitionAnimator.gameObject.SetActive(true);
+		transitionAnimator.SetTrigger("FadeIn");
+		Debug.Log("Loading Scene Complete");
+        yield return new WaitForSeconds(3f);
+
+
 		Debug.Log("Ready to load " + mapName);
+		transitionAnimator.SetTrigger("FadeOut");
+		yield return new WaitForSeconds(3f);
+
+
 		yield return SceneManager.LoadSceneAsync(mapName);
-        Debug.Log($"Load {mapName} succecssful");
-        Transform player = GameObject.Find("Player").transform;
-        Debug.Log("Find player successful");
+		foreach (Transform child in transform)
+		{
+			if (child.gameObject.name == "Canvas Variant")
+			{
+				child.gameObject.SetActive(true);
+
+				foreach (Transform grandchild in child)
+				{
+					if (grandchild.gameObject.name == "BossHealthBar")
+					{
+						grandchild.gameObject.SetActive(false);
+						break;
+					}
+					else continue;
+				}
+				break;
+			}
+			else continue;
+		}
+		Debug.Log($"Load {mapName} succecssful");
+		Transform player = GameObject.Find("Player").transform;
+		Debug.Log("Find player successful");
 		player.position = new Vector2(playerPositionX, playerPositionY);
-        Debug.Log("Player position Set!");
+		Debug.Log("Player position Set!");
+
+		transitionAnimator.SetTrigger("FadeIn");
+		yield return new WaitForSeconds(3f);
+
+	
+		
 	}
     public void LoadScene(string _mapName)
     {
@@ -121,20 +181,42 @@ public class GameSession : MonoBehaviour
 
     public IEnumerator LoadSceneCoroutine(string _mapName)
     {
-        foreach(Transform child in transform)
-        {
-            child.gameObject.SetActive(false);
-        }
+		transitionAnimator.SetTrigger("FadeOut");
+		yield return new WaitForSeconds(3f);
+
+		foreach (Transform child in transform)
+		{
+			if (transitionAnimator.transform.IsChildOf(child))
+				continue;
+			child.gameObject.SetActive(false);
+		}
+
 
 		yield return SceneManager.LoadSceneAsync("Loading Scene");
-        yield return new WaitForSeconds(5f);
+		transitionAnimator.SetTrigger("FadeIn");
+		yield return new WaitForSeconds(5f);
 
 		yield return SceneManager.LoadSceneAsync(_mapName);
 
 
 		foreach (Transform child in transform)
 		{
-			child.gameObject.SetActive(true);
+			if (child.gameObject.name == "Canvas Variant")
+			{
+				child.gameObject.SetActive(true);
+
+				foreach (Transform grandchild in child)
+				{
+                    if (grandchild.gameObject.name == "BossHealthBar")
+                    {
+                        grandchild.gameObject.SetActive(false);
+                        break;
+                    }
+                    else continue;
+				}
+                break;
+			}
+			else continue;
 		}
 
 		Transform player = GameObject.Find("Player").transform;
@@ -151,7 +233,10 @@ public class GameSession : MonoBehaviour
             }
         }
 
-    }
+		transitionAnimator.SetTrigger("FadeIn");
+		yield return new WaitForSeconds(3f);
+
+	}
 
     private void Awake()
     {
@@ -177,7 +262,8 @@ public class GameSession : MonoBehaviour
 	void Start()
 	{
         pauseMenuUI.SetActive(false);
-        dialogueCanvas.SetActive(false);
+        dialoguePanel.SetActive(false);
+        bossHealthBar.transform.parent.gameObject.SetActive(false);
     }
 
 

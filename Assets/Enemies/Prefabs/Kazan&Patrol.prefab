@@ -50,7 +50,7 @@ GameObject:
   - component: {fileID: 2689061517772305257}
   m_Layer: 7
   m_Name: Kazan_0
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -188,7 +188,7 @@ PolygonCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -543,7 +543,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerDamage: 0
   enemyDamage: 10
-  isRange: 0
+  canDestroySelf: 0
 --- !u!114 &1004731636261181893
 MonoBehaviour:
   m_ObjectHideFlags: 0
