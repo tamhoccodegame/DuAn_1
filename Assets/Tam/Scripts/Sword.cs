@@ -66,9 +66,7 @@ public class Sword : MonoBehaviour
 		Enemy enemy = collision.GetComponent<Enemy>();
 		if (enemy != null)
 		{
-			Destroy(enemy.transform.Find("BossRage")?.gameObject);
 			enemy.TakeDamage(damage);
-			Debug.Log(isFireBuff);
 			if (isFireBuff)
 			{
 				Instantiate(fireEffect, enemy.transform.position, Quaternion.identity, enemy.transform);

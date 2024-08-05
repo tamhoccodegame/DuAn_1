@@ -18,8 +18,9 @@ public class PlayerController : MonoBehaviour
 
     Rigidbody2D rig;
     Animator animator;
+    Transform aura;
     CapsuleCollider2D col;
-    public BoxCollider2D feet;
+    public Collider2D feet;
     [SerializeField] float speed = 10f;
     [SerializeField] float jump = 20f;
     [SerializeField] private int damage;
@@ -64,7 +65,7 @@ public class PlayerController : MonoBehaviour
         rig = GetComponent<Rigidbody2D>();
         col = GetComponent<CapsuleCollider2D>();
         animator = GetComponent<Animator>();
-
+        aura = transform.Find("Aura");
         dashAfterImage = GetComponent<DashAfterImage>();
     }
 
@@ -143,6 +144,7 @@ public class PlayerController : MonoBehaviour
         
 
         bool havemove = Mathf.Abs(rig.velocity.x) > Mathf.Epsilon;
+        aura.gameObject.SetActive(!havemove);
 
         animator.SetBool("isRunning", havemove);
 

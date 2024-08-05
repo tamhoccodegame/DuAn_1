@@ -82,7 +82,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7318587085560588039, guid: 9fbd6ef2bf8e8d04ebb30d8aba04c156, type: 3}
       propertyPath: m_Intensity
-      value: 5.01
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 7318587085560588039, guid: 9fbd6ef2bf8e8d04ebb30d8aba04c156, type: 3}
+      propertyPath: m_PointLightOuterRadius
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7318587085560588039, guid: 9fbd6ef2bf8e8d04ebb30d8aba04c156, type: 3}
       propertyPath: m_ApplyToSortingLayers.Array.data[6]

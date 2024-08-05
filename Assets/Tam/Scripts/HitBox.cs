@@ -7,7 +7,7 @@ public class HitBox : MonoBehaviour
 	private int damage;
 	[SerializeField] private int playerDamage;
 	[SerializeField] private int enemyDamage;
-	[SerializeField] private bool isRange = false;
+	[SerializeField] private bool canDestroySelf = false;
 	private void Start()
 	{
 		if(playerDamage == 0)
@@ -24,6 +24,11 @@ public class HitBox : MonoBehaviour
 
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
+		if (collision.gameObject.layer == LayerMask.NameToLayer("Ground") && canDestroySelf)
+		{
+			Destroy(this.gameObject);
+			return;
+		}
 		Enemy enemyHit = collision.gameObject.GetComponent<Enemy>();
 		Player_Health playerHit = collision.gameObject.GetComponent<Player_Health>();
 		Vector3 direction = new Vector3(collision.transform.position.x - transform.position.x, 0, 0); 
@@ -50,8 +55,6 @@ public class HitBox : MonoBehaviour
 			yield return StartCoroutine(knockback.ApplyKnockback(target, direction));
 		}
 
-
-		if (isRange) Destroy(gameObject);
 	}
 
 	private IEnumerator HandleEnemyrHit(Enemy enemyHit, Transform target, Vector3 direction)
@@ -64,7 +67,5 @@ public class HitBox : MonoBehaviour
 		{
 			yield return StartCoroutine(knockback.ApplyKnockback(target, direction));
 		}
-
-		if (isRange) Destroy(gameObject);
 	}
 }

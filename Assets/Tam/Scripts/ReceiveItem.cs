@@ -19,10 +19,16 @@ public class ReceiveItem : MonoBehaviour
 	{
 		if (collision.GetComponent<Player>())
 		{
-			inventory.AddRune(new Rune(Rune));
-			text.text = "You received Rune " + Rune;
-			text.gameObject.SetActive(true);
-			text.gameObject.SetActive(false);
+			StartCoroutine(AddRuneToInventory());
 		}
+	}
+
+	private IEnumerator AddRuneToInventory()
+	{
+		inventory.AddRune(new Rune(Rune));
+		text.text = "You Received Rune " + Rune;
+		text.gameObject.SetActive(true);
+		yield return new WaitForSeconds(2f);
+		text.gameObject.SetActive(false);
 	}
 }

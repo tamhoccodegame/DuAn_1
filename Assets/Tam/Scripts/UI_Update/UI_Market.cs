@@ -57,6 +57,9 @@ public class UI_Market : MonoBehaviour
 			image.sprite = shopItem.GetSprite();
 			marketSlotRectTransform.Find("Cost").GetComponent<Text>().text = shopItem.GetCost().ToString();
 
+			Text playerGold = transform.parent.Find("Coin_Amount_Image").Find("Coin_Amount_Text").GetComponent<Text>();
+			playerGold.text = GameSession.instance.GetCoin().ToString();
+
             marketSlotRectTransform.GetComponent<Button_UI>().ClickFunc = () =>
             {
 				if (lastHoverSlot != null) lastHoverSlot.gameObject.SetActive(false);

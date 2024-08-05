@@ -24,6 +24,12 @@ public class GameSession : MonoBehaviour
 	public GameObject pauseMenuUI;
     private bool isPaused = false;
 
+    [Header("Dialogue Canvas")]
+    public GameObject dialogueCanvas;
+
+    [Header("Map")]
+    public GameObject map;
+
     private Inventory inventory;
     private Equipment equipment;
 
@@ -78,26 +84,35 @@ public class GameSession : MonoBehaviour
         return bossHealthBar;
     }
 
+    public int GetCoin()
+    {
+        return coin;
+    }
     public void UpdateCheckpoint(float _posX, float _posY, string _mapName)
     {
         playerPositionX = _posX;
         playerPositionY = _posY;
         mapName = _mapName;
-    }
+		Debug.Log($"Checkpoint updated: {_mapName}, Position: ({_posX}, {_posY})");
+	}
 
-    public void Respawn()
-    {
-        StartCoroutine(LoadCheckpointCoroutine(mapName));
-    }
+	public void LoadCheckpoint()
+	{
+		StartCoroutine(LoadCheckpointCoroutine());
+	}
 
-
-    public IEnumerator LoadCheckpointCoroutine(string _mapName)
-    {
+	public IEnumerator LoadCheckpointCoroutine()
+    { 
         yield return SceneManager.LoadSceneAsync("Loading Scene");
-        yield return new WaitForSeconds(8f);
-        yield return SceneManager.LoadSceneAsync(_mapName);
+        Debug.Log("Loading Scene Complete");
+        yield return new WaitForSeconds(5f);
+		Debug.Log("Ready to load " + mapName);
+		yield return SceneManager.LoadSceneAsync(mapName);
+        Debug.Log($"Load {mapName} succecssful");
         Transform player = GameObject.Find("Player").transform;
+        Debug.Log("Find player successful");
 		player.position = new Vector2(playerPositionX, playerPositionY);
+        Debug.Log("Player position Set!");
 	}
     public void LoadScene(string _mapName)
     {
@@ -106,19 +121,32 @@ public class GameSession : MonoBehaviour
 
     public IEnumerator LoadSceneCoroutine(string _mapName)
     {
+        foreach(Transform child in transform)
+        {
+            child.gameObject.SetActive(false);
+        }
+
 		yield return SceneManager.LoadSceneAsync("Loading Scene");
         yield return new WaitForSeconds(5f);
-        yield return SceneManager.LoadSceneAsync(_mapName);
-        Transform player = GameObject.Find("Player").transform;
+
+		yield return SceneManager.LoadSceneAsync(_mapName);
+
+
+		foreach (Transform child in transform)
+		{
+			child.gameObject.SetActive(true);
+		}
+
+		Transform player = GameObject.Find("Player").transform;
         
         //Tim tat ca cac PORTAL trong scene moi
         Portal[] portals = FindObjectsOfType<Portal>();
         foreach(Portal portal in portals)
         {
-            Debug.Log(portal.name);
             if(portal.portalID == desPortalID)
             {
                 player.transform.position = portal.spawnPoint.position;
+                UpdateCheckpoint(portal.spawnPoint.position.x, portal.spawnPoint.position.y, _mapName);
                 break;
             }
         }
@@ -149,6 +177,7 @@ public class GameSession : MonoBehaviour
 	void Start()
 	{
         pauseMenuUI.SetActive(false);
+        dialogueCanvas.SetActive(false);
     }
 
 
@@ -156,6 +185,15 @@ public class GameSession : MonoBehaviour
 	void Update()
 	{
 		OnPressESC();
+
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            map.gameObject.SetActive(true);
+        }
+        else if(Input.GetKeyUp(KeyCode.Tab))
+        {
+            map.gameObject.SetActive(false);
+        }
 	}
 
 

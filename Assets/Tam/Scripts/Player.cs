@@ -102,7 +102,7 @@ public class Player : MonoBehaviour, IShopCustomer
 
 	public bool TryToSpendGold(int goldAmount)
 	{
-		int gold = 10000;
+		int gold = GameSession.instance.GetCoin();
 		return gold >= goldAmount;
 	}
 

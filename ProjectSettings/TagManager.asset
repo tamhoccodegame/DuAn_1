@@ -21,7 +21,7 @@ TagManager:
   - UI
   - Ground
   - Enemy
-  - 
+  - Background
   - 
   - 
   - 
@@ -61,17 +61,17 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Player
-    uniqueID: 3356409257
-    locked: 0
-  - name: Effect
-    uniqueID: 1036407973
-    locked: 0
   - name: Ground
     uniqueID: 1627640423
     locked: 0
   - name: Elements
     uniqueID: 2356778009
+    locked: 0
+  - name: Player
+    uniqueID: 3356409257
+    locked: 0
+  - name: Effect
+    uniqueID: 1036407973
     locked: 0
   - name: UI
     uniqueID: 3484935709

@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class Player_Health : MonoBehaviour
 {
@@ -45,16 +44,16 @@ public class Player_Health : MonoBehaviour
     public IEnumerator TakeDamage(int damage)
     {
         currentHealth -= damage;
+		animator.SetTrigger("isHurt");
+		Instantiate(player_Hurt_Effect, transform.position, Quaternion.identity);
+		player_HealthBar.SetHealth(currentHealth);
 
 		if (currentHealth <= 0)
 		{
-			Die();
+			StartCoroutine(Die());
+            yield break;
 		}
-
-        Instantiate(player_Hurt_Effect, transform.position, Quaternion.identity);
-		player_HealthBar.SetHealth(currentHealth);
-
-        animator.SetTrigger("isHurt");
+ 
         //FindObjectOfType<SoundManager>().PlayAudio("Player_Hurt");
         //player_Blood_Effect.Play();
         animator.ResetTrigger("isAttack1");
@@ -89,7 +88,7 @@ public class Player_Health : MonoBehaviour
 		Time.timeScale = 1f;
 	}
 
-	void Die()
+	IEnumerator Die()
     {
         //FindObjectOfType<SoundManager>().PlayAudio("Player_Death");
         animator.SetBool("isDead", true);
@@ -106,18 +105,19 @@ public class Player_Health : MonoBehaviour
         //StartCoroutine(WaitAndRespawn());
         //deathEffect.Play();
         //FindObjectOfType<GameSession>().PlayerDeath();
-        FindObjectOfType<GameSession>().Respawn();
+        yield return new WaitForSeconds(4f);
+        GameSession.instance.LoadCheckpoint();
 
     }
 
-    private IEnumerator WaitAndRespawn()
-    {
-        yield return new WaitForSeconds(2f);
-        Checkpoint_System checkpoint = GetComponent<Checkpoint_System>();
-        checkpoint.Respawn();
-        currentHealth = maxHealth;
-        player_HealthBar.SetHealth(currentHealth);
-    }
+    //private IEnumerator WaitAndRespawn()
+    //{
+    //    yield return new WaitForSeconds(2f);
+    //    Checkpoint_System checkpoint = GetComponent<Checkpoint_System>();
+    //    checkpoint.Respawn();
+    //    currentHealth = maxHealth;
+    //    player_HealthBar.SetHealth(currentHealth);
+    //}
 
     public void OnTriggerEnter2D(Collider2D player)
     {

@@ -45,6 +45,11 @@ public class Boss : Enemy
 
 		if (isCoroutineRunning) return;
 
+
+		direction = direction = new Vector3(player.position.x - transform.position.x, 0, 0);
+		direction.Normalize();
+		LookAtDirection(direction);
+
 		isCoroutineRunning = true;
 
 		if (currentHealth <= 0.5 * maxHealth && !isRage)
@@ -113,11 +118,6 @@ public class Boss : Enemy
 	public override void Chase()
 	{
 		animator.Play("Move");
-		direction = new Vector3(player.position.x - transform.position.x, 0, 0);
-		direction.Normalize();
-
-		LookAtDirection(direction);
-
 		rb.velocity = new Vector2(direction.x * speed, rb.velocity.y);
 
 	}
@@ -161,11 +161,6 @@ public class Boss : Enemy
 	//CastSkill Thunder
 	private IEnumerator Combo3()
 	{
-		direction = new Vector3(player.position.x - transform.position.x, 0, 0);
-		direction.Normalize();
-
-		LookAtDirection(direction);
-
 		animator.Play("CastSkill");
 		yield return new WaitForSeconds(.5f);
 		Camera cam = Camera.main;

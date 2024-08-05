@@ -78,7 +78,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -938558039
-  m_SortingLayer: 1
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: -597297528, guid: 3d8fed24e1af8d7489ae3a57f80d1fe4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -325,7 +325,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHealth: 0
-  vialityEffect: {fileID: 0}
+  vialityEffect: {fileID: 5034333633227434473, guid: c8cb1ecb607c8894aa40365393bf8a7d, type: 3}
   effectPrefabs: {fileID: 851701800795918964, guid: 89680d115335ef144ba486621042b96e, type: 3}
   rockPrefabs: {fileID: 7664848988558263536, guid: 346e8c5793da22d459784385c65ef866, type: 3}
   effectPoint: {fileID: 147988867151863257}

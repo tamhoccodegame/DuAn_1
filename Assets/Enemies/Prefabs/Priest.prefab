@@ -327,7 +327,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHealth: 0
-  vialityEffect: {fileID: 0}
+  vialityEffect: {fileID: 5034333633227434473, guid: c8cb1ecb607c8894aa40365393bf8a7d, type: 3}
   speed: 5
   _attackRange: 3
   isRage: 0
@@ -337,6 +337,7 @@ MonoBehaviour:
   rockPrefabs: {fileID: 7664848988558263536, guid: 346e8c5793da22d459784385c65ef866, type: 3}
   effectPoint: {fileID: 4599160309436436009}
   dustPoint: {fileID: 5721611232839321945}
+  healthBar_slider: {fileID: 0}
 --- !u!1 &4599160309436436009
 GameObject:
   m_ObjectHideFlags: 0

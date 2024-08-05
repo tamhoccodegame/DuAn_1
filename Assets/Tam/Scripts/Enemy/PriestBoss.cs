@@ -57,6 +57,10 @@ public class PriestBoss : Enemy
     {
         if (isCoroutineRunning) return;
 
+		direction = new Vector3(player.position.x - transform.position.x, 0, 0);
+		direction.Normalize();
+		LookAtDirection(direction);
+
 		isCoroutineRunning = true;	
         StartCoroutine("Combo" + currentComboStrikes);
 
@@ -71,10 +75,7 @@ public class PriestBoss : Enemy
 	public override void Chase()
 	{
 		animator.Play("Walk");
-		direction = new Vector3(player.position.x - transform.position.x, 0, 0);
-		direction.Normalize();
-
-		LookAtDirection(direction);
+		
 
 		rb.velocity = new Vector2(direction.x * speed, rb.velocity.y);
 

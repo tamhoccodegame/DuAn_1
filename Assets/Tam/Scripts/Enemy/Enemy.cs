@@ -64,8 +64,14 @@ public class Enemy : MonoBehaviour
     public virtual void Update()
     {
 		if (!isAlive) return;
-        if (isCoroutineRunning) return;
-        switch (currentState)
+
+		if (isCoroutineRunning) return;
+
+		direction = direction = new Vector3(player.position.x - transform.position.x, 0, 0);
+		direction.Normalize();
+		LookAtDirection(direction);
+
+		switch (currentState)
         {
             case State.Patrol:
                 Patrol();
@@ -87,7 +93,8 @@ public class Enemy : MonoBehaviour
     
     private void Patrol()
     {
-        if (Mathf.Abs(player.position.x - transform.position.x) <= chaseRange)
+		animator.Play("Move");
+		if (Mathf.Abs(player.position.x - transform.position.x) <= chaseRange)
         {
             ChangeState(State.Chase);
         }
@@ -115,6 +122,7 @@ public class Enemy : MonoBehaviour
 
     public virtual void Chase()
     {
+        animator.Play("Move");
         direction = new Vector3(player.position.x - transform.position.x, 0, 0);
         direction.Normalize();
 
@@ -125,6 +133,10 @@ public class Enemy : MonoBehaviour
         if (Mathf.Abs(player.position.x - transform.position.x) <= attackRange)
         {
             ChangeState(State.Attack);
+        }
+        else if(Mathf.Abs(player.position.x - transform.position.x) > chaseRange)
+        {
+            ChangeState(State.Patrol);
         }
         //Debug.Log("Direction: " + direction + " | Velocity: " + rb.velocity);
     }
@@ -180,7 +192,7 @@ public class Enemy : MonoBehaviour
     private IEnumerator DieDelay()
     {
 		animator.SetBool("isDead", true);
-        FindObjectOfType<TriggerBlockDoor>().HideDoor();
+        //FindObjectOfType<TriggerBlockDoor>().HideDoor();
         Instantiate(vialityEffect, transform.position, Quaternion.identity);
 		yield return new WaitForSeconds(2f);
         Destroy(gameObject);
