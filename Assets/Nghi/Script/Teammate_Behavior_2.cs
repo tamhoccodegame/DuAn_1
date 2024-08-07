@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -74,7 +75,7 @@ public class Teammate_Behavior_2 : MonoBehaviour
     {
         Collider2D[] enemies = Physics2D.OverlapCircleAll(transform.position, attackRange, enemyLayer);
         if (enemies.Length > 0)
-        {
+        { 
             target = enemies[0].transform; // Tìm kẻ thù gần nhất
             currentState = State.ChaseEnemy;
         }
@@ -125,31 +126,31 @@ public class Teammate_Behavior_2 : MonoBehaviour
     {
         if (target != null)
         {
-            attackTimer += Time.deltaTime;
+			// Nếu kẻ thù đã chết
+			if (target.GetComponent<Enemy>().Die())
+			{
+				Transform oldTarget = target;
+                target = null;
+				FindTarget(); // Kiểm tra xem có kẻ thù khác trong phạm vi không
+				if (target == oldTarget)
+				{
+					currentState = State.FollowPlayer; // Quay lại trạng thái FollowPlayer nếu không còn target
+				}
+			}
+
+			attackTimer += Time.deltaTime;
             if (attackTimer >= attackInterval)
             {
                 PerformComboAttack();
                 attackTimer = 0;
 
                 // Thực hiện hành vi tấn công (ví dụ: giảm máu kẻ thù)***
-                Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayer);
-                foreach(Collider2D enemy in hitEnemies)
-                {
-                    Debug.Log("Teammate hit " + enemy.name);
-                    target.GetComponent<Enemy>().TakeDamage(attackDamage);
-                }
+                Collider2D hitEnemy = Physics2D.OverlapCircle(attackPoint.position, attackRange, enemyLayer);
                 
-
-                // Nếu kẻ thù đã chết
-                if (target.GetComponent<Enemy>().Die())
+                if (hitEnemy != null)
                 {
-                    target = null;
-                    FindTarget(); // Kiểm tra xem có kẻ thù khác trong phạm vi không
-                    if (target == null)
-                    {
-                        currentState = State.FollowPlayer; // Quay lại trạng thái FollowPlayer nếu không còn target
-                    }
-                }
+					target.GetComponent<Enemy>().TakeDamage(attackDamage);
+				}
             }
         }
         else

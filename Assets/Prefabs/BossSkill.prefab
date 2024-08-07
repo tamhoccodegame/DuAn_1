@@ -58,7 +58,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 285656054538791529, guid: dc0dcd1aa86e1e74c94eafd8a4beb5c7, type: 3}
       propertyPath: m_LocalScale.y
-      value: 13.013238
+      value: 31.536804
       objectReference: {fileID: 0}
     - target: {fileID: 285656054538791529, guid: dc0dcd1aa86e1e74c94eafd8a4beb5c7, type: 3}
       propertyPath: m_LocalPosition.x
@@ -66,7 +66,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 285656054538791529, guid: dc0dcd1aa86e1e74c94eafd8a4beb5c7, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -6.2385
+      value: -12.6063
       objectReference: {fileID: 0}
     - target: {fileID: 285656054538791529, guid: dc0dcd1aa86e1e74c94eafd8a4beb5c7, type: 3}
       propertyPath: m_LocalPosition.z
@@ -102,11 +102,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7924371403132222136, guid: dc0dcd1aa86e1e74c94eafd8a4beb5c7, type: 3}
       propertyPath: m_SortingLayer
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7924371403132222136, guid: dc0dcd1aa86e1e74c94eafd8a4beb5c7, type: 3}
       propertyPath: m_SortingLayerID
-      value: 1036407973
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -146,7 +146,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerDamage: 0
   enemyDamage: 25
-  isRange: 0
+  canDestroySelf: 0
 --- !u!61 &2717489341241192512
 BoxCollider2D:
   m_ObjectHideFlags: 0

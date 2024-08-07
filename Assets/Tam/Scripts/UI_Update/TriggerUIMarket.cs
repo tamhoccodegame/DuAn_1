@@ -10,8 +10,24 @@ public class TriggerUIMarket : MonoBehaviour
 	[SerializeField] private IShopCustomer shopCustomer;
 	public string lines;
 	private int lineIndex = 0;
-	public Text text;
+	private Text text;
 	private bool isDialoguing = false;
+
+
+	private void Start()
+	{
+		if(gameObject.name == "TriggerShopRune")
+		{
+			uiMarket = GameSession.instance.GetUI_Market()[0];
+		}
+		else if(gameObject.name == "TriggerShopItem")
+		{
+			uiMarket = GameSession.instance.GetUI_Market()[1];
+		}
+		text = GameSession.instance.GetDialogueText();
+	}
+
+
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
 		if(collision.GetComponent<Player>())

@@ -53,7 +53,7 @@ public class Player_Health : MonoBehaviour
 		GetComponent<PlayerController>().EndCombo();
 
 		animator.SetTrigger("isHurt");
-		Instantiate(player_Hurt_Effect, transform.position, Quaternion.identity);
+		Instantiate(player_Hurt_Effect, transform.position, Quaternion.identity, transform);
 		player_HealthBar.SetHealth(currentHealth);
 
 		if (currentHealth <= 0)
@@ -61,10 +61,9 @@ public class Player_Health : MonoBehaviour
 			StartCoroutine(Die());
             yield break;
 		}
-        
-      
-		//FindObjectOfType<SoundManager>().PlayAudio("Player_Hurt");
-		//blood.Play();
+
+
+        //FindObjectOfType<SoundManager>().PlayAudio("Player_Hurt");
 
         yield return null;
 

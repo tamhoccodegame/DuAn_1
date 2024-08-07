@@ -81,6 +81,7 @@ public class PriestBoss : Enemy
 
 	}
 
+	//Punch 1 punch 2
 	private IEnumerator Combo1()
 	{
 		if(Mathf.Abs(player.transform.position.x - transform.position.x) <= attackRange)
@@ -113,8 +114,16 @@ public class PriestBoss : Enemy
 		fireBall.transform.localScale = new Vector3(direction.x * fireBall.transform.localScale.x,
 															fireBall.transform.localScale.y,
 															 fireBall.transform.localScale.z);
+		StartCoroutine(PlayBallSound());
 		fireBall.AddForce(new Vector2(direction.x * 10f, 0), ForceMode2D.Impulse);
 		Destroy(fireBall.gameObject, 2f);
+	}
+
+	IEnumerator PlayBallSound()
+	{
+		PlaySound("PriestBall");
+		yield return new WaitForSeconds(1f);
+		StopSound("PriestBall");
 	}
 
 	
@@ -208,6 +217,7 @@ public class PriestBoss : Enemy
 		for (int i = 0; i < Random.Range(2,5); i++)
 		{
 			animator.Play("CastSkill");
+			PlaySound("Rock_Falling");
 			yield return new WaitForSeconds(animator.GetCurrentAnimatorClipInfo(0).Length + .5f);
 
 
@@ -222,8 +232,28 @@ public class PriestBoss : Enemy
 
 	public override void TakeDamage(float damage)
 	{
+		if (!isAlive) return;
 		base.TakeDamage(damage);
 		healthBar_slider.value = currentHealth;
 	}
 
+	public override void DropCoin()
+	{
+		for (int i = 0; i < 1000; i++)
+		{
+			Instantiate(coinPrefab, transform.position + new Vector3(Random.Range(1, 6), 0, 0), transform.rotation);
+		}
+	}
+
+	public override bool Die()
+	{
+		Equipment equipment = GameSession.instance.GetEquipment();
+		equipment.IncreaseSlot();
+		isAlive = false;
+		this.enabled = false;
+		StartCoroutine(DieDelay());
+		GameObject.Find("BlockDoorEffect").SetActive(false);
+		healthBar_slider.transform.parent.gameObject.SetActive(false);
+		return true;
+	}
 }

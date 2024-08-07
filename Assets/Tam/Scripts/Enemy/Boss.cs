@@ -39,25 +39,22 @@ public class Boss : Enemy
 	{
 		healthBar_slider.maxValue = maxHealth;
 		healthBar_slider.value = maxHealth;
+		direction = direction = new Vector3(player.position.x - transform.position.x, 0, 0);
 	}
 	public override void Update()
 	{
 
 		if (isCoroutineRunning) return;
 
-
-		direction = direction = new Vector3(player.position.x - transform.position.x, 0, 0);
-		direction.Normalize();
-		LookAtDirection(direction);
-
-		isCoroutineRunning = true;
-
-		if (currentHealth <= 0.5 * maxHealth && !isRage)
+		if ((currentHealth <= 0.5 * maxHealth) && !isRage)
 		{
 			isRage = true;	
 			speed += 5;
+			var go = Instantiate(vialityEffect, transform.position + new Vector3(0, 3f, 0), Quaternion.identity);
+			go.transform.rotation = Quaternion.Euler(-90f, 0, 0);
 		}
 
+		isCoroutineRunning = true;
 		StartCoroutine("Combo" + currentComboStrikes);
 	}
 
@@ -68,21 +65,26 @@ public class Boss : Enemy
 			direction.Normalize();
 			direction.x *= -1;
 			transform.localScale = new Vector3(direction.x * Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+
 			Debug.Log(direction);
 			countTouchWall++;
 
 			Camera cam = Camera.main;
-			Vector3 viewportCheck = cam.ViewportToWorldPoint(new Vector3(0.5f, 1f, cam.nearClipPlane));
-			Vector3 spawnLocation = new Vector3(Random.Range(0, viewportCheck.x), viewportCheck.y, 0);
 
-			for(int i = 0; i< 3; i++)
+			Vector3 viewportTopLeft = cam.ViewportToWorldPoint(new Vector3(0, 1, cam.nearClipPlane));
+			Vector3 viewportTopRight = cam.ViewportToWorldPoint(new Vector3(1, 1, cam.nearClipPlane));
+
+			PlaySound("Rock_Falling");
+			for (int i = 0; i < 3; i++)
 			{
+				float randomX = Random.Range(viewportTopLeft.x, viewportTopRight.x);
+				Vector3 spawnLocation = new Vector3(randomX, viewportTopLeft.y, 0);
 				var go = Instantiate(rockPrefabs, spawnLocation, Quaternion.identity);
-				spawnLocation = new Vector3(Random.Range(0, viewportCheck.x), viewportCheck.y, 0);
-				Destroy(go,1f);
+				Destroy(go, 1f);
 			}
-		
 
+
+			isCoroutineRunning = false;
 		}
 	}
 
@@ -96,9 +98,9 @@ public class Boss : Enemy
 	{
 		if(countTouchWall < 4)
 		{
+			direction.Normalize();
 			animator.Play("Move");
 			rb.velocity = new Vector3(speed * direction.x, 0, 0);
-			isCoroutineRunning = false;
 		}
 		else
 		{
@@ -179,7 +181,9 @@ public class Boss : Enemy
 			var go1 = Instantiate(effectPrefabs, (startPos + offset), Quaternion.identity);
 			startPos = startPos + offset;
 			viewportCheck = cam.WorldToScreenPoint(go1.transform.position);
+			PlaySound("HeadlessSkill");
 			yield return new WaitForSeconds(.3f);
+			StopSound("HeadlessSkill");
 			Destroy (go1);
 		}
 
@@ -191,8 +195,29 @@ public class Boss : Enemy
 
 	public override void TakeDamage(float damage)
 	{
+		if (!isAlive) return;
 		base.TakeDamage(damage);
 		healthBar_slider.value = currentHealth;
+	}
+
+	public override void DropCoin()
+	{
+		for (int i = 0; i < 1000; i++)
+		{
+			Instantiate(coinPrefab, transform.position + new Vector3(Random.Range(1, 6), 0, 0), transform.rotation);
+		}
+	}
+
+	public override bool Die()
+	{
+		Equipment equipment = GameSession.instance.GetEquipment();
+		equipment.IncreaseSlot();
+		isAlive = false;
+		this.enabled = false;
+		StartCoroutine(DieDelay());
+		healthBar_slider.transform.parent.gameObject.SetActive(false);
+		GameObject.Find("BlockDoorEffect").SetActive(false);
+		return true;
 	}
 
 }

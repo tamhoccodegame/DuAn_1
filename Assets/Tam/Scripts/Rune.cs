@@ -45,11 +45,11 @@ public class Rune : IShopItem
 		switch(runeType)
 		{
 			default:
-			case RuneType.Damage: return 2000;
-			case RuneType.Fire: return 5000;
-			case RuneType.Electric: return 10000;
-			case RuneType.Ice: return 10000;
-			case RuneType.Lifesteal: return 20000;
+			case RuneType.Damage: return 10000;
+			case RuneType.Fire: return 1000;
+			case RuneType.Electric: return 2500;
+			case RuneType.Ice: return 3000;
+			case RuneType.Lifesteal: return 15000;
 		}
 	}
 

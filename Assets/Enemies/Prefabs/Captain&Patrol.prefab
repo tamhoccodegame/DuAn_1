@@ -233,6 +233,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentHealth: 0
   vialityEffect: {fileID: 5034333633227434473, guid: c8cb1ecb607c8894aa40365393bf8a7d, type: 3}
+  hitEffect: {fileID: 6823200998282874672, guid: 8f8fe12323625f5499b2853dd2ad3e58, type: 3}
+  coinPrefab: {fileID: 6672593827888471164, guid: 473407a94e1a2794ea8a274c6faa4a7e, type: 3}
   _maxHealth: 500
   _patrolSpeed: 2
   _chaseSpeed: 4

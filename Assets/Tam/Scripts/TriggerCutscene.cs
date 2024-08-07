@@ -13,8 +13,8 @@ public class TriggerCutscene : MonoBehaviour
 
 	private void CutScene_stopped(PlayableDirector obj)
 	{
-        Destroy(cutScene.gameObject,1f);
-        Destroy(gameObject,1f);
+        Destroy(cutScene.gameObject);
+        Destroy(gameObject);
 	}
 
 	// Update is called once per frame

@@ -13,7 +13,10 @@ public class RuneShop : MonoBehaviour
         runes = new List<Rune>()
         {
             new Rune(Rune.RuneType.Lifesteal),
-			new Rune(Rune.RuneType.DoubleJump),
+			new Rune(Rune.RuneType.Fire),
+            new Rune(Rune.RuneType.Ice),
+            new Rune(Rune.RuneType.Electric),
+            new Rune(Rune.RuneType.Damage),
 		};
         //Add rune to runeshop
 

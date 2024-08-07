@@ -51,7 +51,7 @@ public class Item : IShopItem
 	}
 	public string GetDescription()
 	{
-		throw new NotImplementedException();
+		return "Item Description";
 	}
 
 }

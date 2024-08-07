@@ -15,8 +15,8 @@ public class Equipment
 	public Equipment()
 	{
 		equipments = new List<Rune>();
-		maxSlot = 4;
-		avaSlot = 4;
+		maxSlot = 1;
+		avaSlot = 1;
 		//IncreaseSlot();
 	}
 	public void IncreaseSlot()

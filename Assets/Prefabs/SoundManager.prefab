@@ -189,5 +189,59 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: cb66c7bcec5daf146af27ffa6d65aa16, type: 3}
+    name: PriestBall
+    volume: 1
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: aa66eaf72a5f8624583b8d44e48f1ebf, type: 3}
+    name: PriestDead
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 01176c7c710e05c4a81a63ef5c8254e2, type: 3}
+    name: PriestPunch
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 77de54cc7cc35424e8a761517bd03fa1, type: 3}
+    name: PriestSkill
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: e7a8c5c179ee472408d27115d72dd183, type: 3}
+    name: PriestSlash
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: fe703e5931a21c848825bfde6bfa187a, type: 3}
+    name: PriestFireBall
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 2176fc152844449409bc0a906db88439, type: 3}
+    name: HeadlessSkill
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 3a9b162de20d44c43b0857ef6e2365e5, type: 3}
+    name: HeadlessFootstep_1
+    volume: 0.2
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 8f00cbd499705324d97b1eb3c602b7b1, type: 3}
+    name: HeadlessFootstep_2
+    volume: 0.2
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
   musicSlider: {fileID: 0}
   soundSlider: {fileID: 0}

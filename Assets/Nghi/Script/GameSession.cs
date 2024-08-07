@@ -28,6 +28,7 @@ public class GameSession : MonoBehaviour
 
     [Header("Dialogue Canvas")]
     public GameObject dialoguePanel;
+    public Text dialogueText;
 
     [Header("Map")]
     public GameObject map;
@@ -101,6 +102,11 @@ public class GameSession : MonoBehaviour
         return bossHealthBar;
     }
 
+    public Text GetDialogueText()
+    {
+        return dialogueText;
+    }
+
     public int GetCoin()
     {
         return coin;
@@ -145,22 +151,30 @@ public class GameSession : MonoBehaviour
 		yield return SceneManager.LoadSceneAsync(mapName);
 		foreach (Transform child in transform)
 		{
-			if (child.gameObject.name == "Canvas Variant")
-			{
-				child.gameObject.SetActive(true);
+            if (child.gameObject.name == "Canvas Variant")
+            {
+                child.gameObject.SetActive(true);
 
-				foreach (Transform grandchild in child)
-				{
-					if (grandchild.gameObject.name == "BossHealthBar")
-					{
-						grandchild.gameObject.SetActive(false);
-						break;
-					}
-					else continue;
-				}
-				break;
-			}
-			else continue;
+                foreach (Transform grandchild in child)
+                {
+                    if (grandchild.gameObject.name == "BossHealthBar")
+                    {
+                        grandchild.gameObject.SetActive(false);
+                        break;
+                    }
+                    else continue;
+                }
+                
+            }
+            else if (child.gameObject.name == "DialogueCanvas" || child.gameObject.name == "UI_Shops")
+            {
+                child.gameObject.SetActive(true);
+                foreach (Transform grandchild in child)
+                {
+                    grandchild.gameObject.SetActive(false);
+                }
+            }
+            else continue;
 		}
 		Debug.Log($"Load {mapName} succecssful");
 		Transform player = GameObject.Find("Player").transform;
@@ -207,14 +221,31 @@ public class GameSession : MonoBehaviour
 
 				foreach (Transform grandchild in child)
 				{
-                    if (grandchild.gameObject.name == "BossHealthBar")
-                    {
-                        grandchild.gameObject.SetActive(false);
-                        break;
-                    }
-                    else continue;
+					if (grandchild.gameObject.name == "BossHealthBar")
+					{
+						grandchild.gameObject.SetActive(false);
+						break;
+					}
+					else continue;
 				}
-                break;
+				
+			}
+			else if (child.gameObject.name == "DialogueCanvas")
+			{
+				child.gameObject.SetActive(true);
+				foreach (Transform grandchild in child)
+				{
+					grandchild.gameObject.SetActive(false);
+				}
+			}
+            else if (child.gameObject.name == "UI_Shops")
+            {
+                Debug.Log(child.gameObject.name);
+				child.gameObject.SetActive(true);
+				foreach (Transform grandchild in child)
+				{
+					grandchild.gameObject.SetActive(false);
+				}
 			}
 			else continue;
 		}
@@ -263,7 +294,7 @@ public class GameSession : MonoBehaviour
 	{
         pauseMenuUI.SetActive(false);
         dialoguePanel.SetActive(false);
-        bossHealthBar.transform.parent.gameObject.SetActive(false);
+        //bossHealthBar.transform.parent.gameObject.SetActive(false);
     }
 
 
@@ -286,7 +317,7 @@ public class GameSession : MonoBehaviour
     public void AddCoin(int num)
     {
         coin += num;
-        coin_Text.text = "COINS: " + coin.ToString();
+        coin_Text.text = coin.ToString("000000");
     }
 
     void Resume()

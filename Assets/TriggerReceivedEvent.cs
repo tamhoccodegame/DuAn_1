@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class TriggerReceivedEvent : MonoBehaviour
 {
-	public Text text;
+	private Text text;
 	private bool isDialoguing = false;
 	private string lines;
 	public Rune.RuneType runeType;
@@ -17,6 +17,7 @@ public class TriggerReceivedEvent : MonoBehaviour
 	private void Start()
 	{
 		inventory = GameSession.instance.GetInventory();	
+		text = GameSession.instance.GetDialogueText();
 	}
 
 	private void OnTriggerEnter2D(Collider2D collision)

@@ -21,6 +21,11 @@ public class Sword : MonoBehaviour
 		
     }
 
+	public void SetDamage(float damage)
+	{
+		this.damage = damage;
+	}
+
 	public void SetEquipment(Equipment _equipment)
 	{
 		equipment = _equipment;
@@ -63,6 +68,7 @@ public class Sword : MonoBehaviour
 
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
+		Debug.Log("trigger with " + collision.name);
 		Enemy enemy = collision.GetComponent<Enemy>();
 		if (enemy != null)
 		{

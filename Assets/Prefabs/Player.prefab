@@ -255,7 +255,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3289439861301940589}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: summonTeammatePosition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -289,7 +289,7 @@ GameObject:
   - component: {fileID: 8455988548528139332}
   - component: {fileID: 1618795043687274805}
   - component: {fileID: 1290182388357452122}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: HitBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5230,7 +5230,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8881192806331831535}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Aura
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5374,7 +5374,7 @@ GameObject:
   m_Component:
   - component: {fileID: 98299392944630193}
   - component: {fileID: 874416871502023800}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Feet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5428,8 +5428,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.9547018, y: 0.4320195}
+  m_Offset: {x: 0.000000003082204, y: 0.025855405}
+  m_Size: {x: 1.2116902, y: 0.48372066}
   m_Direction: 1
 --- !u!1 &4771016551364715643
 GameObject:
@@ -10666,7 +10666,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 967791e3f22802740a6650dce2d1fe23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillSlider: {fileID: 0}
   maxSkillMana: 100
   currentSkillMana: 0
   skillCost: 0

@@ -27,6 +27,8 @@ public class Enemy : MonoBehaviour
     protected Vector3 direction;
 
     [SerializeField] protected ParticleSystem vialityEffect;
+    [SerializeField] protected ParticleSystem hitEffect;
+    [SerializeField] protected GameObject coinPrefab;
 
     public enum State
     {
@@ -169,35 +171,65 @@ public class Enemy : MonoBehaviour
     {
         if (!isAlive) return;
 
-		rb.velocity = Vector2.zero;
+		//rb.velocity = Vector2.zero;
 		currentHealth -= damage;
 
 		if (currentHealth <= 0)
 		{
-
 			isAlive = false;
 			Die();
-            return;
 		}
+        else
+		{
+			Instantiate(hitEffect, transform.position, Quaternion.identity);
 
-		animator.SetTrigger("isHurt");
+			animator.SetTrigger("isHurt");
+
+		}
+   
     }
 
-	public bool Die()
+	public virtual bool Die()
     {
-        this.enabled = false;
+        rb.Sleep();
+        Collider2D[] colliders = GetComponents<Collider2D>();
+        foreach(Collider2D collider in colliders)
+        {
+            collider.enabled = false;
+        }
         StartCoroutine(DieDelay());
         return true;
     }
 
-    private IEnumerator DieDelay()
+    protected IEnumerator DieDelay()
     {
+        rb.velocity = Vector2.zero;
 		animator.SetBool("isDead", true);
         //FindObjectOfType<TriggerBlockDoor>().HideDoor();
-        Instantiate(vialityEffect, transform.position, Quaternion.identity);
-		yield return new WaitForSeconds(2f);
+        var go = Instantiate(vialityEffect, transform.position + new Vector3(0, 3f, 0), transform.rotation);
+        go.transform.rotation = Quaternion.Euler(-90f, 0, 0);
+        DropCoin();
+		yield return new WaitForSeconds(4f);
         Destroy(gameObject);
     }
 
+    public virtual void DropCoin()
+    {
+        int amount = Random.Range(30, 51);
+        for (int i = 0; i < amount; i++)
+        {
+            Instantiate(coinPrefab, transform.position + new Vector3(Random.Range(1,6), 0 ,0), transform.rotation);
+        }
+    }
+
+    protected void PlaySound(string soundName)
+    {
+        FindObjectOfType<SoundManager>().PlayAudio(soundName);
+    }
+
+    protected void StopSound(string soundName)
+    {
+		FindObjectOfType<SoundManager>().StopAudio(soundName);
+	}
 
 }
