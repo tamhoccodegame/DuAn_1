@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class ReceiveItem : MonoBehaviour
 {
-    public Text text;
+    private Text text;
     private Inventory inventory;
     public Rune.RuneType Rune;
 	// Start is called before the first frame update
@@ -13,6 +13,7 @@ public class ReceiveItem : MonoBehaviour
 	private void Start()
 	{
 		inventory = GameSession.instance.GetInventory();
+		text = GameSession.instance.GetDialogueText();
 	}
 
 	private void OnTriggerEnter2D(Collider2D collision)
