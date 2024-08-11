@@ -73,7 +73,7 @@ public class Player : MonoBehaviour, IShopCustomer
     {
 		Debug.Log("Player EquipmentChange");
 		//ResetPlayerStat first
-		sword.SetDamage(50);
+		sword.SetDamage(15);
 		playerController.canDoubleJump = false;
 		playerController.canDash = false;
 
@@ -82,7 +82,7 @@ public class Player : MonoBehaviour, IShopCustomer
 			switch (rune.runeType)
 			{
 				case Rune.RuneType.Damage:
-					sword.SetDamage(50);
+					sword.AddDamage(30);
 					break;
 				case Rune.RuneType.DoubleJump:
 					playerController.canDoubleJump = true;

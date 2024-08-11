@@ -122,85 +122,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &414740352
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 414740353}
-  - component: {fileID: 414740355}
-  - component: {fileID: 414740354}
-  m_Layer: 5
-  m_Name: LoadingText
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &414740353
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 414740352}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1486740015}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -8.94, y: -423.34}
-  m_SizeDelta: {x: 1914.96, y: 218.06}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &414740354
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 414740352}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_FontData:
-    m_Font: {fileID: 12800000, guid: 12b305be6e765ea4b807c011ebfe5f8d, type: 3}
-    m_FontSize: 25
-    m_FontStyle: 0
-    m_BestFit: 0
-    m_MinSize: 1
-    m_MaxSize: 146
-    m_Alignment: 8
-    m_AlignByGeometry: 1
-    m_RichText: 0
-    m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
-    m_LineSpacing: 1
-  m_Text: LOADING...
---- !u!222 &414740355
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 414740352}
-  m_CullTransparentMesh: 1
 --- !u!1 &435530929
 GameObject:
   m_ObjectHideFlags: 0
@@ -607,7 +528,6 @@ RectTransform:
   - {fileID: 435530930}
   - {fileID: 883840939}
   - {fileID: 1919232174}
-  - {fileID: 414740353}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -698,7 +618,6 @@ GameObject:
   - component: {fileID: 1919232174}
   - component: {fileID: 1919232176}
   - component: {fileID: 1919232175}
-  - component: {fileID: 1919232177}
   m_Layer: 5
   m_Name: Text (Legacy)
   m_TagString: Untagged
@@ -758,7 +677,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: LOADING
+  m_Text: end of demo. thank you for playing <3!
 --- !u!222 &1919232176
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -767,24 +686,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1919232173}
   m_CullTransparentMesh: 1
---- !u!114 &1919232177
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1919232173}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cb7c7dd49c49b6a4b826fcfe46fff85c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sentences:
-  - 'Hint: Do you know the Fire Rune will help you defeat Priest easier?.'
-  - 'Fact: Do you know this game is made by 5 person. One of them is super handsome?.'
-  - 'Hint: Headless Knight''s head was chopped by Priest.'
-  - 'Hint: You can use Double Jump Rune to go back to old map that you couldn''t
-    jump up.'
 --- !u!1 &1942756457
 GameObject:
   m_ObjectHideFlags: 0

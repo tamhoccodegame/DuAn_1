@@ -26,6 +26,11 @@ public class Sword : MonoBehaviour
 		this.damage = damage;
 	}
 
+	public void AddDamage(float damage)
+	{
+		this.damage += damage;
+	}
+
 	public void SetEquipment(Equipment _equipment)
 	{
 		equipment = _equipment;

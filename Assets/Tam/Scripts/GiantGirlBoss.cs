@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GiantGirlBoss : Enemy
@@ -222,6 +223,9 @@ public class GiantGirlBoss : Enemy
 		GameObject.Find("BlockDoorEffect").SetActive(false);
 		healthBar_slider.transform.parent.gameObject.SetActive(false);
 		StartCoroutine(DieDelay());
+		GameSession.instance.gameObject.SetActive(false);
+		SceneManager.LoadScene("EndOfDemo");
 		return true;
 	}
+
 }
