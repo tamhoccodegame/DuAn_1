@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Enemy : MonoBehaviour
 {
@@ -211,7 +212,12 @@ public class Enemy : MonoBehaviour
         var go = Instantiate(vialityEffect, transform.position + new Vector3(0, 3f, 0), transform.rotation);
         go.transform.rotation = Quaternion.Euler(-90f, 0, 0);
         DropCoin();
-		yield return new WaitForSeconds(4f);
+		yield return new WaitForSeconds(5f);
+        if(gameObject.name == "GiantGirl")
+        {
+            GameSession.instance.gameObject.SetActive(false);
+            SceneManager.LoadScene("EndOfDemo");
+        }
         Destroy(gameObject);
     }
 

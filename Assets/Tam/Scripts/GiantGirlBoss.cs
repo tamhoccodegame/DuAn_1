@@ -156,7 +156,7 @@ public class GiantGirlBoss : Enemy
 		GetComponent<Collider2D>().enabled = false;
 		for(int i = 0; i < Random.Range(4, 6); i++)
 		{
-			currentHealth += Random.Range(13, 17);
+			currentHealth = Mathf.Clamp(currentHealth + Random.Range(13, 17), 0, maxHealth);
 			healthBar_slider.value = currentHealth;
 			yield return new WaitForSeconds(1f);
 		}
@@ -223,8 +223,6 @@ public class GiantGirlBoss : Enemy
 		GameObject.Find("BlockDoorEffect").SetActive(false);
 		healthBar_slider.transform.parent.gameObject.SetActive(false);
 		StartCoroutine(DieDelay());
-		GameSession.instance.gameObject.SetActive(false);
-		SceneManager.LoadScene("EndOfDemo");
 		return true;
 	}
 

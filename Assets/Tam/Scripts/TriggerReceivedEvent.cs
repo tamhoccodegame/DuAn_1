@@ -30,6 +30,7 @@ public class TriggerReceivedEvent : MonoBehaviour
 
 	private void Update()
 	{
+		if(player == null) return;
 		if (Input.GetKeyDown(KeyCode.F))
 		{
 			if(isDialoguing) return;
