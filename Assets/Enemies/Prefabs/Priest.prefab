@@ -100,6 +100,7 @@ GameObject:
   - component: {fileID: 7393280437631157611}
   - component: {fileID: 6175036119779205727}
   - component: {fileID: 2298186789597559988}
+  - component: {fileID: 1824304923228468249}
   m_Layer: 7
   m_Name: Priest
   m_TagString: Enemy
@@ -410,6 +411,20 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!114 &1824304923228468249
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1384846489086725374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0f9dbe62d0851343ba64d2d76c1caf6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flashMaterial: {fileID: 2100000, guid: 0d017ef5661497245a20eb61b1071375, type: 2}
+  duration: 0.2
 --- !u!1 &4599160309436436009
 GameObject:
   m_ObjectHideFlags: 0

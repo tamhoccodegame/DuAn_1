@@ -122,6 +122,7 @@ GameObject:
   - component: {fileID: 3836940448406772913}
   - component: {fileID: 5529297831705101674}
   - component: {fileID: 5378180584418367525}
+  - component: {fileID: 7640075666214787143}
   m_Layer: 7
   m_Name: Captain
   m_TagString: Enemy
@@ -319,6 +320,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.4818207, y: 0.95074236}
   m_EdgeRadius: 0
+--- !u!114 &7640075666214787143
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1510608401267780288}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0f9dbe62d0851343ba64d2d76c1caf6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flashMaterial: {fileID: 2100000, guid: 0d017ef5661497245a20eb61b1071375, type: 2}
+  duration: 0.2
 --- !u!1 &2330585783634316556
 GameObject:
   m_ObjectHideFlags: 0

@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 6161247911998410983}
   - component: {fileID: 4266126287994041507}
   - component: {fileID: 6688509110959381907}
+  - component: {fileID: 3790721302753946198}
   m_Layer: 7
   m_Name: Headless Knight
   m_TagString: Enemy
@@ -333,6 +334,7 @@ MonoBehaviour:
   rockPrefabs: {fileID: 7664848988558263536, guid: 346e8c5793da22d459784385c65ef866, type: 3}
   effectPoint: {fileID: 147988867151863257}
   _maxHealth: 1000
+  healthBar_slider: {fileID: 0}
 --- !u!114 &6688509110959381907
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -414,6 +416,20 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 1
           m_CallState: 2
+--- !u!114 &3790721302753946198
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2484331434487244654}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0f9dbe62d0851343ba64d2d76c1caf6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flashMaterial: {fileID: 2100000, guid: 0d017ef5661497245a20eb61b1071375, type: 2}
+  duration: 0.2
 --- !u!1 &2856384812543380145
 GameObject:
   m_ObjectHideFlags: 0

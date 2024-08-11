@@ -79,6 +79,7 @@ GameObject:
   - component: {fileID: 6566479498172173604}
   - component: {fileID: 1143538785525331860}
   - component: {fileID: 7686580144597232203}
+  - component: {fileID: 3292271227212664078}
   m_Layer: 7
   m_Name: NoHead
   m_TagString: Enemy
@@ -276,6 +277,20 @@ MonoBehaviour:
   effectPrefab: {fileID: 9183441914316870876, guid: d351df82b25c96f449a6d3fa10af3e6c, type: 3}
   effectPoint: {fileID: 3226293106571437039}
   _enemyType: 0
+--- !u!114 &3292271227212664078
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4798730700883253774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0f9dbe62d0851343ba64d2d76c1caf6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flashMaterial: {fileID: 2100000, guid: 0d017ef5661497245a20eb61b1071375, type: 2}
+  duration: 0.2
 --- !u!1 &5857128200064765232
 GameObject:
   m_ObjectHideFlags: 0

@@ -19,7 +19,7 @@ public class GameSession : MonoBehaviour
     public string mapName;
 
 	[Header("Coins")]
-	public int coin = 0;
+	private int coin;
     public Text coin_Text;
 
 	[Header("Pause Menu")]
@@ -288,6 +288,7 @@ public class GameSession : MonoBehaviour
 	{
         pauseMenuUI.SetActive(false);
         dialoguePanel.SetActive(false);
+        coin = 0;
         //bossHealthBar.transform.parent.gameObject.SetActive(false);
     }
 

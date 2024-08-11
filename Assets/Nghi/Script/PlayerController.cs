@@ -197,7 +197,7 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
-            if (havemove)
+            if (havemove && canDash)
             { 
                 if(GetComponent<Player_StaminaSystem>().ReduceStamina())
 				StartCoroutine(Dash());
