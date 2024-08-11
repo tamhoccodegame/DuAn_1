@@ -64,6 +64,10 @@ public class Rune : IShopItem
 			default: 
 			case RuneType.DoubleJump: return "This Rune help your legs strong, can jump 2 times";
 			case RuneType.Damage:	return  "This Rune help you to slash stronger";
+			case RuneType.Electric:	return "This Rune help you attack with LIGHTNING effect";
+			case RuneType.Ice:		return "This Rune help you FROZEN you enemies";
+			case RuneType.Lifesteal: return "This Rune help you live longer";
+			case RuneType.Fire: return "This Rune will IGNITE your enemies";
 		}
 	}
 }

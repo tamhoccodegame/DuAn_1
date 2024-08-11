@@ -19,7 +19,7 @@ public class Boss : Enemy
 	private bool isRage = false;
 
 	[SerializeField] private float _maxHealth;
-	Slider healthBar_slider;
+	public Slider healthBar_slider;
 	
 	public override void Awake()
 	{
@@ -213,9 +213,10 @@ public class Boss : Enemy
 		equipment.IncreaseSlot();
 		isAlive = false;
 		this.enabled = false;
-		StartCoroutine(DieDelay());
 		healthBar_slider.transform.parent.gameObject.SetActive(false);
 		GameObject.Find("BlockDoorEffect").SetActive(false);
+		StartCoroutine(DieDelay());
+		
 		return true;
 	}
 

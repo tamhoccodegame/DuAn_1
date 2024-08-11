@@ -47,6 +47,24 @@ public class HitBox : MonoBehaviour
 		}
 	}
 
+	private void OnCollisionEnter2D(Collision2D collision)
+	{
+		if ((collision.gameObject.layer != LayerMask.NameToLayer("Player"))
+		&& (collision.gameObject.layer != LayerMask.NameToLayer("Enemy"))) return;
+
+		if (collision.gameObject.layer == LayerMask.NameToLayer("Ground") && canDestroySelf)
+		{
+			Destroy(this.gameObject);
+			return;
+		}
+		Enemy enemyHit = collision.gameObject.GetComponent<Enemy>();
+		Player_Health playerHit = collision.gameObject.GetComponent<Player_Health>();
+
+		if (playerHit)
+		{
+			StartCoroutine(playerHit.TakeDamage(enemyDamage));
+		}
+	}
 	private IEnumerator HandlePlayerHit(Player_Health playerHit, Transform target, Vector3 direction)
 	{
 		Knockback knockback = GetComponent<Knockback>();

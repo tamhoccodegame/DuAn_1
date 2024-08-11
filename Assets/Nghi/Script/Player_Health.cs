@@ -10,6 +10,7 @@ public class Player_Health : MonoBehaviour
     public int maxHealth = 200;
     public int currentHealth;
     public Player_HealthBar player_HealthBar;
+    PlayerController playerController;
 
     Animator animator;
     Rigidbody2D rig;
@@ -21,6 +22,7 @@ public class Player_Health : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        playerController = GetComponent<PlayerController>();
         currentHealth = maxHealth;
         player_HealthBar = GameSession.instance.GetPlayer_HealthBar();
         player_HealthBar.SetMaxHealth(maxHealth);
@@ -44,6 +46,7 @@ public class Player_Health : MonoBehaviour
 
     public IEnumerator TakeDamage(int damage)
     {
+        if (!playerController.isAlive) yield break;
         currentHealth -= damage;
 
 		FindObjectOfType<SoundManager>().PlayAudio("Player_Hurt");

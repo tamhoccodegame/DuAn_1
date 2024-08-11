@@ -250,9 +250,10 @@ public class PriestBoss : Enemy
 		equipment.IncreaseSlot();
 		isAlive = false;
 		this.enabled = false;
-		StartCoroutine(DieDelay());
 		GameObject.Find("BlockDoorEffect").SetActive(false);
 		healthBar_slider.transform.parent.gameObject.SetActive(false);
+		StartCoroutine(DieDelay());
+
 		return true;
 	}
 }

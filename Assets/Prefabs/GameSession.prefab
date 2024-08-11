@@ -173,7 +173,6 @@ MonoBehaviour:
   player_HealthBar: {fileID: 5634958845053681140}
   player_StaminaBar: {fileID: 5718991903867021359}
   player_SkillBar: {fileID: 3278059024173584426}
-  bossHealthBar: {fileID: 0}
   transitionAnimator: {fileID: 1343756640215053234}
 --- !u!1 &2641579195776806752
 GameObject:
@@ -445,7 +444,7 @@ Canvas:
   serializedVersion: 3
   m_RenderMode: 1
   m_Camera: {fileID: 0}
-  m_PlaneDistance: 100
+  m_PlaneDistance: 10
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
@@ -454,8 +453,8 @@ Canvas:
   m_VertexColorAlwaysGammaSpace: 0
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
-  m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: -810031587
+  m_SortingOrder: 1000
   m_TargetDisplay: 0
 --- !u!114 &5067218136298637473
 MonoBehaviour:

@@ -17,8 +17,8 @@ public class ShowMapName : MonoBehaviour
     private IEnumerator ShowMapNameCoroutine()
     {
         mapName.text = SceneManager.GetActiveScene().name;
-        Animator mapAnim = GetComponent<Animator>();
-		yield return new WaitForSeconds(mapAnim.GetCurrentAnimatorClipInfo(0).Length);
+        Animator mapAnim = mapName.GetComponent<Animator>();
+		yield return new WaitForSeconds(8f);
 		mapName.gameObject.SetActive(false);
 	}
 	// Update is called once per frame

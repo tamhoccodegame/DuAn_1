@@ -504,6 +504,7 @@ public class PlayerController : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.I))
         {
+            if(skillManager.UseSkill(50))
             StartCoroutine(FireworkSkillCoroutine());
         }
     }
@@ -528,7 +529,7 @@ public class PlayerController : MonoBehaviour
 
 	public IEnumerator SpawnBeams(Transform enemyTransform)
 	{
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < 10; i++)
         {
 			Camera cam = Camera.main;
 			float topY = cam.ViewportToWorldPoint(new Vector3(0, 1, cam.nearClipPlane)).y;

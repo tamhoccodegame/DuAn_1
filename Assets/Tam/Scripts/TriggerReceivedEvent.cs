@@ -63,5 +63,6 @@ public class TriggerReceivedEvent : MonoBehaviour
 		text.transform.parent.gameObject.SetActive(false);
 		inventory.AddRune(new Rune(runeType));
 		isDialoguing = false;
+		Destroy(gameObject);
 	}
 }

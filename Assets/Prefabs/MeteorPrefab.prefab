@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 6568941230583469213}
   - component: {fileID: 1734765234728328640}
   - component: {fileID: 6079079624814014909}
+  - component: {fileID: 4981136730960685392}
   m_Layer: 0
   m_Name: MeteorPrefab
   m_TagString: Untagged
@@ -151,7 +152,7 @@ PolygonCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -316,3 +317,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explosionPrefab: {fileID: 850925847869128607, guid: a473d538227ef694ba22dcf5b596799e, type: 3}
+--- !u!114 &4981136730960685392
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6000759851787625997}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9804236d9adcda44186ab426ca79cc94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerDamage: 10
+  enemyDamage: 0
+  canDestroySelf: 1

@@ -61,10 +61,16 @@ public class Player : MonoBehaviour, IShopCustomer
 
 		playerController = GetComponent<PlayerController>();
 
+		RefreshPlayerStat();
 	}
 
 	private void Equipment_OnEquipmentChange(object sender, System.EventArgs e)
 	{
+		RefreshPlayerStat();
+	}
+
+    public void RefreshPlayerStat()
+    {
 		Debug.Log("Player EquipmentChange");
 		//ResetPlayerStat first
 		sword.SetDamage(50);
@@ -74,7 +80,7 @@ public class Player : MonoBehaviour, IShopCustomer
 		foreach (Rune rune in equipment.GetEquipmentList())
 		{
 			switch (rune.runeType)
-			{ 
+			{
 				case Rune.RuneType.Damage:
 					sword.SetDamage(50);
 					break;
@@ -86,15 +92,10 @@ public class Player : MonoBehaviour, IShopCustomer
 					break;
 				case Rune.RuneType.Fire:
 					break;
-			
+
 			}
 		}
 	}
-
-    public void RefreshPlayerStat()
-    {
-        
-    }
 
 	// Update is called once per frame
 	void Update()

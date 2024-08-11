@@ -119,6 +119,7 @@ public class Player_AimShoot_Weapon : MonoBehaviour
         //bulletRig.velocity = direction * bulletSpeed;
 
         GameObject boomerang = bomerang_Pool.GetPooledObject();
+        if (!GetComponent<Skill_Mana>().UseSkill(20)) return;
         if (boomerang != null)
         {
             Bomerang boomerangScript = boomerang.GetComponent<Bomerang>();

@@ -50,6 +50,11 @@ public class GiantGirlBoss : Enemy
 	public override void Update()
 	{
 		Debug.Log(currentComboStrikes);
+		if(!player.GetComponent<PlayerController>().isAlive)
+		{
+			animator.Play("Taunt");
+		}
+
 		if (isCoroutineRunning) return;
 
 		isCoroutineRunning = true;
@@ -107,13 +112,6 @@ public class GiantGirlBoss : Enemy
 	}
 
 
-	//public void DustWave()
-	//{
-
-	//}
-
-
-	////Spawn thien thach roi thang xuong
 	private IEnumerator Combo2()
 	{
 		Camera cam = Camera.main;
@@ -121,10 +119,10 @@ public class GiantGirlBoss : Enemy
 		animator.Play("SpecialAttack");
 		yield return new WaitForSeconds(animator.GetCurrentAnimatorClipInfo(0).Length + .1f);
 		animator.Play("Laugh");
-
+		FindObjectOfType<SoundManager>().PlayAudio("GiantGirl_Laugh");
 		Vector3 leftBound = cam.ViewportToWorldPoint(new Vector3(0, .8f, cam.nearClipPlane));
 		Vector3 rightBound = cam.ViewportToWorldPoint(new Vector3(1, .8f, cam.nearClipPlane));
-
+		FindObjectOfType<SoundManager>().PlayAudio("Rock_Falling");
 		for (int i = 0; i < Random.Range(1, 10); i++)
 		{
 			// Tạo một vị trí spawn ngẫu nhiên giữa cạnh trái và cạnh phải của màn hình
@@ -168,9 +166,13 @@ public class GiantGirlBoss : Enemy
 		isCoroutineRunning = false;
 	}
 
+	//Trieu hoi tuong set
 	private IEnumerator Combo4()
 	{
+		StartCoroutine(PlayBallSound());
 		animator.Play("Laugh");
+		FindObjectOfType<SoundManager>().PlayAudio("GiantGirl_Laugh");
+
 		Camera cam = Camera.main;
 		float topY = cam.ViewportToWorldPoint(new Vector3(0, 1, cam.nearClipPlane)).y;
 
@@ -217,9 +219,9 @@ public class GiantGirlBoss : Enemy
 		equipment.IncreaseSlot();
 		isAlive = false;
 		this.enabled = false;
-		StartCoroutine(DieDelay());
 		GameObject.Find("BlockDoorEffect").SetActive(false);
 		healthBar_slider.transform.parent.gameObject.SetActive(false);
+		StartCoroutine(DieDelay());
 		return true;
 	}
 }

@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: -1187665025620921965}
   - component: {fileID: 667862030622062890}
   - component: {fileID: 7318587085560588039}
+  - component: {fileID: 1986596456241538424}
   m_Layer: 0
   m_Name: Blue Effect Bullet Impact Explosion 32x32_354
   m_TagString: Untagged
@@ -125,7 +126,7 @@ CircleCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -237,3 +238,18 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   - {x: 0.5, y: 0.5, z: 0}
   - {x: -0.5, y: 0.5, z: 0}
+--- !u!114 &1986596456241538424
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7892943538581841027}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9804236d9adcda44186ab426ca79cc94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerDamage: 15
+  enemyDamage: 0
+  canDestroySelf: 0
