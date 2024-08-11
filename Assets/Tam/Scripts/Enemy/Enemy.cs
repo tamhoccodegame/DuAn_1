@@ -1,3 +1,4 @@
+using BarthaSzabolcs.Tutorial_SpriteFlash;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
@@ -171,6 +172,7 @@ public class Enemy : MonoBehaviour
     {
         if (!isAlive) return;
 
+        GetComponent<SimpleFlash>()?.Flash();
 		//rb.velocity = Vector2.zero;
 		currentHealth -= damage;
 
@@ -218,7 +220,7 @@ public class Enemy : MonoBehaviour
         int amount = Random.Range(30, 51);
         for (int i = 0; i < amount; i++)
         {
-            Instantiate(coinPrefab, transform.position + new Vector3(Random.Range(1,6), 0 ,0), transform.rotation);
+            Instantiate(coinPrefab, transform.position + new Vector3(Random.Range(1,6), 1 ,0), transform.rotation);
         }
     }
 

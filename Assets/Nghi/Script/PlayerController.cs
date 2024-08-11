@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.Resources;
 using Unity.VisualScripting;
@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float jump = 20f;
     [SerializeField] private int damage;
 
-    public Transform attackPoint;
+    public Transform skillBlastPoint;
     public LayerMask enemyLayers;
     public float attackRange = 1f;
 
@@ -48,6 +48,8 @@ public class PlayerController : MonoBehaviour
     public GameObject snakePrefab;
     private float snakeLifetime = 1f;
     private float summonRange = 10f;
+    public GameObject skillBlastPrefab;
+    public GameObject skyBulletPrefab;
 
     public GameObject teammatePrefab;
     public Transform summonTeammatePosition;//Vi tri trieu hoi dong doi
@@ -153,7 +155,7 @@ public class PlayerController : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void Update()   
     {
         //Debug.Log(isJumping);***
         if (isAlive == false) return;
@@ -208,6 +210,7 @@ public class PlayerController : MonoBehaviour
         //CheckDash();
         SnakeAttack();
         SummonTeammateWhenPressButton();
+        FireworkSkill();
     }
 
     private IEnumerator Dash()
@@ -497,7 +500,76 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void SkillManaUpdate(int damage)
+    private void FireworkSkill()
+    {
+        if(Input.GetKeyDown(KeyCode.I))
+        {
+            StartCoroutine(FireworkSkillCoroutine());
+        }
+    }
+
+    IEnumerator FireworkSkillCoroutine()
+    {
+        animator.Play("SkillBlast");
+        yield return new WaitForSeconds(animator.GetCurrentAnimatorClipInfo(0).Length);
+        animator.Play("Idle");
+
+        Enemy[] allEnemies = FindObjectsOfType<Enemy>();
+        foreach (Enemy enemy in allEnemies)
+        {
+            if(IsEnemyInCameraView(enemy))
+            {
+				StartCoroutine(SpawnBeams(enemy.transform));
+			}
+        }
+
+       
+	}
+
+	public IEnumerator SpawnBeams(Transform enemyTransform)
+	{
+        for (int i = 0; i < 5; i++)
+        {
+			Camera cam = Camera.main;
+			float topY = cam.ViewportToWorldPoint(new Vector3(0, 1, cam.nearClipPlane)).y;
+			Vector3 spawnPosition = new Vector3(enemyTransform.position.x + Random.Range(-7, 7), topY, 0);
+
+			GameObject beam = Instantiate(skyBulletPrefab, spawnPosition, Quaternion.identity);
+			Vector3 direction = enemyTransform.position - beam.transform.position;
+			beam.transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg);
+           
+
+            beam.GetComponent<Rigidbody2D>().velocity = direction * 2f;
+
+			Destroy(beam, 2f);
+
+            yield return new WaitForSeconds(.2f);
+		}
+    }
+
+	public void FireKiBlast()
+    {
+        Rigidbody2D go = Instantiate(skillBlastPrefab, skillBlastPoint.position, Quaternion.identity).GetComponent<Rigidbody2D>();
+        go.transform.rotation = Quaternion.Euler(0, 0, 90);
+        go.AddForce(new Vector2(0, 20), ForceMode2D.Impulse);
+    }
+
+	bool IsEnemyInCameraView(Enemy enemy)
+	{
+        Camera mainCamera = Camera.main;
+		// Lấy vị trí kẻ địch trong thế giới
+		Vector3 enemyPosition = enemy.transform.position;
+
+		// Chuyển đổi vị trí kẻ địch từ thế giới sang viewport (0-1)
+		Vector3 viewportPosition = mainCamera.WorldToViewportPoint(enemyPosition);
+
+		// Kiểm tra xem kẻ địch có nằm trong khung nhìn của camera không
+		return viewportPosition.x >= 0 && viewportPosition.x <= 1 &&
+			   viewportPosition.y >= 0 && viewportPosition.y <= 1 &&
+			   viewportPosition.z > 0; // Đảm bảo kẻ địch không nằm sau camera
+	}
+
+	public void SkillManaUpdate(int damage)
     {
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
 

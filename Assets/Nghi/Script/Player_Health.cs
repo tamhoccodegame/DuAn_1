@@ -1,3 +1,4 @@
+using BarthaSzabolcs.Tutorial_SpriteFlash;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -46,6 +47,7 @@ public class Player_Health : MonoBehaviour
         currentHealth -= damage;
 
 		FindObjectOfType<SoundManager>().PlayAudio("Player_Hurt");
+        GetComponent<SimpleFlash>().Flash();
 		player_Blood_Effect.Play();
 		animator.ResetTrigger("isAttack1");
 		animator.ResetTrigger("isAttack2");

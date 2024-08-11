@@ -32,7 +32,6 @@ public class Boss : Enemy
 		attackRange = _attackRange;
 		maxHealth = _maxHealth;
 		currentHealth = _maxHealth;
-		healthBar_slider = GameSession.instance.GetBossHealthBar();
 	}
 
 	private void Start()

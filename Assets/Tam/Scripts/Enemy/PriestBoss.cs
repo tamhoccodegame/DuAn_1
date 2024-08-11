@@ -18,7 +18,7 @@ public class PriestBoss : Enemy
 	[SerializeField] private GameObject effectPoint;
 	[SerializeField] private GameObject dustPoint;
 
-	[SerializeField] private Slider healthBar_slider;
+	public Slider healthBar_slider;
 
 
 	// Start is called before the first frame update
@@ -38,7 +38,6 @@ public class PriestBoss : Enemy
 		attackRange = _attackRange;
 		maxHealth = _maxHealth;
 		currentHealth = _maxHealth;
-		healthBar_slider = GameSession.instance.GetBossHealthBar();
 	}
 
 	private void Start()

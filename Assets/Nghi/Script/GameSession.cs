@@ -44,7 +44,6 @@ public class GameSession : MonoBehaviour
     [SerializeField] private Player_HealthBar player_HealthBar;
     [SerializeField] private Player_StaminaBar player_StaminaBar;
 	[SerializeField] private Slider player_SkillBar;
-	[SerializeField] private Slider bossHealthBar;
 
     [Header("TransitionImage")]
     [SerializeField] private Animator transitionAnimator;
@@ -95,11 +94,6 @@ public class GameSession : MonoBehaviour
     public Slider GetPlayer_SkillBar()
     {
         return player_SkillBar;
-    }
-
-    public Slider GetBossHealthBar()
-    {
-        return bossHealthBar;
     }
 
     public Text GetDialogueText()

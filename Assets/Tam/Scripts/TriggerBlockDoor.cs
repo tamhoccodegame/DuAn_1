@@ -21,8 +21,7 @@ public class TriggerBlockDoor : MonoBehaviour
 
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
-		Door.SetActive(true);
-		GameSession.instance.GetBossHealthBar().transform.parent.gameObject.SetActive(true);
+        Door.SetActive(true);
         audioSource.clip = bossMusic;
         audioSource.Play();
         Destroy(gameObject);
