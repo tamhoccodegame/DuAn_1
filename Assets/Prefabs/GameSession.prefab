@@ -60,7 +60,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: -810031587
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!114 &5681836291301161163
 MonoBehaviour:
@@ -156,7 +156,6 @@ MonoBehaviour:
   playerPositionX: 0
   playerPositionY: 0
   mapName: 
-  coin: 0
   coin_Text: {fileID: 713556803122047550}
   pauseMenuUI: {fileID: 7817492684983055652}
   dialoguePanel: {fileID: 7236341711125226442}
@@ -454,7 +453,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: -810031587
-  m_SortingOrder: 1000
+  m_SortingOrder: 100
   m_TargetDisplay: 0
 --- !u!114 &5067218136298637473
 MonoBehaviour:
@@ -817,7 +816,7 @@ MonoBehaviour:
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
-            m_StringArgument: Aaaa FUCK you Chu ca mo
+            m_StringArgument: Welcome to KayaBlood
             m_BoolArgument: 0
           m_CallState: 2
     - m_PersistentCalls:
@@ -831,7 +830,7 @@ MonoBehaviour:
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
-            m_StringArgument: '? co ban goi'
+            m_StringArgument: This is just a little demo of this game! Enjoy!
             m_BoolArgument: 0
           m_CallState: 2
 --- !u!1 &7236341711125226442
@@ -851,7 +850,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &5263256644987327373
 RectTransform:
   m_ObjectHideFlags: 0

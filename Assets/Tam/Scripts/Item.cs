@@ -51,7 +51,14 @@ public class Item : IShopItem
 	}
 	public string GetDescription()
 	{
-		return "Item Description";
+		switch (itemType)
+		{
+			default:
+			case ItemType.Helmet: return "Help you a litte more durable +50HP";
+			case ItemType.Armor: return "Help you more durable +100HP";
+			case ItemType.Sword: return "Help you slash a little stronger";
+			case ItemType.Boot: return "Help you durable a bit +20HP";
+		}
 	}
 
 }
