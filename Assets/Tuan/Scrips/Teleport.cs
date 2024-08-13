@@ -20,7 +20,9 @@ public class Teleport : MonoBehaviour
         {
            player.transform.position = new Vector2(portal.transform.position.x, portal.transform.position.y);
             teleportTimer.PortalIsActive = true;
+            
         }
+        
     }
     
 

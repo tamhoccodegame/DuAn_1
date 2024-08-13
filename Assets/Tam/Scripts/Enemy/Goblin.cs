@@ -37,11 +37,6 @@ public class Goblin : Enemy
 		animator.SetTrigger("isAttack");
 		rb.velocity = Vector2.zero;
 
-		direction = direction = new Vector3(player.position.x - transform.position.x, 0, 0);
-		direction.Normalize();
-
-		LookAtDirection(direction);
-
 		isCoroutineRunning = true;
 		StartCoroutine(AttackDelay());
 
@@ -49,6 +44,8 @@ public class Goblin : Enemy
 
 	public override IEnumerator AttackDelay()
 	{
+		yield return new WaitForSeconds(1f);
+		animator.Play("Idle");
 		yield return new WaitForSeconds(1f);
 		animator.ResetTrigger("isAttack");
 		if (Mathf.Abs(player.position.x - transform.position.x) > attackRange)

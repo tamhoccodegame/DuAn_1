@@ -35,7 +35,7 @@ ScriptedImporter:
     spriteMeshType: 1
     alignment: 0
     spritePivot: {x: 0.5, y: 0.5}
-    spritePixelsToUnits: 100
+    spritePixelsToUnits: 150
     spriteBorder: {x: 0, y: 0, z: 0, w: 0}
     spriteGenerateFallbackPhysicsShape: 0
     generateCubemap: 6
@@ -77,6 +77,7 @@ ScriptedImporter:
     defaultPivotSpace: 0
     defaultPivotAlignment: 7
     customPivotPosition: {x: 0.5, y: 0.5}
+    mosaicPadding: 4
     spritePadding: 0
     generateModelPrefab: 1
     generateAnimationClips: 1
@@ -89,13 +90,14 @@ ScriptedImporter:
     defaultPivotSpace: 0
     defaultPivotAlignment: 7
     customPivotPosition: {x: 0.5, y: 0.5}
+    mosaicPadding: 4
     spritePadding: 0
     generateModelPrefab: 1
     generateAnimationClips: 1
     addSortingGroup: 1
     addShadowCasters: 0
   importFileNodeState: 1
-  platformSettingsDirtyTick: 0
+  platformSettingsDirtyTick: 638580272101998477
   textureAssetName: 
   singleSpriteImportData:
   - name: 
@@ -450,6 +452,7 @@ ScriptedImporter:
     cells:
     - name: trees_Frame_0
       frameIndex: 0
+      additiveSortOrder: 0
       cellRect:
         x: 2
         y: 1
@@ -458,6 +461,7 @@ ScriptedImporter:
       spriteId: 2804a3116c4c42f488ee46715c13f2dd
     - name: trees_Frame_1
       frameIndex: 1
+      additiveSortOrder: 0
       cellRect:
         x: 2
         y: 1
@@ -466,6 +470,7 @@ ScriptedImporter:
       spriteId: 3296fe0280704894fb09dc4566e48603
     - name: trees_Frame_2
       frameIndex: 2
+      additiveSortOrder: 0
       cellRect:
         x: 2
         y: 0
@@ -474,6 +479,7 @@ ScriptedImporter:
       spriteId: 7b82de91657cd7844831c632418a8a45
     - name: trees_Frame_3
       frameIndex: 3
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: -1
@@ -482,6 +488,7 @@ ScriptedImporter:
       spriteId: ba0a565a3176a1c48b283be8e1faa4f9
     - name: trees_Frame_4
       frameIndex: 4
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: 0
@@ -490,6 +497,7 @@ ScriptedImporter:
       spriteId: f47cf0e20b698bc44b502c640491be45
     - name: trees_Frame_5
       frameIndex: 5
+      additiveSortOrder: 0
       cellRect:
         x: 3
         y: -1
@@ -498,6 +506,7 @@ ScriptedImporter:
       spriteId: 799cff6627bb56b49a7723171ea20bb4
     - name: trees_Frame_6
       frameIndex: 6
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: -1
@@ -506,6 +515,7 @@ ScriptedImporter:
       spriteId: fe737430a586a224e9d5c24c0594071f
     - name: trees_Frame_7
       frameIndex: 7
+      additiveSortOrder: 0
       cellRect:
         x: 2
         y: -1
@@ -514,6 +524,7 @@ ScriptedImporter:
       spriteId: b2c4dcf7f57bcd24fab74be5a020c880
     - name: trees_Frame_8
       frameIndex: 8
+      additiveSortOrder: 0
       cellRect:
         x: 1
         y: 1
@@ -522,6 +533,7 @@ ScriptedImporter:
       spriteId: 9cdc312108fd7e54d9812e23b8633e39
     - name: trees_Frame_9
       frameIndex: 9
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: 0
@@ -530,6 +542,7 @@ ScriptedImporter:
       spriteId: cb32e665fba907a4c8e5b11ea4635c9a
     - name: trees_Frame_10
       frameIndex: 10
+      additiveSortOrder: 0
       cellRect:
         x: 3
         y: 0
@@ -538,6 +551,7 @@ ScriptedImporter:
       spriteId: 11d1f1e92d303fc41b5999849549ba60
     - name: trees_Frame_11
       frameIndex: 11
+      additiveSortOrder: 0
       cellRect:
         x: 3
         y: 0
@@ -546,6 +560,7 @@ ScriptedImporter:
       spriteId: c632f95e4f06df840b7e0802d594a27c
     - name: trees_Frame_12
       frameIndex: 12
+      additiveSortOrder: 0
       cellRect:
         x: 1
         y: -1
@@ -554,6 +569,7 @@ ScriptedImporter:
       spriteId: 60986a501beb364418b12ab2033f0235
     - name: trees_Frame_13
       frameIndex: 13
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: 0
@@ -562,6 +578,7 @@ ScriptedImporter:
       spriteId: 1cc0f387b93d11741811518d3414d5ca
     - name: trees_Frame_14
       frameIndex: 14
+      additiveSortOrder: 0
       cellRect:
         x: 10
         y: 0
@@ -570,6 +587,7 @@ ScriptedImporter:
       spriteId: 856ef00b0b64790499d20896edfe0cbb
     - name: trees_Frame_15
       frameIndex: 15
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: 0
@@ -578,7 +596,44 @@ ScriptedImporter:
       spriteId: 3c68002cc48ba4e4983615c10dd46e41
     linkedCells: []
     parentIndex: -1
-  platformSettings: []
+  platformSettings:
+  - name: DefaultTexturePlatform
+    overridden: 0
+    ignorePlatformSupport: 0
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    androidETC2FallbackOverride: 0
+  - name: Standalone
+    overridden: 0
+    ignorePlatformSupport: 0
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    androidETC2FallbackOverride: 0
+  - name: WebGL
+    overridden: 0
+    ignorePlatformSupport: 0
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    androidETC2FallbackOverride: 0
+  generatePhysicsShape: 0
   secondarySpriteTextures: []
   spritePackingTag: 
   canvasSize: {x: 56, y: 56}

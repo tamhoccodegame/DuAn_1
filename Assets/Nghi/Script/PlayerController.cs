@@ -1,6 +1,7 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.Resources;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -13,17 +14,19 @@ public class PlayerController : MonoBehaviour
     public bool facingRight = true;
     private bool isJumping = false; 
     public bool canDoubleJump = false;
+    public bool canDash = false;
     public float jumpCount;
 
     Rigidbody2D rig;
     Animator animator;
     CapsuleCollider2D col;
-    public BoxCollider2D feet;
+    Transform aura;
+    public Collider2D feet;
     [SerializeField] float speed = 10f;
     [SerializeField] float jump = 20f;
     [SerializeField] private int damage;
 
-    public Transform attackPoint;
+    public Transform skillBlastPoint;
     public LayerMask enemyLayers;
     public float attackRange = 1f;
 
@@ -37,10 +40,26 @@ public class PlayerController : MonoBehaviour
     private bool inputReceived = false;
 
     private DashAfterImage dashAfterImage;
-    public float dashSpeed = 10f;
-    public float dashTime = 0.5f;
+    public float dashSpeed = 15f;
+    public float dashTime = 1f;
 
-    
+    public ParticleSystem coinEffect;
+
+    public GameObject snakePrefab;
+    private float snakeLifetime = 1f;
+    private float summonRange = 10f;
+    public GameObject skillBlastPrefab;
+    public GameObject skyBulletPrefab;
+
+    public GameObject teammatePrefab;
+    public Transform summonTeammatePosition;//Vi tri trieu hoi dong doi
+    public float summonTime = 30f;//Thoi gian ton tai cua dong doi
+    private GameObject currentTeammate;
+
+    public Skill_Mana skillManager;
+
+
+    private bool isGrounded = true;
 
     //private bool isDashing;
     //public float dashTime;
@@ -59,8 +78,13 @@ public class PlayerController : MonoBehaviour
         rig = GetComponent<Rigidbody2D>();
         col = GetComponent<CapsuleCollider2D>();
         animator = GetComponent<Animator>();
-
+        aura = transform.Find("Aura");
         dashAfterImage = GetComponent<DashAfterImage>();
+
+        if (skillManager == null)
+        {
+            skillManager = FindObjectOfType<Skill_Mana>();
+        }
     }
 
     public int GetDamage()
@@ -100,13 +124,18 @@ public class PlayerController : MonoBehaviour
         
         if (canDoubleJump)
         {
-			if (feet.IsTouchingLayers(LayerMask.GetMask("Ground")) || jumpCount < 1)
+			if (feet.IsTouchingLayers(LayerMask.GetMask("Ground")))
 			{
 				if (value.isPressed)
 				{
 					rig.velocity += new Vector2(0f, jump);
-					jumpCount++;
+                    FindObjectOfType<SoundManager>().PlayAudio("Player_Jump");
 				}
+			}
+            else if(jumpCount < 1)
+            {
+                rig.velocity += new Vector2(0f, jump - 5);
+				jumpCount++;
 			}
 		}
         else
@@ -116,7 +145,8 @@ public class PlayerController : MonoBehaviour
 				if (value.isPressed)
 				{
 					rig.velocity += new Vector2(0f, jump);
-				}
+                    FindObjectOfType<SoundManager>().PlayAudio("Player_Jump");
+                }
 			}
 			
         }
@@ -125,9 +155,9 @@ public class PlayerController : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void Update()   
     {
-        Debug.Log(isJumping);
+        //Debug.Log(isJumping);***
         if (isAlive == false) return;
 
         Combo();
@@ -136,7 +166,7 @@ public class PlayerController : MonoBehaviour
         
 
         bool havemove = Mathf.Abs(rig.velocity.x) > Mathf.Epsilon;
-
+        aura.gameObject.SetActive(!havemove);
         animator.SetBool("isRunning", havemove);
 
 
@@ -167,29 +197,38 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
-            StartCoroutine(Dash());
+            if (havemove && canDash)
+            { 
+                if(GetComponent<Player_StaminaSystem>().ReduceStamina())
+				StartCoroutine(Dash());
+			}
+                
         }
 
         //Debug.Log(isAttacking);
         //Dash();
         //CheckDash();
-
-
+        SnakeAttack();
+        SummonTeammateWhenPressButton();
+        FireworkSkill();
     }
 
     private IEnumerator Dash()
     {
+        this.gameObject.layer = LayerMask.NameToLayer("Default");
+        animator.SetTrigger("isDash");
         dashAfterImage.StartDashing();
+        FindObjectOfType<SoundManager>().PlayAudio("Player_Dash");
         float startTime = Time.time;
         while (Time.time < startTime + dashTime)
         {
             transform.Translate(Vector3.right * dashSpeed * Time.deltaTime);
             yield return null;
         }
-        GetComponent<Player_StaminaSystem>().ReduceStamina(10);
+        //GetComponent<Player_StaminaSystem>().ReduceStamina(10);
         dashAfterImage.StopDashing();
-        
-    }
+		this.gameObject.layer = LayerMask.NameToLayer("Player");
+	}
 
     void Run()
     {
@@ -197,12 +236,19 @@ public class PlayerController : MonoBehaviour
 		rig.velocity = new Vector2(moveInput.x * speed, rig.velocity.y);
         if (feet.IsTouchingLayers(LayerMask.GetMask("Ground")))
         {
+            if (!isGrounded)
+            {
+                PlayAttackSound("Land");
+                isGrounded = true;
+            }
+
             animator.SetBool("isJump", false);
             isJumping = false;
             jumpCount = 0; //Reset jumpCount
         }
         else
         {
+            isGrounded = false;
             animator.SetBool("isJump", true);
             isJumping = true;
         }
@@ -266,12 +312,17 @@ public class PlayerController : MonoBehaviour
     public void StartCombo()
     {
         isAttacking = false;
+        if(Random.Range(0, 2) == 1)
+        {
+            PlayAttackSound("Yelling_" + Random.Range(1, 3));
+        }
         if (comboStep < 3)
             comboStep++;
         if (inputReceived)
         {
 			isAttacking = true;
-			animator.SetTrigger("isAttack" + comboStep);
+            
+            animator.SetTrigger("isAttack" + comboStep);
 			inputReceived = false;
         }
     }
@@ -304,6 +355,11 @@ public class PlayerController : MonoBehaviour
         }
 	}
 
+    public void PlayAttackSound(string soundName)
+    {
+        FindObjectOfType<SoundManager>().PlayAudio(soundName);
+    }
+
     IEnumerator StopMotion(float time)
     {
         currentInput = Vector2.zero;
@@ -313,6 +369,7 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator SpecialAttack(string name)
     {
+
         animator.SetTrigger(name);
         if (!isJumping)
         {
@@ -327,5 +384,201 @@ public class PlayerController : MonoBehaviour
     {
         yield return new WaitForSeconds(attackCooldown);
         isAttacking = false;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Coin"))
+        {
+            //var go = Instantiate(coinEffect, transform.position, transform.rotation);
+            Debug.Log("Coin collected!");
+            FindObjectOfType<SoundManager>().PlayAudio("Coin_Collect");
+            Destroy(collision.gameObject);
+            FindObjectOfType<GameSession>().AddCoin(1);
+        }
+        if (collision.CompareTag("Next_Level"))
+        {
+            Animator doorAnimation = collision.GetComponent<Animator>();
+
+            if (doorAnimation != null)
+            {
+                FindObjectOfType<SoundManager>().PlayAudio("Next_Level");
+                doorAnimation.SetTrigger("Open");
+            }
+
+        }
+    }
+
+    public GameObject FindNearestEnemy(Vector3 playerPosition)
+    {
+        GameObject[] enemyList = GameObject.FindGameObjectsWithTag("Enemy");
+        GameObject nearestEnemy = null;
+        float shortestDistance = summonRange;
+        foreach (GameObject enemy in enemyList)
+        {
+            float distance = Vector3.Distance(playerPosition, enemy.transform.position);
+            if (distance <= shortestDistance)
+            {
+                shortestDistance = distance;
+                nearestEnemy = enemy;
+            }
+        }
+        return nearestEnemy;
+    }
+
+    public void SummonSnakeAtEnemy(Vector3 playerPosition)
+    {
+        GameObject nearestEnemy = FindNearestEnemy(playerPosition);
+        if (nearestEnemy != null)
+        {
+			FindObjectOfType<SoundManager>().PlayAudio("Snake_Attack");
+			Vector3 nearestEnemyPosition = nearestEnemy.transform.position;
+            SpawnSnakeAtEnemy(nearestEnemyPosition);
+        }
+        else
+        {
+            Debug.Log("Not found any enemy in range");
+        }
+    }
+
+    public void SpawnSnakeAtEnemy(Vector3 enemyPosition)
+    {
+        GameObject snake = Instantiate(snakePrefab, enemyPosition, Quaternion.identity);
+        Destroy(snake, snakeLifetime);
+    }
+
+    public void SnakeAttack()
+    {
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            if (skillManager.UseSkill(25f))
+            {
+			    SummonSnakeAtEnemy(transform.position);
+            }
+			else
+			{
+				return;
+			}
+		}
+    }
+
+    public void SummonTeammate()
+    {
+        if(currentTeammate == null)
+        {
+            if (skillManager.UseSkill(50f))
+            {
+                FindObjectOfType<SoundManager>().PlayAudio("CastSkill");
+                currentTeammate = Instantiate(teammatePrefab, summonTeammatePosition.position, summonTeammatePosition.rotation);
+                StartCoroutine(DismissTeammateAfterTime(summonTime));
+            }
+            else
+            {
+                return;
+            }
+        }
+        else
+        {
+            Debug.Log("Teammate is already summoned!");
+        }
+    }
+
+    private IEnumerator DismissTeammateAfterTime(float time)
+    {
+        yield return new WaitForSeconds(time);
+        if (currentTeammate != null)
+        {
+            Destroy(currentTeammate);
+        }
+    }
+
+    public void SummonTeammateWhenPressButton()
+    {
+        if (Input.GetKey(KeyCode.O))
+        {
+            SummonTeammate();
+        }
+    }
+
+    private void FireworkSkill()
+    {
+        if(Input.GetKeyDown(KeyCode.I))
+        {
+            if(skillManager.UseSkill(50))
+            StartCoroutine(FireworkSkillCoroutine());
+        }
+    }
+
+    IEnumerator FireworkSkillCoroutine()
+    {
+        animator.Play("SkillBlast");
+        yield return new WaitForSeconds(animator.GetCurrentAnimatorClipInfo(0).Length);
+        animator.Play("Idle");
+
+        Enemy[] allEnemies = FindObjectsOfType<Enemy>();
+        foreach (Enemy enemy in allEnemies)
+        {
+            if(IsEnemyInCameraView(enemy))
+            {
+				StartCoroutine(SpawnBeams(enemy.transform));
+			}
+        }
+
+       
+	}
+
+	public IEnumerator SpawnBeams(Transform enemyTransform)
+	{
+        for (int i = 0; i < 10; i++)
+        {
+			Camera cam = Camera.main;
+			float topY = cam.ViewportToWorldPoint(new Vector3(0, 1, cam.nearClipPlane)).y;
+			Vector3 spawnPosition = new Vector3(enemyTransform.position.x + Random.Range(-7, 7), topY, 0);
+
+			GameObject beam = Instantiate(skyBulletPrefab, spawnPosition, Quaternion.identity);
+			Vector3 direction = enemyTransform.position - beam.transform.position;
+			beam.transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg);
+           
+
+            beam.GetComponent<Rigidbody2D>().velocity = direction * 2f;
+
+			Destroy(beam, 2f);
+
+            yield return new WaitForSeconds(.2f);
+		}
+    }
+
+	public void FireKiBlast()
+    {
+        Rigidbody2D go = Instantiate(skillBlastPrefab, skillBlastPoint.position, Quaternion.identity).GetComponent<Rigidbody2D>();
+        go.transform.rotation = Quaternion.Euler(0, 0, 90);
+        go.AddForce(new Vector2(0, 20), ForceMode2D.Impulse);
+    }
+
+	bool IsEnemyInCameraView(Enemy enemy)
+	{
+        Camera mainCamera = Camera.main;
+		// Lấy vị trí kẻ địch trong thế giới
+		Vector3 enemyPosition = enemy.transform.position;
+
+		// Chuyển đổi vị trí kẻ địch từ thế giới sang viewport (0-1)
+		Vector3 viewportPosition = mainCamera.WorldToViewportPoint(enemyPosition);
+
+		// Kiểm tra xem kẻ địch có nằm trong khung nhìn của camera không
+		return viewportPosition.x >= 0 && viewportPosition.x <= 1 &&
+			   viewportPosition.y >= 0 && viewportPosition.y <= 1 &&
+			   viewportPosition.z > 0; // Đảm bảo kẻ địch không nằm sau camera
+	}
+
+	public void SkillManaUpdate(int damage)
+    {
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+
+        foreach(GameObject enemy in enemies)
+        {
+            enemy.GetComponent<Enemy>().TakeDamage(damage);
+            skillManager.AddSkillMana(damage);
+        }
+        
     }
 }

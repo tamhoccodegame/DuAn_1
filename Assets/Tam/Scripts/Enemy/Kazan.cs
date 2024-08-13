@@ -38,11 +38,6 @@ public class Kazan : Enemy
 
 		rb.velocity = Vector2.zero;
 
-		direction = direction = new Vector3(player.position.x - transform.position.x, 0, 0);
-		direction.Normalize();
-
-		LookAtDirection(direction);
-
 		isCoroutineRunning = true;
 		StartCoroutine(AttackDelay());
 
@@ -51,7 +46,7 @@ public class Kazan : Enemy
 	public override IEnumerator AttackDelay()
 	{
 		FireBall();
-		yield return new WaitForSeconds(2f);
+		yield return new WaitForSeconds(3f);
 
 		if (Mathf.Abs(player.position.x - transform.position.x) > attackRange)
 		{
@@ -67,7 +62,7 @@ public class Kazan : Enemy
 		spawnedBullet.transform.localScale = new Vector3(direction.x * spawnedBullet.transform.localScale.x,
 															spawnedBullet.transform.localScale.z,
 															 spawnedBullet.transform.localScale.z);
-		spawnedBullet.velocity = new Vector2(direction.x * 5, 0);
-		spawnedBullet.GetComponent<RangeHitBox>().damage = damage;
+		spawnedBullet.AddForce(new Vector2(direction.x * 12f, 0), ForceMode2D.Impulse);
+		Destroy(spawnedBullet.gameObject, 4f);
 	}
 }

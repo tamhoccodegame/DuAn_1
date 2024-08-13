@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4104200235769439067}
   - component: {fileID: 7336597854245570738}
   - component: {fileID: 3653606043495390240}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: hitBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,7 +92,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerDamage: 0
-  enemyDamage: 0
+  enemyDamage: 10
+  canDestroySelf: 0
 --- !u!114 &3653606043495390240
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -121,9 +122,10 @@ GameObject:
   - component: {fileID: 3836940448406772913}
   - component: {fileID: 5529297831705101674}
   - component: {fileID: 5378180584418367525}
+  - component: {fileID: 7640075666214787143}
   m_Layer: 7
   m_Name: Captain
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -230,6 +232,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1350e9e55fbe284f940e60d69a4ca50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentHealth: 0
+  vialityEffect: {fileID: 5034333633227434473, guid: c8cb1ecb607c8894aa40365393bf8a7d, type: 3}
+  hitEffect: {fileID: 6823200998282874672, guid: 8f8fe12323625f5499b2853dd2ad3e58, type: 3}
+  coinPrefab: {fileID: 6672593827888471164, guid: 473407a94e1a2794ea8a274c6faa4a7e, type: 3}
   _maxHealth: 500
   _patrolSpeed: 2
   _chaseSpeed: 4
@@ -284,7 +290,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -314,6 +320,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.4818207, y: 0.95074236}
   m_EdgeRadius: 0
+--- !u!114 &7640075666214787143
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1510608401267780288}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0f9dbe62d0851343ba64d2d76c1caf6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flashMaterial: {fileID: 2100000, guid: 0d017ef5661497245a20eb61b1071375, type: 2}
+  duration: 0.2
 --- !u!1 &2330585783634316556
 GameObject:
   m_ObjectHideFlags: 0
@@ -360,7 +380,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &5088883168781367941
 Transform:
   m_ObjectHideFlags: 0

@@ -1,0 +1,57 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2514303767343183836
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7801333544073778884}
+  - component: {fileID: 7707428704821593927}
+  m_Layer: 0
+  m_Name: GameAssets
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7801333544073778884
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2514303767343183836}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 19.514301, y: 1.7501748, z: 0.16152728}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7707428704821593927
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2514303767343183836}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb0d385b80343ab49b2780da7170a7e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageRuneSprite: {fileID: 105353453, guid: 2072551271ddd6f47afcb65d1dcbade3, type: 3}
+  doublejumpRuneSprite: {fileID: -19163648, guid: 2072551271ddd6f47afcb65d1dcbade3, type: 3}
+  dashRuneSprite: {fileID: 440612150, guid: 2072551271ddd6f47afcb65d1dcbade3, type: 3}
+  fireRuneSprite: {fileID: 105353453, guid: 2072551271ddd6f47afcb65d1dcbade3, type: 3}
+  electricRuneSprite: {fileID: -264580436, guid: 2072551271ddd6f47afcb65d1dcbade3, type: 3}
+  iceRuneSprite: {fileID: 1401231968, guid: 2072551271ddd6f47afcb65d1dcbade3, type: 3}
+  lifestealRuneSprite: {fileID: -610675358, guid: 2072551271ddd6f47afcb65d1dcbade3, type: 3}
+  helmetSprite: {fileID: -842432270, guid: 164c2185ff336614fa7c012014ca9bb7, type: 3}
+  armorSprite: {fileID: 181238478, guid: 164c2185ff336614fa7c012014ca9bb7, type: 3}
+  bootSprite: {fileID: 164996151, guid: 164c2185ff336614fa7c012014ca9bb7, type: 3}
+  swordSprite: {fileID: 1994685603, guid: 164c2185ff336614fa7c012014ca9bb7, type: 3}

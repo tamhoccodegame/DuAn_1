@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Player_AimShoot_Weapon : MonoBehaviour
 {
@@ -118,10 +119,13 @@ public class Player_AimShoot_Weapon : MonoBehaviour
         //bulletRig.velocity = direction * bulletSpeed;
 
         GameObject boomerang = bomerang_Pool.GetPooledObject();
+        if (!GetComponent<Skill_Mana>().UseSkill(20)) return;
         if (boomerang != null)
         {
             Bomerang boomerangScript = boomerang.GetComponent<Bomerang>();
-            boomerangScript.ActivateBomerang(bulletSpawn.position);
+            Vector3 mousPostion = GetMouseWorldPosition();
+            boomerangScript.ActivateBomerang(bulletSpawn.position, mousPostion);
+            FindObjectOfType<SoundManager>().PlayAudio("Player_Bomerang_Attack");
         }
     }
 

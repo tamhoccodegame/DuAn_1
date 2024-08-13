@@ -2,18 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Boss : Enemy
 {
 	[SerializeField] private GameObject effectPrefabs;
+	[SerializeField] private GameObject rockPrefabs;
 	public Transform effectPoint;
 
 	private int currentComboStrikes;
 
-	private int speed = 15;
+	private int speed = 25;
 	private int countTouchWall = 0;
 	private int countChasePlayer = 0;
 	private float _attackRange = 5f;
+	private bool isRage = false;
+
+	[SerializeField] private float _maxHealth;
+	public Slider healthBar_slider;
 	
 	public override void Awake()
 	{
@@ -24,31 +30,31 @@ public class Boss : Enemy
 		currentComboStrikes = 1;
 		direction = Vector2.right;
 		attackRange = _attackRange;
+		maxHealth = _maxHealth;
+		currentHealth = _maxHealth;
 	}
 
+	private void Start()
+	{
+		healthBar_slider.maxValue = maxHealth;
+		healthBar_slider.value = maxHealth;
+		direction = direction = new Vector3(player.position.x - transform.position.x, 0, 0);
+	}
 	public override void Update()
 	{
-		Debug.Log(countTouchWall);
 
 		if (isCoroutineRunning) return;
 
-		switch (currentComboStrikes)
+		if ((currentHealth <= 0.5 * maxHealth) && !isRage)
 		{
-			case 1:
-				isCoroutineRunning = true;
-				StartCoroutine(Combo1());
-				break;
-			case 2:
-				isCoroutineRunning = true;
-				StartCoroutine(Combo2());
-				break;
-			case 3:
-				isCoroutineRunning = true;
-				StartCoroutine(Combo3());
-				break;
-			case 4:
-				break;
+			isRage = true;	
+			speed += 5;
+			var go = Instantiate(vialityEffect, transform.position + new Vector3(0, 3f, 0), Quaternion.identity);
+			go.transform.rotation = Quaternion.Euler(-90f, 0, 0);
 		}
+
+		isCoroutineRunning = true;
+		StartCoroutine("Combo" + currentComboStrikes);
 	}
 
 	private void OnTriggerEnter2D(Collider2D collision)
@@ -58,8 +64,26 @@ public class Boss : Enemy
 			direction.Normalize();
 			direction.x *= -1;
 			transform.localScale = new Vector3(direction.x * Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+
 			Debug.Log(direction);
 			countTouchWall++;
+
+			Camera cam = Camera.main;
+
+			Vector3 viewportTopLeft = cam.ViewportToWorldPoint(new Vector3(0, 1, cam.nearClipPlane));
+			Vector3 viewportTopRight = cam.ViewportToWorldPoint(new Vector3(1, 1, cam.nearClipPlane));
+
+			PlaySound("Rock_Falling");
+			for (int i = 0; i < 3; i++)
+			{
+				float randomX = Random.Range(viewportTopLeft.x, viewportTopRight.x);
+				Vector3 spawnLocation = new Vector3(randomX, viewportTopLeft.y, 0);
+				var go = Instantiate(rockPrefabs, spawnLocation, Quaternion.identity);
+				Destroy(go, 1f);
+			}
+
+
+			isCoroutineRunning = false;
 		}
 	}
 
@@ -73,9 +97,9 @@ public class Boss : Enemy
 	{
 		if(countTouchWall < 4)
 		{
+			direction.Normalize();
 			animator.Play("Move");
 			rb.velocity = new Vector3(speed * direction.x, 0, 0);
-			isCoroutineRunning = false;
 		}
 		else
 		{
@@ -95,11 +119,6 @@ public class Boss : Enemy
 	public override void Chase()
 	{
 		animator.Play("Move");
-		direction = new Vector3(player.position.x - transform.position.x, 0, 0);
-		direction.Normalize();
-
-		LookAtDirection(direction);
-
 		rb.velocity = new Vector2(direction.x * speed, rb.velocity.y);
 
 	}
@@ -143,11 +162,6 @@ public class Boss : Enemy
 	//CastSkill Thunder
 	private IEnumerator Combo3()
 	{
-		direction = new Vector3(player.position.x - transform.position.x, 0, 0);
-		direction.Normalize();
-
-		LookAtDirection(direction);
-
 		animator.Play("CastSkill");
 		yield return new WaitForSeconds(.5f);
 		Camera cam = Camera.main;
@@ -166,7 +180,9 @@ public class Boss : Enemy
 			var go1 = Instantiate(effectPrefabs, (startPos + offset), Quaternion.identity);
 			startPos = startPos + offset;
 			viewportCheck = cam.WorldToScreenPoint(go1.transform.position);
+			PlaySound("HeadlessSkill");
 			yield return new WaitForSeconds(.3f);
+			StopSound("HeadlessSkill");
 			Destroy (go1);
 		}
 
@@ -176,9 +192,32 @@ public class Boss : Enemy
 		isCoroutineRunning = false;	
 	}
 
-	//Random the others Combo with less duration but more speed.
-	private IEnumerator Combo4()
+	public override void TakeDamage(float damage)
 	{
-		yield return null;
+		if (!isAlive) return;
+		base.TakeDamage(damage);
+		healthBar_slider.value = currentHealth;
 	}
+
+	public override void DropCoin()
+	{
+		for (int i = 0; i < 1000; i++)
+		{
+			Instantiate(coinPrefab, transform.position + new Vector3(Random.Range(1, 6), 0, 0), transform.rotation);
+		}
+	}
+
+	public override bool Die()
+	{
+		Equipment equipment = GameSession.instance.GetEquipment();
+		equipment.IncreaseSlot();
+		isAlive = false;
+		this.enabled = false;
+		healthBar_slider.transform.parent.gameObject.SetActive(false);
+		GameObject.Find("BlockDoorEffect").SetActive(false);
+		StartCoroutine(DieDelay());
+		
+		return true;
+	}
+
 }

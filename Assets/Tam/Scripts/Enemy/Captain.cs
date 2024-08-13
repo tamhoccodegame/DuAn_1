@@ -39,25 +39,25 @@ public class Captain : Enemy
 		animator.SetTrigger("isAttack");
 		rb.velocity = Vector2.zero;
 
-
-		direction = direction = new Vector3(player.position.x - transform.position.x, 0, 0);
-		direction.Normalize();
-
-		LookAtDirection(direction);
-
 		isCoroutineRunning = true;
 		StartCoroutine(AttackDelay());
 	}
 
 	public override IEnumerator AttackDelay()
 	{
-		yield return new WaitForSeconds(.3f);
+		yield return new WaitForSeconds(.5f);
+		animator.Play("Idle");
 		animator.ResetTrigger("isAttack");
 		yield return new WaitForSeconds(1f);
 		while(Mathf.Abs(player.position.x - transform.position.x) <= attackRange + 5)
 		{
+			direction = direction = new Vector3(player.position.x - transform.position.x, 0, 0);
+			direction.Normalize();
+			LookAtDirection(direction);
+
 			animator.SetTrigger("isAttack2");
 			yield return new WaitForSeconds(.5f);
+			animator.Play("Idle");
 			animator.ResetTrigger("isAttack2");
 			yield return new WaitForSeconds(1f);
 		}
@@ -72,10 +72,9 @@ public class Captain : Enemy
 	{
 		var spawnedBullet = Instantiate(bulletPrefabs, firePoint.transform.position, transform.rotation).GetComponent<Rigidbody2D>();
 		spawnedBullet.transform.localScale = new Vector3(direction.x * spawnedBullet.transform.localScale.x,
-															spawnedBullet.transform.localScale.z,
+															spawnedBullet.transform.localScale.y,
 															 spawnedBullet.transform.localScale.z);
 		spawnedBullet.velocity = new Vector2(direction.x * 5, 0);
-		spawnedBullet.GetComponent<RangeHitBox>().damage = damage;
 	}
 
 }
