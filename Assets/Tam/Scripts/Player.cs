@@ -1,69 +1,116 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.Timeline;
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour, IShopCustomer
 {
-    private Inventory inventory;
-    private Equipment equipment;
+    [SerializeField] private Inventory inventory;
+    [SerializeField] private Equipment equipment;
 
-    public UI_Inventory uiInventory;
-    private UI_Equipment[] uiEquipments;
+    [SerializeField] private UI_Inventory uiInventory;
+	[SerializeField] private UI_Market[] uiMarkets;
+	[SerializeField] private LockSlotUI uiLockSlotUI;
+    [SerializeField] private UI_Equipment[] uiEquipments;
+
+	public Sword sword;
 
     private PlayerController playerController;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        inventory = new Inventory();
-        equipment = new Equipment();
-		uiEquipments = FindObjectsByType<UI_Equipment>(FindObjectsSortMode.None);
 
-		playerController = GetComponent<PlayerController>();
+	// Start is called before the first frame update
+	void Awake()
+    {
+		
+	}
+	private void Start()
+	{
+		GameSession.instance.UpdateCheckpoint(transform.position.x, transform.position.y, SceneManager.GetActiveScene().name);
+
+		inventory = GameSession.instance.GetInventory();
+		equipment = GameSession.instance.GetEquipment();
+
+		uiInventory = GameSession.instance.GetUI_Inventory();
+		uiMarkets = GameSession.instance.GetUI_Market();
+		uiEquipments = GameSession.instance.GetUI_Equipment();
+		uiLockSlotUI = GameSession.instance.GetLockSlotUI();
+
+
 		equipment.OnEquipmentChange += Equipment_OnEquipmentChange;
 
-		inventory.AddRune(new Rune(Rune.RuneType.Damage));
-		inventory.AddRune(new Rune(Rune.RuneType.DoubleJump));
+		sword.SetEquipment(equipment);
 
 		uiInventory.SetInventory(inventory);
 		uiInventory.SetEquipment(equipment);
 
-		foreach(var uiEquip in uiEquipments)
+		foreach (UI_Market uiMar in uiMarkets)
+		{
+			uiMar.transform.parent.gameObject.SetActive(false);
+			uiMar.SetInventory(inventory);
+		}
+
+		uiLockSlotUI.SetEquipment(equipment);
+
+		foreach (UI_Equipment uiEquip in uiEquipments)
 		{
 			uiEquip.SetInventory(inventory);
 			uiEquip.SetEquipment(equipment);
 		}
 
+		playerController = GetComponent<PlayerController>();
+
+		RefreshPlayerStat();
 	}
 
 	private void Equipment_OnEquipmentChange(object sender, System.EventArgs e)
 	{
+		RefreshPlayerStat();
+	}
+
+    public void RefreshPlayerStat()
+    {
+		Debug.Log("Player EquipmentChange");
+		//ResetPlayerStat first
+		sword.SetDamage(15);
+		playerController.canDoubleJump = false;
+		playerController.canDash = false;
+
 		foreach (Rune rune in equipment.GetEquipmentList())
 		{
 			switch (rune.runeType)
-			{ 
+			{
 				case Rune.RuneType.Damage:
-					playerController.SetDamage(15);
-					break;
-				case Rune.RuneType.AttackSpeed:
+					sword.AddDamage(30);
 					break;
 				case Rune.RuneType.DoubleJump:
 					playerController.canDoubleJump = true;
 					break;
 				case Rune.RuneType.Dash:
+					playerController.canDash = true;
 					break;
+				case Rune.RuneType.Fire:
+					break;
+
 			}
 		}
 	}
-
-    private void RefreshPlayerStat()
-    {
-        
-    }
 
 	// Update is called once per frame
 	void Update()
     {
         
     }
+
+	public bool TryToSpendGold(int goldAmount)
+	{
+		int gold = GameSession.instance.GetCoin();
+		return gold >= goldAmount;
+	}
+
+	public void BoughtItem(IShopItem shopItem)
+	{
+		GameSession.instance.AddCoin(-shopItem.GetCost());
+	}
 }

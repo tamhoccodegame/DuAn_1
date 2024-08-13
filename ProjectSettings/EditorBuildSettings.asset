@@ -6,16 +6,36 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 8c9cfa26abfee488c85f1582747f6a02
+    path: Assets/Scenes/Start_Scene 1.unity
+    guid: badf87020c8d7d6468d2aab248903dae
   - enabled: 1
-    path: Assets/Tuan/Scenes/Begin map.unity
-    guid: 4f6138a8c87c7214cad73f4ff8c0a2f7
+    path: Assets/Scenes/Abyss of Sins.unity
+    guid: 17f5c1257c863fe4292fea7bc629f048
   - enabled: 1
-    path: Assets/Tuan/Scenes/Secret map.unity
-    guid: 96baef8c356a5ad408637537f53a1a25
+    path: Assets/Scenes/Forgotten Kingdom.unity
+    guid: 88cb5712bd736d9409581ec94c2c7dfe
   - enabled: 1
-    path: Assets/Tuan/Scenes/Sky Island.unity
-    guid: 14c238de72cacd845a6f90314b602294
-  m_configObjects:
-    com.unity.input.settings: {fileID: 11400000, guid: 5fe1a478effbee44db1fa6743253d6c7, type: 2}
+    path: Assets/Scenes/Land of Holy.unity
+    guid: 3167605431d835949945c61e31c26c34
+  - enabled: 1
+    path: Assets/Scenes/Land of Hope.unity
+    guid: aa7ed8dbb1fdac44f844a2c569b25d07
+  - enabled: 1
+    path: Assets/Scenes/Sky Island.unity
+    guid: 3773c0c1b3c92ed43951826aaf16de18
+  - enabled: 1
+    path: Assets/Scenes/The Deeper.unity
+    guid: 5efb34bf71effce419a0075cea2ae7e5
+  - enabled: 1
+    path: Assets/Scenes/The Dungeon.unity
+    guid: 8eb7904097e431c45a9311ec6a336f5e
+  - enabled: 1
+    path: Assets/Scenes/Market.unity
+    guid: 69c2b99c53144e44aafbea0be3b9fc52
+  - enabled: 1
+    path: Assets/Scenes/Loading Scene.unity
+    guid: 9fe23ef97f8df7e45bb502f05e4889b6
+  - enabled: 1
+    path: Assets/Scenes/EndOfDemo.unity
+    guid: c39f4f331581ba84ab75eb84609bae64
+  m_configObjects: {}

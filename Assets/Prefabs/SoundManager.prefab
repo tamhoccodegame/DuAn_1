@@ -1,0 +1,253 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3038307451211716684
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8140326811667797571}
+  - component: {fileID: 7402193071100201986}
+  m_Layer: 0
+  m_Name: SoundManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8140326811667797571
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3038307451211716684}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.8070636, y: 0.24924307, z: -0.657989}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7402193071100201986
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3038307451211716684}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d21c23859d91c664a936a05e086c87aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - clip: {fileID: 8300000, guid: df5b18ddfe1020548971abb37a6c6de2, type: 3}
+    name: Player_AttackCombo_1
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: df5b18ddfe1020548971abb37a6c6de2, type: 3}
+    name: Player_AttackCombo_2
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: df5b18ddfe1020548971abb37a6c6de2, type: 3}
+    name: Player_AttackCombo_3
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: cd3b6d9a942a8dd488b7529e01b2018e, type: 3}
+    name: Player_AttackCombo_Voice
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 86b730d8c2d1ff34a81e4991c4dfab79, type: 3}
+    name: Player_Hurt
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 5c87ae170b7ff4c47b3f032c37fec25c, type: 3}
+    name: Player_Death
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 8f64e60a0b2def54f873031649778947, type: 3}
+    name: Player_Bomerang_Attack
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 296acf21393a9c64bbc3af3e1a5ff63a, type: 3}
+    name: Snake_Attack
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 4a1f6612eb0982e478cec2ac8758867a, type: 3}
+    name: Player_Jump
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 4a1f6612eb0982e478cec2ac8758867a, type: 3}
+    name: Player_Dash
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: e08617133e143d64ca00734b00b8454c, type: 3}
+    name: Next_Level
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 21525c6085a87bf4884aae6849f463cb, type: 3}
+    name: Checkpoint
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: ac112250e503e1e46837c4dfdd525873, type: 3}
+    name: Coin_Collect
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 0d9ca960886b1cf47b951a9997c47038, type: 3}
+    name: Click_Button
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 746ac634e470a1a4491b31920d593384, type: 3}
+    name: Rock_Falling
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 373475f394375334784455ae1a93f487, type: 3}
+    name: Enemy_Stomping
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: e9164e399606704468947ee30da9ae34, type: 3}
+    name: CastSkill
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: f339eb32f0f063a459abf9e8c362ac70, type: 3}
+    name: Yelling_1
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: cadb397c231f70c41b90e73820b68565, type: 3}
+    name: Yelling_2
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: c8484698132827f46930e6d83766186c, type: 3}
+    name: Yelling_3
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: cce6f4d8de10fe643a38214483e2f082, type: 3}
+    name: Land
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: c0e57f0b1bf3dae4f95d46ca8fe854ea, type: 3}
+    name: Footstep
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: a3a3fe9d009df394b86962160fe114df, type: 3}
+    name: HitImpact_1
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 1b762d4d79441334ea7c22de937de42e, type: 3}
+    name: HitImpact_2
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: cb66c7bcec5daf146af27ffa6d65aa16, type: 3}
+    name: PriestBall
+    volume: 1
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: aa66eaf72a5f8624583b8d44e48f1ebf, type: 3}
+    name: PriestDead
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 01176c7c710e05c4a81a63ef5c8254e2, type: 3}
+    name: PriestPunch
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 77de54cc7cc35424e8a761517bd03fa1, type: 3}
+    name: PriestSkill
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: e7a8c5c179ee472408d27115d72dd183, type: 3}
+    name: PriestSlash
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: fe703e5931a21c848825bfde6bfa187a, type: 3}
+    name: PriestFireBall
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 2176fc152844449409bc0a906db88439, type: 3}
+    name: HeadlessSkill
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 3a9b162de20d44c43b0857ef6e2365e5, type: 3}
+    name: HeadlessFootstep_1
+    volume: 0.2
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 8f00cbd499705324d97b1eb3c602b7b1, type: 3}
+    name: HeadlessFootstep_2
+    volume: 0.2
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 0ca0b89b97eabbb41bc89a9cf43a3937, type: 3}
+    name: GiantGirl_Laugh
+    volume: 0.2
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  musicSlider: {fileID: 0}
+  soundSlider: {fileID: 0}

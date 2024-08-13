@@ -19,6 +19,6 @@ public class StartScene : MonoBehaviour
 
     public void StartGame()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene("Land of Hope");
     }
 }

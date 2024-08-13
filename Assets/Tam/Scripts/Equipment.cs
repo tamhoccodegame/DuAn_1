@@ -9,7 +9,7 @@ public class Equipment
 	public event EventHandler OnEquipmentChange;
 	//public event EventHandler OnSlotUnlocked;
 	private List<Rune> equipments;
-	private int maxSlot;
+	public int maxSlot;
 	private int avaSlot;
 
 	public Equipment()
@@ -17,13 +17,15 @@ public class Equipment
 		equipments = new List<Rune>();
 		maxSlot = 1;
 		avaSlot = 1;
+		//IncreaseSlot();
 	}
-	public void IncreaseSlot(int slot)
+	public void IncreaseSlot()
 	{
+		//Chay khi tang tien do story
 		maxSlot++;
 		avaSlot++;
 		//OnSlotUnlocked?.Invoke(this, EventArgs.Empty);
-		OnEquipmentChange?.DynamicInvoke(this, EventArgs.Empty);
+		OnEquipmentChange?.Invoke(this, EventArgs.Empty);
 	}
 
 	public bool CanEquip()

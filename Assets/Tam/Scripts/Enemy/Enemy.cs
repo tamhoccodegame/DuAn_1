@@ -1,14 +1,16 @@
+using BarthaSzabolcs.Tutorial_SpriteFlash;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Enemy : MonoBehaviour
 {
     protected Transform player;
 
     protected float maxHealth;
-    protected float currentHealth;
+    [SerializeField] protected float currentHealth;
     protected float patrolSpeed;
     protected float chaseSpeed;
     protected float attackRange;
@@ -25,6 +27,10 @@ public class Enemy : MonoBehaviour
     protected Animator animator;
 
     protected Vector3 direction;
+
+    [SerializeField] protected ParticleSystem vialityEffect;
+    [SerializeField] protected ParticleSystem hitEffect;
+    [SerializeField] protected GameObject coinPrefab;
 
     public enum State
     {
@@ -61,9 +67,15 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame  
     public virtual void Update()
     {
-        if (!isAlive) return;
-        if (isCoroutineRunning) return;
-        switch (currentState)
+		if (!isAlive) return;
+
+		if (isCoroutineRunning) return;
+
+		direction = direction = new Vector3(player.position.x - transform.position.x, 0, 0);
+		direction.Normalize();
+		LookAtDirection(direction);
+
+		switch (currentState)
         {
             case State.Patrol:
                 Patrol();
@@ -85,7 +97,8 @@ public class Enemy : MonoBehaviour
     
     private void Patrol()
     {
-        if (Mathf.Abs(player.position.x - transform.position.x) <= chaseRange)
+		animator.Play("Move");
+		if (Mathf.Abs(player.position.x - transform.position.x) <= chaseRange)
         {
             ChangeState(State.Chase);
         }
@@ -113,6 +126,7 @@ public class Enemy : MonoBehaviour
 
     public virtual void Chase()
     {
+        animator.Play("Move");
         direction = new Vector3(player.position.x - transform.position.x, 0, 0);
         direction.Normalize();
 
@@ -123,6 +137,10 @@ public class Enemy : MonoBehaviour
         if (Mathf.Abs(player.position.x - transform.position.x) <= attackRange)
         {
             ChangeState(State.Attack);
+        }
+        else if(Mathf.Abs(player.position.x - transform.position.x) > chaseRange)
+        {
+            ChangeState(State.Patrol);
         }
         //Debug.Log("Direction: " + direction + " | Velocity: " + rb.velocity);
     }
@@ -151,36 +169,75 @@ public class Enemy : MonoBehaviour
 	}
 
 
-	public void TakeDamage(float damage)
+	public virtual void TakeDamage(float damage)
     {
         if (!isAlive) return;
 
-		rb.velocity = Vector2.zero;
+        GetComponent<SimpleFlash>()?.Flash();
+		//rb.velocity = Vector2.zero;
 		currentHealth -= damage;
 
 		if (currentHealth <= 0)
 		{
-			Die();
 			isAlive = false;
-            return;
+			Die();
 		}
+        else
+		{
+			Instantiate(hitEffect, transform.position, Quaternion.identity);
 
-		animator.SetTrigger("isHurt");
+			animator.SetTrigger("isHurt");
+
+		}
+   
     }
 
-	private void Die()
+	public virtual bool Die()
     {
-        this.enabled = false;
-        animator.SetBool("isDead", true);
+        rb.Sleep();
+        Collider2D[] colliders = GetComponents<Collider2D>();
+        foreach(Collider2D collider in colliders)
+        {
+            collider.enabled = false;
+        }
         StartCoroutine(DieDelay());
+        return true;
     }
 
-    private IEnumerator DieDelay()
+    protected IEnumerator DieDelay()
     {
-		Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), gameObject.layer, true);
-		yield return new WaitForSeconds(2f);
+        rb.velocity = Vector2.zero;
+		animator.SetBool("isDead", true);
+        //FindObjectOfType<TriggerBlockDoor>().HideDoor();
+        var go = Instantiate(vialityEffect, transform.position + new Vector3(0, 3f, 0), transform.rotation);
+        go.transform.rotation = Quaternion.Euler(-90f, 0, 0);
+        DropCoin();
+		yield return new WaitForSeconds(5f);
+        if(gameObject.name == "GiantGirl")
+        {
+            GameSession.instance.gameObject.SetActive(false);
+            SceneManager.LoadScene("EndOfDemo");
+        }
         Destroy(gameObject);
     }
 
+    public virtual void DropCoin()
+    {
+        int amount = Random.Range(30, 51);
+        for (int i = 0; i < amount; i++)
+        {
+            Instantiate(coinPrefab, transform.position + new Vector3(Random.Range(1,6), 1 ,0), transform.rotation);
+        }
+    }
+
+    protected void PlaySound(string soundName)
+    {
+        FindObjectOfType<SoundManager>().PlayAudio(soundName);
+    }
+
+    protected void StopSound(string soundName)
+    {
+		FindObjectOfType<SoundManager>().StopAudio(soundName);
+	}
 
 }

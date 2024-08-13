@@ -9,6 +9,10 @@ TagManager:
   - FirePoint
   - FxTemporaire
   - Enemy
+  - Checkpoint
+  - Wall
+  - Next_Level
+  - Teammate
   layers:
   - Default
   - TransparentFX
@@ -18,8 +22,8 @@ TagManager:
   - UI
   - Ground
   - Enemy
-  - 
-  - 
+  - Background
+  - Weapon
   - 
   - 
   - 
@@ -66,6 +70,9 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 3356409257
+    locked: 0
+  - name: Effect
+    uniqueID: 1036407973
     locked: 0
   - name: UI
     uniqueID: 3484935709

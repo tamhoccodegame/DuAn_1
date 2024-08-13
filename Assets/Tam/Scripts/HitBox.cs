@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,6 +7,7 @@ public class HitBox : MonoBehaviour
 	private int damage;
 	[SerializeField] private int playerDamage;
 	[SerializeField] private int enemyDamage;
+	[SerializeField] private bool canDestroySelf = false;
 	private void Start()
 	{
 		if(playerDamage == 0)
@@ -23,23 +24,69 @@ public class HitBox : MonoBehaviour
 
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
+		if ((collision.gameObject.layer != LayerMask.NameToLayer("Player"))
+		&& (collision.gameObject.layer != LayerMask.NameToLayer("Enemy"))) return;
+
+		if (collision.gameObject.layer == LayerMask.NameToLayer("Ground") && canDestroySelf)
+		{
+			Destroy(this.gameObject);
+			return;
+		}
 		Enemy enemyHit = collision.gameObject.GetComponent<Enemy>();
 		Player_Health playerHit = collision.gameObject.GetComponent<Player_Health>();
 		Vector3 direction = new Vector3(collision.transform.position.x - transform.position.x, 0, 0); 
 		direction.Normalize();
+
 		if (playerHit)
 		{
-			Debug.Log(enemyDamage);
-			playerHit.TakeDamage(enemyDamage);
-			Knockback knockback = GetComponent<Knockback>();
-			knockback.ApplyKnockback(collision.gameObject.transform, direction);
-			return;
+			StartCoroutine(HandlePlayerHit(playerHit, collision.gameObject.transform, direction));
 		}
 		if(enemyHit)
 		{
-			enemyHit.TakeDamage(playerDamage);
-			Knockback knockback = GetComponent<Knockback>();
-			knockback.ApplyKnockback(collision.gameObject.transform, direction);
+			StartCoroutine(HandleEnemyrHit(enemyHit, collision.gameObject.transform, direction));	
+		}
+	}
+
+	private void OnCollisionEnter2D(Collision2D collision)
+	{
+		if ((collision.gameObject.layer != LayerMask.NameToLayer("Player"))
+		&& (collision.gameObject.layer != LayerMask.NameToLayer("Enemy"))) return;
+
+		if (collision.gameObject.layer == LayerMask.NameToLayer("Ground") && canDestroySelf)
+		{
+			Destroy(this.gameObject);
+			return;
+		}
+		Enemy enemyHit = collision.gameObject.GetComponent<Enemy>();
+		Player_Health playerHit = collision.gameObject.GetComponent<Player_Health>();
+
+		if (playerHit)
+		{
+			StartCoroutine(playerHit.TakeDamage(enemyDamage));
+		}
+	}
+	private IEnumerator HandlePlayerHit(Player_Health playerHit, Transform target, Vector3 direction)
+	{
+		Knockback knockback = GetComponent<Knockback>();
+		
+		yield return StartCoroutine(playerHit.TakeDamage(enemyDamage));
+
+		if (knockback != null)
+		{
+			yield return StartCoroutine(knockback.ApplyKnockback(target, direction));
+		}
+
+	}
+
+	private IEnumerator HandleEnemyrHit(Enemy enemyHit, Transform target, Vector3 direction)
+	{
+		Knockback knockback = GetComponent<Knockback>();
+
+		enemyHit.TakeDamage(playerDamage);
+
+		if (knockback != null)
+		{
+			yield return StartCoroutine(knockback.ApplyKnockback(target, direction));
 		}
 	}
 }
