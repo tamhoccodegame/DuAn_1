@@ -16,12 +16,12 @@ public class PlayerController : MonoBehaviour
     public bool canDoubleJump = false;
     public bool canDash = false;
     public float jumpCount;
+    public bool isGrounded = true;
 
     Rigidbody2D rig;
     Animator animator;
     CapsuleCollider2D col;
     Transform aura;
-    public Collider2D feet;
     [SerializeField] float speed = 10f;
     [SerializeField] float jump = 20f;
     [SerializeField] private int damage;
@@ -44,6 +44,7 @@ public class PlayerController : MonoBehaviour
     public float dashTime = 1f;
 
     public ParticleSystem coinEffect;
+    public ParticleSystem skillEffect;
 
     public GameObject snakePrefab;
     private float snakeLifetime = 1f;
@@ -58,8 +59,9 @@ public class PlayerController : MonoBehaviour
 
     public Skill_Mana skillManager;
 
+    public GameObject UI_Video;
+    public GameObject Skill_Video;
 
-    private bool isGrounded = true;
 
     //private bool isDashing;
     //public float dashTime;
@@ -124,7 +126,7 @@ public class PlayerController : MonoBehaviour
         
         if (canDoubleJump)
         {
-			if (feet.IsTouchingLayers(LayerMask.GetMask("Ground")))
+			if (isGrounded)
 			{
 				if (value.isPressed)
 				{
@@ -140,7 +142,7 @@ public class PlayerController : MonoBehaviour
 		}
         else
         {
-			if (feet.IsTouchingLayers(LayerMask.GetMask("Ground")))
+			if (isGrounded)
             {
 				if (value.isPressed)
 				{
@@ -171,7 +173,7 @@ public class PlayerController : MonoBehaviour
 
 
 
-        if (havemove && feet.IsTouchingLayers(LayerMask.GetMask("Ground")))
+        if (havemove && isGrounded)
         {
             ////huong cua player
             //int huong = (int)transform.localScale.x;
@@ -211,6 +213,7 @@ public class PlayerController : MonoBehaviour
         SnakeAttack();
         SummonTeammateWhenPressButton();
         FireworkSkill();
+        SlashSkill();
     }
 
     private IEnumerator Dash()
@@ -234,12 +237,11 @@ public class PlayerController : MonoBehaviour
     {
         moveInput = currentInput;
 		rig.velocity = new Vector2(moveInput.x * speed, rig.velocity.y);
-        if (feet.IsTouchingLayers(LayerMask.GetMask("Ground")))
+        if (isGrounded)
         {
             if (!isGrounded)
             {
                 PlayAttackSound("Land");
-                isGrounded = true;
             }
 
             animator.SetBool("isJump", false);
@@ -248,7 +250,6 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            isGrounded = false;
             animator.SetBool("isJump", true);
             isJumping = true;
         }
@@ -553,6 +554,47 @@ public class PlayerController : MonoBehaviour
         Rigidbody2D go = Instantiate(skillBlastPrefab, skillBlastPoint.position, Quaternion.identity).GetComponent<Rigidbody2D>();
         go.transform.rotation = Quaternion.Euler(0, 0, 90);
         go.AddForce(new Vector2(0, 20), ForceMode2D.Impulse);
+    }
+
+    private void SlashSkill()
+    {
+        if(Input.GetKeyDown(KeyCode.Z))
+        {
+            StartCoroutine(SlashSkillCoroutine());
+        }
+    }
+
+    IEnumerator SlashSkillCoroutine()
+    {
+		skillEffect.Play();
+		animator.Play("SlashSkill");
+        yield return new WaitForSeconds(.2f);
+		Time.timeScale = 0;
+		UI_Video.SetActive(true);
+		yield return new WaitForSecondsRealtime(1f);
+        Skill_Video.SetActive(true);
+        yield return new WaitForSecondsRealtime(4f);
+        Enemy[] enemies = FindObjectsOfType<Enemy>();
+
+		UI_Video.SetActive(false);
+		Skill_Video.SetActive(false);
+		Time.timeScale = 1;
+		animator.Play("Idle");
+		foreach (Enemy enemy in enemies)
+        {
+            if (IsEnemyInCameraView(enemy))
+            {
+				int comboPhase = 4;
+				int currentPhase = 0;
+
+				while (currentPhase < comboPhase)
+				{
+					enemy.TakeDamage(20);
+					yield return new WaitForSeconds(.3f);
+					currentPhase++;
+				}
+			}
+        }
     }
 
 	bool IsEnemyInCameraView(Enemy enemy)
