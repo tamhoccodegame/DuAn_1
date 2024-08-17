@@ -24,6 +24,7 @@ public class HitBox : MonoBehaviour
 
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
+		Debug.Log(collision.name);
 		if ((collision.gameObject.layer != LayerMask.NameToLayer("Player"))
 		&& (collision.gameObject.layer != LayerMask.NameToLayer("Enemy"))) return;
 
