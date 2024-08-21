@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using BarthaSzabolcs.Tutorial_SpriteFlash;
+using System.Collections;
 using System.Collections.Generic;
 using System.Resources;
 using Unity.VisualScripting;
@@ -51,6 +52,7 @@ public class PlayerController : MonoBehaviour
     private float summonRange = 10f;
     public GameObject skillBlastPrefab;
     public GameObject skyBulletPrefab;
+    public GameObject auraAwaken;
 
     public GameObject teammatePrefab;
     public Transform summonTeammatePosition;//Vi tri trieu hoi dong doi
@@ -87,6 +89,7 @@ public class PlayerController : MonoBehaviour
         {
             skillManager = FindObjectOfType<Skill_Mana>();
         }
+
     }
 
     public int GetDamage()
@@ -207,6 +210,11 @@ public class PlayerController : MonoBehaviour
                 
         }
 
+        if(Input.GetKeyDown(KeyCode.T))
+        {
+            StartCoroutine(Awaken());
+		}
+
         //Debug.Log(isAttacking);
         //Dash();
         //CheckDash();
@@ -216,7 +224,19 @@ public class PlayerController : MonoBehaviour
         SlashSkill();
     }
 
-    private IEnumerator Dash()
+    private IEnumerator Awaken()
+    {
+        GetComponent<SimpleFlash>().Flash();
+        var go = Instantiate(auraAwaken, transform.localPosition, Quaternion.identity);
+        Time.timeScale = .3f;
+        yield return new WaitForSecondsRealtime(2f);
+		Time.timeScale = 1;
+        Destroy(go);
+		animator.Play("Aw_Idle");
+		animator.SetBool("isAwake", true);
+	}
+
+	private IEnumerator Dash()
     {
         this.gameObject.layer = LayerMask.NameToLayer("Default");
         animator.SetTrigger("isDash");

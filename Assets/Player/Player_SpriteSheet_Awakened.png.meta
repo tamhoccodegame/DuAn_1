@@ -1,0 +1,2443 @@
+fileFormatVersion: 2
+guid: b1c7fb89371d84c418cbc1daf4ec54d8
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Player_SpriteSheet_Awakened_0
+      rect:
+        serializedVersion: 2
+        x: 338
+        y: 6797
+        width: 257
+        height: 300
+      alignment: 9
+      pivot: {x: 0.37629932, y: 0.04962565}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6685b357dd7605f4194b3532e820ce0e
+      internalID: 1580006144
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_SpriteSheet_Awakened_1
+      rect:
+        serializedVersion: 2
+        x: 780
+        y: 6788
+        width: 254
+        height: 297
+      alignment: 9
+      pivot: {x: 0.39361212, y: 0.050429426}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6bcd512678a101640ac85a7be1362776
+      internalID: -1033004513
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_SpriteSheet_Awakened_2
+      rect:
+        serializedVersion: 2
+        x: 1179
+        y: 6796
+        width: 291
+        height: 293
+      alignment: 9
+      pivot: {x: 0.48361194, y: 0.03344143}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ada7f149c037abb4fab6b3e87068f316
+      internalID: 1768943506
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_SpriteSheet_Awakened_4
+      rect:
+        serializedVersion: 2
+        x: 2314
+        y: 6804
+        width: 353
+        height: 258
+      alignment: 9
+      pivot: {x: 0.13976048, y: 0.0317591}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 70cbc221a826b6d4f90271ad2a05d3ef
+      internalID: 1394409656
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_SpriteSheet_Awakened_5
+      rect:
+        serializedVersion: 2
+        x: 2786
+        y: 6797
+        width: 311
+        height: 249
+      alignment: 9
+      pivot: {x: 0.43355608, y: 0.040368505}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a4cb6ff4221d5cb4bbba9ab4700cb02b
+      internalID: 804824216
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_SpriteSheet_Awakened_6
+      rect:
+        serializedVersion: 2
+        x: 3227
+        y: 6797
+        width: 322
+        height: 249
+      alignment: 9
+      pivot: {x: 0.4605076, y: 0.03398555}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 103558108c9f6f848bd40162258efc76
+      internalID: -1122408521
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_SpriteSheet_Awakened_7
+      rect:
+        serializedVersion: 2
+        x: 3666
+        y: 6799
+        width: 322
+        height: 249
+      alignment: 9
+      pivot: {x: 0.4555717, y: 0.027600637}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2bf24caabb1a81e4c90ee5ca41a9ca2a
+      internalID: 912865017
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_SpriteSheet_Awakened_8
+      rect:
+        serializedVersion: 2
+        x: 4345
+        y: 6800
+        width: 321
+        height: 248
+      alignment: 9
+      pivot: {x: 0.4603838, y: 0.01928711}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f4d87eeabcfc63d48957473d345955c1
+      internalID: 825574707
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_SpriteSheet_Awakened_9
+      rect:
+        serializedVersion: 2
+        x: 270
+        y: 6121
+        width: 314
+        height: 257
+      alignment: 9
+      pivot: {x: 0.092560396, y: 0.08745934}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1427ab1a73b13ec4a8de315955fc70f8
+      internalID: 311268493
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_SpriteSheet_Awakened_10
+      rect:
+        serializedVersion: 2
+        x: 1066
+        y: 6125
+        width: 314
+        height: 254
+      alignment: 9
+      pivot: {x: 0.08440579, y: 0.07374969}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7006a686a3b15354c9613fcc44b2b47d
+      internalID: -89400967
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_SpriteSheet_Awakened_11
+      rect:
+        serializedVersion: 2
+        x: 1779
+        y: 6125
+        width: 337
+        height: 245
+      alignment: 9
+      pivot: {x: 0.0506523, y: 0.0932099}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 42f3755417e363d49be893c943fac93b
+      internalID: -1639096756
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_SpriteSheet_Awakened_12
+      rect:
+        serializedVersion: 2
+        x: 2708
+        y: 6135
+        width: 506
+        height: 235
+      alignment: 9
+      pivot: {x: 0.054020215, y: 0.062371176}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1d08aed36bd697548af7d1541552bab2
+      internalID: -1942873334
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_SpriteSheet_Awakened_13
+      rect:
+        serializedVersion: 2
+        x: 3992
+        y: 6129
+        width: 508
+        height: 231
+      alignment: 9
+      pivot: {x: 0.057857003, y: 0.06845872}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cc8a04ed348cde8498b8071e8f0224f3
+      internalID: -1055708886
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_SpriteSheet_Awakened_14
+      rect:
+        serializedVersion: 2
+        x: 5423
+        y: 6122
+        width: 504
+        height: 228
+      alignment: 9
+      pivot: {x: 0.05047995, y: 0.08265659}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2d3c937174e58574989ed5d434100289
+      internalID: 835785027
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_SpriteSheet_Awakened_15
+      rect:
+        serializedVersion: 2
+        x: 367
+        y: 5535
+        width: 506
+        height: 228
+      alignment: 9
+      pivot: {x: 0.061212715, y: 0.07271964}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 58f6c85c69697e64f913829815610a33
+      internalID: 615893301
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_SpriteSheet_Awakened_16
+      rect:
+        serializedVersion: 2
+        x: 1489
+        y: 5535
+        width: 507
+        height: 228
+      alignment: 9
+      pivot: {x: 0.05390909, y: 0.06278269}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bc335ed4a2c8bac44a6ee50bc6fa362c
+      internalID: 457912109
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_SpriteSheet_Awakened_17
+      rect:
+        serializedVersion: 2
+        x: 2861
+        y: 5538
+        width: 506
+        height: 228
+      alignment: 9
+      pivot: {x: 0.053797305, y: 0.06791178}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ed1e760e7104b4640a8ccaf975fda1e9
+      internalID: 697893838
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_SpriteSheet_Awakened_18
+      rect:
+        serializedVersion: 2
+        x: 4141
+        y: 5535
+        width: 508
+        height: 228
+      alignment: 9
+      pivot: {x: 0.052628644, y: 0.06930381}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 272bf6a5a79a9c543bb0c47418aac837
+      internalID: -603117210
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_SpriteSheet_Awakened_19
+      rect:
+        serializedVersion: 2
+        x: 359
+        y: 4698
+        width: 298
+        height: 408
+      alignment: 9
+      pivot: {x: 0.13524333, y: 0.02309545}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f2b7a27e8d0371c43bd77ea7be788e24
+      internalID: 1041259703
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_SpriteSheet_Awakened_20
+      rect:
+        serializedVersion: 2
+        x: 1289
+        y: 4690
+        width: 261
+        height: 358
+      alignment: 9
+      pivot: {x: 0.08785876, y: 0.01534895}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 68abb1e8b440c264d931804df9b6c065
+      internalID: -1447695693
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_SpriteSheet_Awakened_21
+      rect:
+        serializedVersion: 2
+        x: 2272
+        y: 4692
+        width: 479
+        height: 251
+      alignment: 9
+      pivot: {x: 0.07129695, y: 0.03403557}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bf06a0216172ab24682dfe308403b93d
+      internalID: 1500273727
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_SpriteSheet_Awakened_22
+      rect:
+        serializedVersion: 2
+        x: 3264
+        y: 4696
+        width: 496
+        height: 237
+      alignment: 9
+      pivot: {x: 0.09734861, y: 0.03251574}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d5993cc261619024eaec4807818cfe4d
+      internalID: 1785867377
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_SpriteSheet_Awakened_23
+      rect:
+        serializedVersion: 2
+        x: 4513
+        y: 4690
+        width: 290
+        height: 227
+      alignment: 9
+      pivot: {x: 0.17477116, y: 0.03251574}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a26152c71233813419a60c8d712b604a
+      internalID: 192907177
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_SpriteSheet_Awakened_24
+      rect:
+        serializedVersion: 2
+        x: 338
+        y: 3843
+        width: 321
+        height: 247
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6e6a24fd2bf5bf348ae048755e1e0aee
+      internalID: 525377553
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_SpriteSheet_Awakened_25
+      rect:
+        serializedVersion: 2
+        x: 887
+        y: 3806
+        width: 372
+        height: 308
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6633bb003a77f1f4d82829b7834e9041
+      internalID: 1086460396
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_SpriteSheet_Awakened_26
+      rect:
+        serializedVersion: 2
+        x: 1538
+        y: 3848
+        width: 305
+        height: 255
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 76bd8fb51d5f73f46867c7757a9d71b2
+      internalID: 174127923
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_SpriteSheet_Awakened_27
+      rect:
+        serializedVersion: 2
+        x: 2193
+        y: 3846
+        width: 470
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4a3fe0966bdfd974d80f20ceec4abafd
+      internalID: 127056325
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_SpriteSheet_Awakened_28
+      rect:
+        serializedVersion: 2
+        x: 2889
+        y: 3846
+        width: 363
+        height: 266
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 16c036a36b301154386e7bb2f565822b
+      internalID: 1730232115
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_SpriteSheet_Awakened_29
+      rect:
+        serializedVersion: 2
+        x: 287
+        y: 3305
+        width: 430
+        height: 259
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eeac8d0cdd9337b49870c0003f09aa8d
+      internalID: 1615428477
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_SpriteSheet_Awakened_30
+      rect:
+        serializedVersion: 2
+        x: 1130
+        y: 3281
+        width: 437
+        height: 257
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d645603e6bd53a041b54f368bfe56e91
+      internalID: -1626776479
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_SpriteSheet_Awakened_31
+      rect:
+        serializedVersion: 2
+        x: 1913
+        y: 3270
+        width: 513
+        height: 297
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9c013acc3a4e013428aedeff68bddf1d
+      internalID: 1537377130
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_SpriteSheet_Awakened_32
+      rect:
+        serializedVersion: 2
+        x: 2775
+        y: 3272
+        width: 512
+        height: 298
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a56f570671a99284bb423dbaad896626
+      internalID: -1125259160
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_SpriteSheet_Awakened_33
+      rect:
+        serializedVersion: 2
+        x: 4025
+        y: 3265
+        width: 523
+        height: 305
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 91184a2ebc8cd8f4186f4cef97a42789
+      internalID: 1343997234
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_SpriteSheet_Awakened_34
+      rect:
+        serializedVersion: 2
+        x: 5538
+        y: 3261
+        width: 525
+        height: 304
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 49fe0d28f711c7449945d86ae7c24edc
+      internalID: 1754671888
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_SpriteSheet_Awakened_35
+      rect:
+        serializedVersion: 2
+        x: 184
+        y: 2217
+        width: 400
+        height: 319
+      alignment: 9
+      pivot: {x: 0.5161647, y: 0.030895652}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 70aa3a36fd5a51d4b875ba14e35b914e
+      internalID: -1526771443
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_SpriteSheet_Awakened_36
+      rect:
+        serializedVersion: 2
+        x: 1097
+        y: 2218
+        width: 371
+        height: 307
+      alignment: 9
+      pivot: {x: 0.5497968, y: 0.054683525}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 94fda0a2125d46f45911377a661572f0
+      internalID: -1969735493
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_SpriteSheet_Awakened_37
+      rect:
+        serializedVersion: 2
+        x: 1964
+        y: 2220
+        width: 468
+        height: 539
+      alignment: 9
+      pivot: {x: 0.097347945, y: 0.018426502}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 752fb36645a6d024a944f2219c0949d5
+      internalID: 1514724572
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_SpriteSheet_Awakened_38
+      rect:
+        serializedVersion: 2
+        x: 3043
+        y: 2215
+        width: 366
+        height: 608
+      alignment: 9
+      pivot: {x: 0.16297922, y: 0.021571912}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 298fc8c74ec73624eb95583181cea8ca
+      internalID: 1085195760
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_SpriteSheet_Awakened_39
+      rect:
+        serializedVersion: 2
+        x: 3907
+        y: 2193
+        width: 245
+        height: 637
+      alignment: 9
+      pivot: {x: 0.22196569, y: 0.023122456}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: df359237ae87acf4f8857c4427970a20
+      internalID: -2132536246
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_SpriteSheet_Awakened_40
+      rect:
+        serializedVersion: 2
+        x: 190
+        y: 1270
+        width: 258
+        height: 439
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7f52d7b13d428594cba3123e34d4395d
+      internalID: -1779119049
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_SpriteSheet_Awakened_41
+      rect:
+        serializedVersion: 2
+        x: 835
+        y: 1306
+        width: 258
+        height: 418
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 63ef0829c5c285c40a39fd9372d87d52
+      internalID: 932320053
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_SpriteSheet_Awakened_42
+      rect:
+        serializedVersion: 2
+        x: 1463
+        y: 1294
+        width: 470
+        height: 395
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2c59e842846651245b5deb334a2e7f4c
+      internalID: 308739959
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_SpriteSheet_Awakened_43
+      rect:
+        serializedVersion: 2
+        x: 2397
+        y: 1294
+        width: 450
+        height: 415
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 48559e72195586b46be1b51d6a01900b
+      internalID: -746106675
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_SpriteSheet_Awakened_44
+      rect:
+        serializedVersion: 2
+        x: 3315
+        y: 1302
+        width: 384
+        height: 399
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fef008a949125ad4bb51aa04f6d6a825
+      internalID: 680246623
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_SpriteSheet_Awakened_45
+      rect:
+        serializedVersion: 2
+        x: 4175
+        y: 1277
+        width: 423
+        height: 437
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8fbcc1b520dfd3e459038a140e760f74
+      internalID: -466619909
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_SpriteSheet_Awakened_46
+      rect:
+        serializedVersion: 2
+        x: 199
+        y: 660
+        width: 355
+        height: 349
+      alignment: 9
+      pivot: {x: 0.485602, y: 0.02893521}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 51056854a907f314ebc1689fa23990cb
+      internalID: -139728809
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_SpriteSheet_Awakened_47
+      rect:
+        serializedVersion: 2
+        x: 740
+        y: 674
+        width: 353
+        height: 330
+      alignment: 9
+      pivot: {x: 0.6259508, y: 0.031389087}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7ad78fb21de278b45a692b3a0fd7a4b2
+      internalID: -586131285
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_SpriteSheet_Awakened_50
+      rect:
+        serializedVersion: 2
+        x: 2887
+        y: 677
+        width: 479
+        height: 244
+      alignment: 9
+      pivot: {x: 0.5007268, y: 0.065837674}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bbba6b9a7b7d5414faa8246c1679535e
+      internalID: -1383146054
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_SpriteSheet_Awakened_51
+      rect:
+        serializedVersion: 2
+        x: 3715
+        y: 680
+        width: 468
+        height: 241
+      alignment: 9
+      pivot: {x: 0.4994778, y: 0.040669423}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2a8d84acb7020d349bdbf8b41f356fc9
+      internalID: 1750266389
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_SpriteSheet_Awakened_52
+      rect:
+        serializedVersion: 2
+        x: 7389
+        y: 6789
+        width: 340
+        height: 289
+      alignment: 9
+      pivot: {x: 0.50253904, y: 0.06036778}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 136a0b8d1bcc61d49a75d8a7691ba301
+      internalID: -220822553
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_SpriteSheet_Awakened_53
+      rect:
+        serializedVersion: 2
+        x: 7918
+        y: 6794
+        width: 326
+        height: 291
+      alignment: 9
+      pivot: {x: 0.51167834, y: 0.13263799}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 60a9a0d4382f76944a2a6bb6e678c5c9
+      internalID: -1262772217
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_SpriteSheet_Awakened_54
+      rect:
+        serializedVersion: 2
+        x: 8400
+        y: 6778
+        width: 367
+        height: 311
+      alignment: 9
+      pivot: {x: 0.5014954, y: 0.1264193}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d26ebde377a35e54682781de8449655d
+      internalID: 1840960232
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_SpriteSheet_Awakened_55
+      rect:
+        serializedVersion: 2
+        x: 8959
+        y: 6775
+        width: 337
+        height: 298
+      alignment: 9
+      pivot: {x: 0.5138602, y: 0.09831494}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8fa94bab59fcf084a8918d433c764a0c
+      internalID: 1087170308
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_SpriteSheet_Awakened_56
+      rect:
+        serializedVersion: 2
+        x: 9618
+        y: 6783
+        width: 356
+        height: 295
+      alignment: 9
+      pivot: {x: 0.52382153, y: 0.08664923}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 718725bd5b070224188669864cebefb4
+      internalID: -436722401
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_SpriteSheet_Awakened_57
+      rect:
+        serializedVersion: 2
+        x: 10216
+        y: 6777
+        width: 391
+        height: 303
+      alignment: 9
+      pivot: {x: 0.4999975, y: 0.12287284}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 34b8515e36acd2149852b4678524fe09
+      internalID: -1493764671
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_SpriteSheet_Awakened_58
+      rect:
+        serializedVersion: 2
+        x: 10743
+        y: 6786
+        width: 364
+        height: 294
+      alignment: 9
+      pivot: {x: 0.512639, y: 0.099999666}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c07f60fb5b936c1429ba3f78245f511b
+      internalID: -1688954983
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_SpriteSheet_Awakened_59
+      rect:
+        serializedVersion: 2
+        x: 11319
+        y: 6783
+        width: 366
+        height: 297
+      alignment: 9
+      pivot: {x: 0.51473916, y: 0.08266421}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 47e0375f3daacc949b42ad8194407c96
+      internalID: -1614992637
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_SpriteSheet_Awakened_60
+      rect:
+        serializedVersion: 2
+        x: 12408
+        y: 6764
+        width: 292
+        height: 321
+      alignment: 9
+      pivot: {x: 0.26954463, y: 0.030532029}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c36998697a98af34d930ada02a8c85b8
+      internalID: -702976856
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_SpriteSheet_Awakened_61
+      rect:
+        serializedVersion: 2
+        x: 7419
+        y: 6145
+        width: 219
+        height: 347
+      alignment: 9
+      pivot: {x: 0.48601374, y: 0.04529336}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 87435a66596c6fc45be2de14cd378ade
+      internalID: -370883408
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_SpriteSheet_Awakened_62
+      rect:
+        serializedVersion: 2
+        x: 7871
+        y: 6220
+        width: 304
+        height: 264
+      alignment: 9
+      pivot: {x: 0.3286727, y: 0.06480639}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 95e0617bc1ac662448c7be481ad2cab6
+      internalID: 1281197420
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_SpriteSheet_Awakened_63
+      rect:
+        serializedVersion: 2
+        x: 8389
+        y: 6229
+        width: 294
+        height: 249
+      alignment: 9
+      pivot: {x: 0.32284358, y: 0.063200064}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2d4b9b5af5c344f47824ea7fd14ecaa6
+      internalID: 1806076131
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_SpriteSheet_Awakened_64
+      rect:
+        serializedVersion: 2
+        x: 8991
+        y: 6162
+        width: 268
+        height: 322
+      alignment: 9
+      pivot: {x: 0.4085493, y: 0.033776324}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 059f0531522a9784d9402a67051f0410
+      internalID: 2061931244
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_SpriteSheet_Awakened_65
+      rect:
+        serializedVersion: 2
+        x: 9562
+        y: 6164
+        width: 256
+        height: 312
+      alignment: 9
+      pivot: {x: 0.44016266, y: 0.038472492}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 31a79cd01c784c54aaa96bcd835e2ea7
+      internalID: 1012152508
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_SpriteSheet_Awakened_66
+      rect:
+        serializedVersion: 2
+        x: 10173
+        y: 6160
+        width: 275
+        height: 332
+      alignment: 9
+      pivot: {x: 0.43315697, y: 0.033976726}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5c5aa92c81b9bde449cbdc73e9d32bf7
+      internalID: -1220823165
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_SpriteSheet_Awakened_67
+      rect:
+        serializedVersion: 2
+        x: 10710
+        y: 6121
+        width: 241
+        height: 346
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c4ca8ed79dca3be458d6856f6a64feae
+      internalID: -1005472558
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_SpriteSheet_Awakened_68
+      rect:
+        serializedVersion: 2
+        x: 7468
+        y: 5398
+        width: 292
+        height: 322
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4f8307f40bfa4a04185b6bc2b5cff69e
+      internalID: -258370726
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_SpriteSheet_Awakened_69
+      rect:
+        serializedVersion: 2
+        x: 7939
+        y: 5359
+        width: 291
+        height: 257
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f672f8171b7594b4988353cc9ad4a45e
+      internalID: 1353535406
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_SpriteSheet_Awakened_70
+      rect:
+        serializedVersion: 2
+        x: 8605
+        y: 5356
+        width: 301
+        height: 251
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 53f55c09825373c4d8784d6a72eca1f4
+      internalID: -925179249
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_SpriteSheet_Awakened_71
+      rect:
+        serializedVersion: 2
+        x: 9342
+        y: 5340
+        width: 385
+        height: 152
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5f870e5ced1ef3b48b816e1b2f79553d
+      internalID: -2017290003
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_SpriteSheet_Awakened_73
+      rect:
+        serializedVersion: 2
+        x: 7379
+        y: 4719
+        width: 220
+        height: 332
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ef8654ee788a22d44a8f12a9d76e9573
+      internalID: 967735496
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_SpriteSheet_Awakened_75
+      rect:
+        serializedVersion: 2
+        x: 8434
+        y: 4719
+        width: 223
+        height: 329
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e1511264d982dc54f812386345a3ad63
+      internalID: -439298236
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_SpriteSheet_Awakened_76
+      rect:
+        serializedVersion: 2
+        x: 7347
+        y: 4248
+        width: 278
+        height: 316
+      alignment: 9
+      pivot: {x: 0.2235889, y: 0.027164508}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 649854556c1318541bbd7178718fba1b
+      internalID: -172031278
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_SpriteSheet_Awakened_77
+      rect:
+        serializedVersion: 2
+        x: 8017
+        y: 4248
+        width: 278
+        height: 316
+      alignment: 9
+      pivot: {x: 0.2274284, y: 0.023786714}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0c7376ad74fe09646896dc3b0b26b63a
+      internalID: 1103706377
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_SpriteSheet_Awakened_78
+      rect:
+        serializedVersion: 2
+        x: 8678
+        y: 4248
+        width: 278
+        height: 316
+      alignment: 9
+      pivot: {x: 0.21732028, y: 0.03246607}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 83d160efed3caad498033c4efd78a7a6
+      internalID: 1311261252
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_SpriteSheet_Awakened_79
+      rect:
+        serializedVersion: 2
+        x: 9382
+        y: 4248
+        width: 279
+        height: 313
+      alignment: 9
+      pivot: {x: 0.22396533, y: 0.033006564}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 89e475693cf9ea54c8301b41df2ab9da
+      internalID: 2140956906
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_SpriteSheet_Awakened_80
+      rect:
+        serializedVersion: 2
+        x: 10197
+        y: 4248
+        width: 276
+        height: 324
+      alignment: 9
+      pivot: {x: 0.23804772, y: 0.029458128}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 86dc6a9b4d024d14a9c416d7359ffd95
+      internalID: -201822035
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_SpriteSheet_Awakened_81
+      rect:
+        serializedVersion: 2
+        x: 7336
+        y: 3541
+        width: 282
+        height: 379
+      alignment: 9
+      pivot: {x: 0.31427824, y: 0.025760379}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ea3caa84478e53b4aa77423d0af0631e
+      internalID: 657203440
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_SpriteSheet_Awakened_82
+      rect:
+        serializedVersion: 2
+        x: 7874
+        y: 3541
+        width: 284
+        height: 388
+      alignment: 9
+      pivot: {x: 0.30720285, y: 0.02142208}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d3555628cce2ebc42bf016722fd2c23f
+      internalID: 454852981
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_SpriteSheet_Awakened_83
+      rect:
+        serializedVersion: 2
+        x: 8483
+        y: 3541
+        width: 284
+        height: 388
+      alignment: 9
+      pivot: {x: 0.30720112, y: 0.018353963}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d357c57b3bdfa7c43afca29b100555f6
+      internalID: -1459508212
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_SpriteSheet_Awakened_84
+      rect:
+        serializedVersion: 2
+        x: 9002
+        y: 3541
+        width: 283
+        height: 388
+      alignment: 9
+      pivot: {x: 0.3065233, y: 0.02142208}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9908cc758709be64082ed647cd8c7033
+      internalID: 255541017
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_SpriteSheet_Awakened_85
+      rect:
+        serializedVersion: 2
+        x: 9471
+        y: 3541
+        width: 283
+        height: 388
+      alignment: 9
+      pivot: {x: 0.29811037, y: 0.02448957}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8594a0687ecadf149ae7de9839f26ffc
+      internalID: -1968960159
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_SpriteSheet_Awakened_86
+      rect:
+        serializedVersion: 2
+        x: 10036
+        y: 3541
+        width: 283
+        height: 388
+      alignment: 9
+      pivot: {x: 0.31022942, y: 0.027760928}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ddf6d62c446f20942a455528dc7e2274
+      internalID: 984449010
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_SpriteSheet_Awakened_87
+      rect:
+        serializedVersion: 2
+        x: 10657
+        y: 3541
+        width: 282
+        height: 388
+      alignment: 9
+      pivot: {x: 0.3039568, y: 0.035903145}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 48257d7ef29c78543ac2188eeb277540
+      internalID: -1718207630
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_SpriteSheet_Awakened_88
+      rect:
+        serializedVersion: 2
+        x: 11306
+        y: 3541
+        width: 283
+        height: 388
+      alignment: 9
+      pivot: {x: 0.2934829, y: 0.023689821}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1566028c84357fb4b868a35e1bfd05e1
+      internalID: 1953020323
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_SpriteSheet_Awakened_89
+      rect:
+        serializedVersion: 2
+        x: 11883
+        y: 3541
+        width: 282
+        height: 388
+      alignment: 9
+      pivot: {x: 0.3039568, y: 0.031832036}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 81be165fcfde6924e99030623a27bc4f
+      internalID: 1235759041
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_SpriteSheet_Awakened_90
+      rect:
+        serializedVersion: 2
+        x: 12459
+        y: 3537
+        width: 282
+        height: 388
+      alignment: 9
+      pivot: {x: 0.30395335, y: 0.027760928}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 674a6059480fbfd4da547c8bd423974f
+      internalID: -1585829154
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_SpriteSheet_Awakened_91
+      rect:
+        serializedVersion: 2
+        x: 7317
+        y: 2951
+        width: 271
+        height: 254
+      alignment: 9
+      pivot: {x: 0.07564936, y: 0.11422802}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bcb14a5ce1de89243bd9febd6424dac5
+      internalID: 1979022480
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_SpriteSheet_Awakened_92
+      rect:
+        serializedVersion: 2
+        x: 7810
+        y: 2953
+        width: 297
+        height: 226
+      alignment: 9
+      pivot: {x: 0.07570168, y: 0.11707083}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 571a94b207b3c3e48b8364a3052c4a1b
+      internalID: -1663059359
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_SpriteSheet_Awakened_93
+      rect:
+        serializedVersion: 2
+        x: 8365
+        y: 2953
+        width: 390
+        height: 226
+      alignment: 9
+      pivot: {x: 0.3188777, y: 0.12791024}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cb6dae6b1f9edfa45847f543fa0401db
+      internalID: -756963581
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_SpriteSheet_Awakened_94
+      rect:
+        serializedVersion: 2
+        x: 9069
+        y: 2953
+        width: 375
+        height: 221
+      alignment: 9
+      pivot: {x: 0.3714323, y: 0.12963867}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 355cc84770a471b49ac712ecdf486833
+      internalID: 231953912
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_SpriteSheet_Awakened_95
+      rect:
+        serializedVersion: 2
+        x: 9837
+        y: 2953
+        width: 376
+        height: 221
+      alignment: 9
+      pivot: {x: 0.36825755, y: 0.12642728}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9354c7d3b650ac1479fa6b1095a50fcc
+      internalID: 1329042292
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_SpriteSheet_Awakened_96
+      rect:
+        serializedVersion: 2
+        x: 10595
+        y: 2953
+        width: 376
+        height: 221
+      alignment: 9
+      pivot: {x: 0.3594737, y: 0.13389842}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4c636ce129959324d9d951de83f8fbd5
+      internalID: -1956321361
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_SpriteSheet_Awakened_97
+      rect:
+        serializedVersion: 2
+        x: 11262
+        y: 2953
+        width: 376
+        height: 221
+      alignment: 9
+      pivot: {x: 0.3726469, y: 0.13389842}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ec890a3fbe4ad494393ee9f1a9634f09
+      internalID: 1693886840
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_SpriteSheet_Awakened_98
+      rect:
+        serializedVersion: 2
+        x: 12048
+        y: 2953
+        width: 377
+        height: 221
+      alignment: 9
+      pivot: {x: 0.3773676, y: 0.12642728}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2b29f0a97f36526429631ce1d6374830
+      internalID: 1705342626
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_SpriteSheet_Awakened_99
+      rect:
+        serializedVersion: 2
+        x: 7200
+        y: 2362
+        width: 377
+        height: 223
+      alignment: 9
+      pivot: {x: 0.37366468, y: 0.1440342}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1b20d4e4620312744b5a7a21f16b75d4
+      internalID: -1208483024
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_SpriteSheet_Awakened_100
+      rect:
+        serializedVersion: 2
+        x: 7781
+        y: 2362
+        width: 377
+        height: 223
+      alignment: 9
+      pivot: {x: 0.36946052, y: 0.13651402}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8776b9dc77459a74f86c3f07abc1fc2c
+      internalID: 367264006
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_SpriteSheet_Awakened_101
+      rect:
+        serializedVersion: 2
+        x: 8547
+        y: 2362
+        width: 377
+        height: 223
+      alignment: 9
+      pivot: {x: 0.36562034, y: 0.13002186}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6a556a0516ae0134697ed61918c43232
+      internalID: -922353968
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_SpriteSheet_Awakened_102
+      rect:
+        serializedVersion: 2
+        x: 9559
+        y: 2362
+        width: 377
+        height: 223
+      alignment: 9
+      pivot: {x: 0.36562034, y: 0.13002186}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ea140254b4540fd49b1e3c66446567c9
+      internalID: 1798943364
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_SpriteSheet_Awakened_103
+      rect:
+        serializedVersion: 2
+        x: 10518
+        y: 2362
+        width: 377
+        height: 223
+      alignment: 9
+      pivot: {x: 0.36178145, y: 0.13651402}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 63b844823ddfcb946864fa0de1f484bb
+      internalID: -2042576675
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_SpriteSheet_Awakened_104
+      rect:
+        serializedVersion: 2
+        x: 11273
+        y: 2362
+        width: 377
+        height: 223
+      alignment: 9
+      pivot: {x: 0.36614877, y: 0.1367505}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 433a8554e2615f24d920e13912270def
+      internalID: 894636466
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_SpriteSheet_Awakened_105
+      rect:
+        serializedVersion: 2
+        x: 12048
+        y: 2362
+        width: 375
+        height: 223
+      alignment: 9
+      pivot: {x: 0.36189324, y: 0.1367505}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9a76186d66c5ce4468567744b107b2fe
+      internalID: -1768732154
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_SpriteSheet_Awakened_107
+      rect:
+        serializedVersion: 2
+        x: 1372
+        y: 670
+        width: 524
+        height: 332
+      alignment: 9
+      pivot: {x: 0.10395755, y: 0.02871079}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3cc8fcc0005cfb84aa914cc92ff9061b
+      internalID: -330676561
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_SpriteSheet_Awakened_109
+      rect:
+        serializedVersion: 2
+        x: 1699
+        y: 6805
+        width: 451
+        height: 287
+      alignment: 9
+      pivot: {x: 0.07969026, y: 0.032781195}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5b74ac0debf26cd4ab21c0989f0a9622
+      internalID: -2024837995
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_SpriteSheet_Awakened_3
+      rect:
+        serializedVersion: 2
+        x: 2196
+        y: 682
+        width: 413
+        height: 333
+      alignment: 9
+      pivot: {x: 0.34177974, y: 0.17166129}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ebf86fd9c9455ba4186d10266e3dbc15
+      internalID: 1675251108
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_SpriteSheet_Awakened_48
+      rect:
+        serializedVersion: 2
+        x: 10194
+        y: 5349
+        width: 387
+        height: 157
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e5e28d344c8b20d43a50914586e39f3f
+      internalID: -1016833272
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      Player_SpriteSheet_Awakened_0: 1580006144
+      Player_SpriteSheet_Awakened_1: -1033004513
+      Player_SpriteSheet_Awakened_10: -89400967
+      Player_SpriteSheet_Awakened_100: 367264006
+      Player_SpriteSheet_Awakened_101: -922353968
+      Player_SpriteSheet_Awakened_102: 1798943364
+      Player_SpriteSheet_Awakened_103: -2042576675
+      Player_SpriteSheet_Awakened_104: 894636466
+      Player_SpriteSheet_Awakened_105: -1768732154
+      Player_SpriteSheet_Awakened_106: 163181504
+      Player_SpriteSheet_Awakened_107: -330676561
+      Player_SpriteSheet_Awakened_108: 1901722394
+      Player_SpriteSheet_Awakened_109: -2024837995
+      Player_SpriteSheet_Awakened_11: -1639096756
+      Player_SpriteSheet_Awakened_110: 1915577370
+      Player_SpriteSheet_Awakened_12: -1942873334
+      Player_SpriteSheet_Awakened_13: -1055708886
+      Player_SpriteSheet_Awakened_14: 835785027
+      Player_SpriteSheet_Awakened_15: 615893301
+      Player_SpriteSheet_Awakened_16: 457912109
+      Player_SpriteSheet_Awakened_17: 697893838
+      Player_SpriteSheet_Awakened_18: -603117210
+      Player_SpriteSheet_Awakened_19: 1041259703
+      Player_SpriteSheet_Awakened_2: 1768943506
+      Player_SpriteSheet_Awakened_20: -1447695693
+      Player_SpriteSheet_Awakened_21: 1500273727
+      Player_SpriteSheet_Awakened_22: 1785867377
+      Player_SpriteSheet_Awakened_23: 192907177
+      Player_SpriteSheet_Awakened_24: 525377553
+      Player_SpriteSheet_Awakened_25: 1086460396
+      Player_SpriteSheet_Awakened_26: 174127923
+      Player_SpriteSheet_Awakened_27: 127056325
+      Player_SpriteSheet_Awakened_28: 1730232115
+      Player_SpriteSheet_Awakened_29: 1615428477
+      Player_SpriteSheet_Awakened_3: 1675251108
+      Player_SpriteSheet_Awakened_30: -1626776479
+      Player_SpriteSheet_Awakened_31: 1537377130
+      Player_SpriteSheet_Awakened_32: -1125259160
+      Player_SpriteSheet_Awakened_33: 1343997234
+      Player_SpriteSheet_Awakened_34: 1754671888
+      Player_SpriteSheet_Awakened_35: -1526771443
+      Player_SpriteSheet_Awakened_36: -1969735493
+      Player_SpriteSheet_Awakened_37: 1514724572
+      Player_SpriteSheet_Awakened_38: 1085195760
+      Player_SpriteSheet_Awakened_39: -2132536246
+      Player_SpriteSheet_Awakened_4: 1394409656
+      Player_SpriteSheet_Awakened_40: -1779119049
+      Player_SpriteSheet_Awakened_41: 932320053
+      Player_SpriteSheet_Awakened_42: 308739959
+      Player_SpriteSheet_Awakened_43: -746106675
+      Player_SpriteSheet_Awakened_44: 680246623
+      Player_SpriteSheet_Awakened_45: -466619909
+      Player_SpriteSheet_Awakened_46: -139728809
+      Player_SpriteSheet_Awakened_47: -586131285
+      Player_SpriteSheet_Awakened_48: -1016833272
+      Player_SpriteSheet_Awakened_49: 825015158
+      Player_SpriteSheet_Awakened_5: 804824216
+      Player_SpriteSheet_Awakened_50: -1383146054
+      Player_SpriteSheet_Awakened_51: 1750266389
+      Player_SpriteSheet_Awakened_52: -220822553
+      Player_SpriteSheet_Awakened_53: -1262772217
+      Player_SpriteSheet_Awakened_54: 1840960232
+      Player_SpriteSheet_Awakened_55: 1087170308
+      Player_SpriteSheet_Awakened_56: -436722401
+      Player_SpriteSheet_Awakened_57: -1493764671
+      Player_SpriteSheet_Awakened_58: -1688954983
+      Player_SpriteSheet_Awakened_59: -1614992637
+      Player_SpriteSheet_Awakened_6: -1122408521
+      Player_SpriteSheet_Awakened_60: -702976856
+      Player_SpriteSheet_Awakened_61: -370883408
+      Player_SpriteSheet_Awakened_62: 1281197420
+      Player_SpriteSheet_Awakened_63: 1806076131
+      Player_SpriteSheet_Awakened_64: 2061931244
+      Player_SpriteSheet_Awakened_65: 1012152508
+      Player_SpriteSheet_Awakened_66: -1220823165
+      Player_SpriteSheet_Awakened_67: -1005472558
+      Player_SpriteSheet_Awakened_68: -258370726
+      Player_SpriteSheet_Awakened_69: 1353535406
+      Player_SpriteSheet_Awakened_7: 912865017
+      Player_SpriteSheet_Awakened_70: -925179249
+      Player_SpriteSheet_Awakened_71: -2017290003
+      Player_SpriteSheet_Awakened_72: -1963651929
+      Player_SpriteSheet_Awakened_73: 967735496
+      Player_SpriteSheet_Awakened_74: 987628781
+      Player_SpriteSheet_Awakened_75: -439298236
+      Player_SpriteSheet_Awakened_76: -172031278
+      Player_SpriteSheet_Awakened_77: 1103706377
+      Player_SpriteSheet_Awakened_78: 1311261252
+      Player_SpriteSheet_Awakened_79: 2140956906
+      Player_SpriteSheet_Awakened_8: 825574707
+      Player_SpriteSheet_Awakened_80: -201822035
+      Player_SpriteSheet_Awakened_81: 657203440
+      Player_SpriteSheet_Awakened_82: 454852981
+      Player_SpriteSheet_Awakened_83: -1459508212
+      Player_SpriteSheet_Awakened_84: 255541017
+      Player_SpriteSheet_Awakened_85: -1968960159
+      Player_SpriteSheet_Awakened_86: 984449010
+      Player_SpriteSheet_Awakened_87: -1718207630
+      Player_SpriteSheet_Awakened_88: 1953020323
+      Player_SpriteSheet_Awakened_89: 1235759041
+      Player_SpriteSheet_Awakened_9: 311268493
+      Player_SpriteSheet_Awakened_90: -1585829154
+      Player_SpriteSheet_Awakened_91: 1979022480
+      Player_SpriteSheet_Awakened_92: -1663059359
+      Player_SpriteSheet_Awakened_93: -756963581
+      Player_SpriteSheet_Awakened_94: 231953912
+      Player_SpriteSheet_Awakened_95: 1329042292
+      Player_SpriteSheet_Awakened_96: -1956321361
+      Player_SpriteSheet_Awakened_97: 1693886840
+      Player_SpriteSheet_Awakened_98: 1705342626
+      Player_SpriteSheet_Awakened_99: -1208483024
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

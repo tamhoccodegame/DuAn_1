@@ -559,11 +559,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 15
   fireEffect: {fileID: 1206498299807332549, guid: af6c1e3f046eecd4d81330aeb285600f, type: 3}
-  electricEffect: {fileID: 0}
+  electricEffect: {fileID: 5998978355690904631, guid: ea5369fdba885fc4d9f4f61f4f4c8db2, type: 3}
   iceEffect: {fileID: 0}
   isFireBuff: 0
   isIceBuff: 0
-  isElectricBuff: 0
+  isElectricBuff: 1
   isLifestealBuff: 0
 --- !u!1 &2456852267444344357
 GameObject:
@@ -10589,7 +10589,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 2.8802695, y: 4.5299997}
+  m_Size: {x: 2.9102724, y: 2.93}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -10681,6 +10681,7 @@ MonoBehaviour:
   snakePrefab: {fileID: 0}
   skillBlastPrefab: {fileID: 4855609468592092021, guid: 864f8f757327747409de0f36fca4ff11, type: 3}
   skyBulletPrefab: {fileID: 6129947915365980173, guid: 264dc231fe009c64ea9c507c84019ae8, type: 3}
+  auraAwaken: {fileID: 8699154608627786635, guid: ba705edfe575bd14d862aeb81e27dfe8, type: 3}
   teammatePrefab: {fileID: 6975537774928148687, guid: 8fed1aed2cf0e684cb37c3ca59046a6f, type: 3}
   summonTeammatePosition: {fileID: 3289439861301940589}
   summonTime: 30
