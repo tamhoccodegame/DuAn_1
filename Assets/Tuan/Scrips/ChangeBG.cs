@@ -11,9 +11,17 @@ public class ChangeBG : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             bg.SetActive(true);
-            
+
         }
         bgbefore.SetActive(false);
        
+    }
+    public void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            bg.SetActive(false);
+
+        }
     }
 }
